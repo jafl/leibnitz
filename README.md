@@ -1,0 +1,44 @@
+# Leibnitz
+
+Leibnitz provides a calculator and the ability to plot functions.  The [on-line help](http://leibnitz.sourceforge.net/help.html) explains all the features of the program.
+
+
+## Building from source
+
+1. Install the [JX Application Framework](https://github.com/jafl/jx_application_framework),  and set the `JX_ROOT` environment variable to point to its `include` directory.
+1. `makemake`
+1. `make`
+
+
+## Installing a binary
+
+http://sourceforge.net/p/leibnitz/
+
+The easiest way to install from the binary package is to run `sudo ./install`
+
+Otherwise, the program (leibnitz) should be placed in a directory that is on your execution path.  `/usr/bin` or `~/bin` are usually good choices.  Copy the libraries in `lib/` to a directory on your `LD_LIBRARY_PATH`.
+
+### Requirements
+
+On MacOS, this program requires XQuartz, the X11 server.  Before running this program, you must first start XQuartz.
+
+
+## FAQ
+
+For general questions, refer to the [Programs FAQ](https://github.com/jafl/jx_application_framework/blob/master/APPS.md).
+
+### Usage
+
+#### How do I clear the expression and start over after pressing '=' without using the mouse?
+
+Use Meta-A. (Select All on the Edit menu)  Typing will replace the selection.
+
+
+#### How do I avoid saving the contents of the tape between sessions?
+
+Use the Close button instead of the Quit menu item.
+
+
+#### Why did you call it Leibnitz?
+
+The program is advocating a better way to display calculations, just like Leibnitz advocated a notation for Calculus that proved superior to what Newton had invented.

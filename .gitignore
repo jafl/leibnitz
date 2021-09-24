@@ -1,0 +1,8 @@
+leibnitz
+Makefile
+*.o
+*.bak
+code/thxStringData.h
+strings/version
+strings/leibnitz_menu_strings
+.jcc
