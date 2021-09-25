@@ -20,7 +20,7 @@
 #include <JXImage.h>
 #include <jXActionDefs.h>
 #include <JX2DPlotWidget.h>
-#include <J2DPlotJFunction.h>
+#include <J2DPlotFunction.h>
 #include <JExprParser.h>
 #include <JFunction.h>
 #include <jAssert.h>
@@ -88,7 +88,7 @@ THX2DPlotDirector::THX2DPlotDirector
 	JString expr;
 
 	for (JIndex i=1; i<=fnCount; i++)
-		{
+	{
 		JFloat xMin, xMax;
 		input >> xMin >> xMax;
 
@@ -99,17 +99,17 @@ THX2DPlotDirector::THX2DPlotDirector
 		assert( ok );
 
 		AddFunction(varList, f, JString::empty, xMin, xMax);
-		}
+	}
 
 	itsPlotWidget->PWXReadSetup(input);
 	itsPlotWidget->PWReadCurveSetup(input);
 
 	if (4 <= vers && vers <= 5)
-		{
+	{
 		JString s;
 		input >> s;
 		itsPlotWidget->SetPSPrintFileName(s);
-		}
+	}
 }
 
 // private
@@ -117,7 +117,7 @@ THX2DPlotDirector::THX2DPlotDirector
 void
 THX2DPlotDirector::THX2DPlotDirectorX()
 {
-	itsFnList = jnew JPtrArray<J2DPlotJFunction>(JPtrArrayT::kForgetAll);
+	itsFnList = jnew JPtrArray<J2DPlotFunction>(JPtrArrayT::kForgetAll);
 	assert( itsFnList != nullptr );
 
 	itsEditFnDialog = nullptr;
@@ -151,9 +151,9 @@ THX2DPlotDirector::WriteState
 	output << ' ' << fnCount;
 
 	for (JIndex i=1; i<=fnCount; i++)
-		{
-		const JPlotDataBase& data      = itsPlotWidget->GetCurve(i);
-		const auto* fnData = dynamic_cast<const J2DPlotJFunction*>(&data);
+	{
+		const J2DPlotDataBase& data      = itsPlotWidget->GetCurve(i);
+		const auto* fnData = dynamic_cast<const J2DPlotFunction*>(&data);
 		assert( fnData != nullptr );
 
 		JFloat xMin, xMax;
@@ -161,7 +161,7 @@ THX2DPlotDirector::WriteState
 		output << ' ' << xMin << ' ' << xMax;
 
 		output << ' ' << fnData->GetFunction().Print();
-		}
+	}
 
 	output << ' ';
 	itsPlotWidget->PWXWriteSetup(output);
@@ -274,7 +274,7 @@ THX2DPlotDirector::AddFunction
 	)
 {
 	auto* data =
-		jnew J2DPlotJFunction(itsPlotWidget, varList, f, true,
+		jnew J2DPlotFunction(itsPlotWidget, varList, f, true,
 							 THXVarList::kXIndex, xMin, xMax);
 	assert( data != nullptr );
 
@@ -300,13 +300,13 @@ THX2DPlotDirector::ReceiveGoingAway
 {
 	const JSize count = itsFnList->GetElementCount();
 	for (JIndex i=1; i<=count; i++)
-		{
+	{
 		if (sender == itsFnList->GetElement(i))
-			{
+		{
 			itsFnList->RemoveElement(i);
 			break;
-			}
 		}
+	}
 
 	JXWindowDirector::ReceiveGoingAway(sender);
 }
@@ -324,77 +324,77 @@ THX2DPlotDirector::Receive
 	)
 {
 	if (sender == itsPlotWidget && message.Is(J2DPlotWidget::kTitleChanged))
-		{
+	{
 		GetWindow()->SetTitle(itsPlotWidget->GetTitle());
-		}
+	}
 
 	else if (sender == itsActionsMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		UpdateActionsMenu();
-		}
+	}
 	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleActionsMenu(selection->GetIndex());
-		}
+	}
 
 	else if (sender == itsEditFnMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		UpdateEditFnMenu();
-		}
+	}
 	else if (sender == itsEditFnMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleEditFnMenu(selection->GetIndex());
-		}
+	}
 
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		(THXGetApplication())->UpdateHelpMenu(itsHelpMenu);
-		}
+	}
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		(THXGetApplication())->HandleHelpMenu(itsHelpMenu, "THX2DPlotHelp",
 											  selection->GetIndex());
-		}
+	}
 
 	else if (sender == itsPlotWidget->GetCurveOptionsMenu() &&
 			 message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		UpdateCurveOptionsMenu();
-		}
+	}
 	else if (sender == itsPlotWidget->GetCurveOptionsMenu() &&
 			 message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleCurveOptionsMenu(selection->GetIndex());
-		}
+	}
 
 	else if (sender == itsEditFnDialog && message.Is(JXDialogDirector::kDeactivated))
-		{
+	{
 		const auto* info =
 			dynamic_cast<const JXDialogDirector::Deactivated*>(&message);
 		assert( info != nullptr );
 		if (info->Successful())
-			{
+		{
 			UpdateFunction();
-			}
-		itsEditFnDialog = nullptr;
 		}
+		itsEditFnDialog = nullptr;
+	}
 
 	else
-		{
+	{
 		JXWindowDirector::Receive(sender, message);
-		}
+	}
 }
 
 /******************************************************************************
@@ -420,48 +420,48 @@ THX2DPlotDirector::HandleActionsMenu
 	)
 {
 	if (index == kNewExprCmd)
-		{
+	{
 		(THXGetApplication())->NewExpression();
-		}
+	}
 	else if (index == kEditConstCmd)
-		{
+	{
 		(THXGetApplication())->ShowConstants();
-		}
+	}
 	else if (index == kNew2DPlotCmd)
-		{
+	{
 		(THXGetApplication())->New2DPlot(this);
-		}
+	}
 	else if (index == kConvBaseCmd)
-		{
+	{
 		(THXGetApplication())->ShowBaseConversion();
-		}
+	}
 
 	else if (index == kPSPageSetupCmd)
-		{
+	{
 		itsPlotWidget->HandlePSPageSetup();
-		}
+	}
 	else if (index == kPrintPSCmd)
-		{
+	{
 		itsPlotWidget->PrintPS();
-		}
+	}
 
 	else if (index == kPrintPlotEPSCmd)
-		{
+	{
 		itsPlotWidget->PrintPlotEPS();
-		}
+	}
 	else if (index == kPrintMarksEPSCmd)
-		{
+	{
 		itsPlotWidget->PrintMarksEPS();
-		}
+	}
 
 	else if (index == kCloseWindowCmd)
-		{
+	{
 		GetWindow()->Close();
-		}
+	}
 	else if (index == kQuitCmd)
-		{
+	{
 		(THXGetApplication())->Quit();
-		}
+	}
 }
 
 /*******************************************************************************
@@ -476,9 +476,9 @@ THX2DPlotDirector::UpdateEditFnMenu()
 
 	const JSize count = itsFnList->GetElementCount();
 	for (JIndex i=1; i<=count; i++)
-		{
+	{
 		itsEditFnMenu->AppendItem(itsPlotWidget->GetCurveName(i));
-		}
+	}
 }
 
 /*******************************************************************************
@@ -508,7 +508,7 @@ THX2DPlotDirector::EditFunction
 {
 	assert( itsEditFnDialog == nullptr );
 
-	const J2DPlotJFunction* curve = itsFnList->GetElement(index);
+	const J2DPlotFunction* curve = itsFnList->GetElement(index);
 
 	JFloat min, max;
 	curve->GetXRange(&min, &max);
@@ -540,7 +540,7 @@ THX2DPlotDirector::UpdateFunction()
 	JFloat xMin, xMax;
 	itsEditFnDialog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
 
-	J2DPlotJFunction* curve = itsFnList->GetElement(itsEditFnIndex);
+	J2DPlotFunction* curve = itsFnList->GetElement(itsEditFnIndex);
 	curve->SetFunction((THXGetApplication())->GetVariableList(), f->Copy(), true,
 					   THXVarList::kXIndex, xMin, xMax);
 
@@ -570,7 +570,7 @@ THX2DPlotDirector::HandleCurveOptionsMenu
 	)
 {
 	if (index == itsEditFunctionItemIndex)
-		{
+	{
 		EditFunction(itsPlotWidget->GetCurveOptionsMenuCurveIndex());
-		}
+	}
 }

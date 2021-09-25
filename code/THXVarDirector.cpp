@@ -89,9 +89,9 @@ THXVarDirector::THXVarDirector
 	bool active;
 	input >> JBoolFromString(active);
 	if (active)
-		{
+	{
 		Activate();
-		}
+	}
 }
 
 /******************************************************************************
@@ -204,34 +204,34 @@ THXVarDirector::Receive
 	)
 {
 	if (sender == itsActionsMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		UpdateActionsMenu();
-		}
+	}
 	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleActionsMenu(selection->GetIndex());
-		}
+	}
 
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		(THXGetApplication())->UpdateHelpMenu(itsHelpMenu);
-		}
+	}
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		(THXGetApplication())->HandleHelpMenu(itsHelpMenu, "THXConstantsHelp",
 											  selection->GetIndex());
-		}
+	}
 
 	else
-		{
+	{
 		JXWindowDirector::Receive(sender, message);
-		}
+	}
 }
 
 /******************************************************************************
@@ -258,34 +258,34 @@ THXVarDirector::HandleActionsMenu
 	)
 {
 	if (index == kNewConstCmd)
-		{
+	{
 		itsVarTable->NewConstant();
-		}
+	}
 	else if (index == kRemoveConstCmd)
-		{
+	{
 		itsVarTable->RemoveSelectedConstant();
-		}
+	}
 	else if (index == kNewExprCmd)
-		{
+	{
 		(THXGetApplication())->NewExpression();
-		}
+	}
 	else if (index == kNew2DPlotCmd)
-		{
+	{
 		(THXGetApplication())->New2DPlot();
-		}
+	}
 	else if (index == kConvBaseCmd)
-		{
+	{
 		(THXGetApplication())->ShowBaseConversion();
-		}
+	}
 
 	else if (index == kCloseWindowCmd)
-		{
+	{
 		GetWindow()->Close();
-		}
+	}
 	else if (index == kQuitCmd)
-		{
+	{
 		(THXGetApplication())->Quit();
-		}
+	}
 }
 
 /******************************************************************************

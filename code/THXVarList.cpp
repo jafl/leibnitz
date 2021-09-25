@@ -52,7 +52,7 @@ THXVarList::THXVarList
 	JExprParser p(this);
 
 	for (JIndex i=1; i<=varCount; i++)
-		{
+	{
 		auto* name = jnew JString;
 		assert( name != nullptr );
 		input >> *name;
@@ -64,31 +64,31 @@ THXVarList::THXVarList
 		input >> *fStr;
 		JFunction* f;
 		if (p.Parse(*fStr, &f))
-			{
+		{
 			jdelete fStr;
 			itsFunctions->Append(f);
-			}
+		}
 		else
-			{
+		{
 			itsFunctions->Append(nullptr);
 			misfitIndexList.AppendElement(i + kUserFnOffset);
 			misfitFnList.Append(fStr);
-			}
 		}
+	}
 
 	JGetUserNotification()->SetSilent(false);
 
 	const JSize misfitCount = misfitIndexList.GetElementCount();
 	for (JIndex i=1; i<=misfitCount; i++)
-		{
+	{
 		const JString* fStr = misfitFnList.GetElement(i);
 		JFunction* f;
 		if (p.Parse(*fStr, &f))
-			{
+		{
 			const JIndex j = misfitIndexList.GetElement(i);
 			itsFunctions->SetElement(j, f, JPtrArrayT::kDelete);
-			}
 		}
+	}
 }
 
 // private
@@ -150,14 +150,14 @@ THXVarList::NewFunction()
 	JUInt64 i = 1;
 	JIndex j;
 	do
-		{
+	{
 		*name = JGetString("NewVarName::THXVarList");
 		if (i > 1)
-			{
+		{
 			*name += JString(i);
-			}
-		i++;
 		}
+		i++;
+	}
 		while (ParseVariableName(*name, &j));
 
 	itsNames->Append(name);
@@ -205,21 +205,21 @@ THXVarList::SetVariableName
 
 	JIndex index;
 	if (!JVariableList::NameValid(name))
-		{
+	{
 		return false;
-		}
+	}
 	else if (ParseVariableName(name, &index) && index != varIndex)
-		{
+	{
 		JGetUserNotification()->ReportError(JGetString("NameUsed::THXVarList"));
 		return false;
-		}
+	}
 	else
-		{
+	{
 		JString* varName = itsNames->GetElement(varIndex);
 		*varName = name;
 		Broadcast(VarNameChanged(varIndex));
 		return true;
-		}
+	}
 }
 
 /******************************************************************************
@@ -240,15 +240,15 @@ THXVarList::SetFunction
 
 	JFunction* f;
 	if (p.Parse(expr, &f))
-		{
+	{
 		itsFunctions->SetElement(index, f, JPtrArrayT::kDelete);
 		Broadcast(VarValueChanged(index,1));
 		return true;
-		}
+	}
 	else
-		{
+	{
 		return false;
-		}
+	}
 }
 
 /******************************************************************************
@@ -284,18 +284,18 @@ THXVarList::GetVariableName
 {
 	const JString* fullName = itsNames->GetElement(index);
 	if (fullName->GetCharacterCount() > 1)
-		{
+	{
 		*name      = fullName->GetFirstCharacter();
 		*subscript = *fullName;
 
 		JStringIterator iter(subscript);
 		iter.RemoveNext(1);
-		}
+	}
 	else
-		{
+	{
 		*name = *fullName;
 		subscript->Clear();
-		}
+	}
 }
 
 /******************************************************************************
@@ -345,22 +345,22 @@ THXVarList::GetNumericValue
 {
 	const JFunction* f = itsFunctions->GetElement(variableIndex);
 	if (elementIndex == 1)
-		{
+	{
 		if (IsOnEvalStack(variableIndex))
-			{
+		{
 			*value = 0.0;
 			return false;
-			}
+		}
 		PushOnEvalStack(variableIndex);
 		const bool ok = f->Evaluate(value);
 		PopOffEvalStack(variableIndex);
 		return ok;
-		}
+	}
 	else
-		{
+	{
 		*value = 0.0;
 		return false;
-		}
+	}
 }
 
 bool
@@ -374,22 +374,22 @@ THXVarList::GetNumericValue
 {
 	const JFunction* f = itsFunctions->GetElement(variableIndex);
 	if (elementIndex == 1)
-		{
+	{
 		if (IsOnEvalStack(variableIndex))
-			{
+		{
 			*value = 0.0;
 			return false;
-			}
+		}
 		PushOnEvalStack(variableIndex);
 		const bool ok = f->Evaluate(value);
 		PopOffEvalStack(variableIndex);
 		return ok;
-		}
+	}
 	else
-		{
+	{
 		*value = 0.0;
 		return false;
-		}
+	}
 }
 
 /******************************************************************************
@@ -408,21 +408,21 @@ THXVarList::SetNumericValue
 	assert( elementIndex == 1 );
 
 	if (variableIndex == kXIndex)
-		{
+	{
 		itsXValue->SetValue(value);
-		}
+	}
 	else if (variableIndex == kYIndex)
-		{
+	{
 		itsYValue->SetValue(value);
-		}
+	}
 	else if (variableIndex == kTIndex)
-		{
+	{
 		itsTValue->SetValue(value);
-		}
+	}
 	else
-		{
+	{
 		assert_msg( 0, "THXVarList::SetNumericValue() called for a function" );
-		}
+	}
 }
 
 void
@@ -457,13 +457,13 @@ operator<<
 	output << varCount - THXVarList::kUserFnOffset;
 
 	for (JIndex i = 1+THXVarList::kUserFnOffset; i<=varCount; i++)
-		{
+	{
 		const JString* name = (varList.itsNames)->GetElement(i);
 		output << ' ' << *name;
 
 		const JFunction* f = (varList.itsFunctions)->GetElement(i);
 		output << ' ' << f->Print();
-		}
+	}
 
 	// allow chaining
 

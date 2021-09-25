@@ -237,9 +237,9 @@ JString
 THXGetVersionStr()
 {
 	const JUtf8Byte* map[] =
-		{
+	{
 		"version",   JGetString("VERSION").GetBytes(),
 		"copyright", JGetString("COPYRIGHT").GetBytes()
-		};
+	};
 	return JGetString("Description::thxGlobals", map, sizeof(map));
 }

@@ -123,9 +123,9 @@ bool
 THXApp::Close()
 {
 	if (!itsVarDirector->OKToDeactivate())
-		{
+	{
 		return false;
-		}
+	}
 
 	SaveProgramState();
 	return JXApplication::Close();
@@ -161,9 +161,9 @@ THXApp::NewExpression
 	auto* expr = jnew THXExprDirector(this, itsVarList);
 	assert( expr != nullptr );
 	if (centerOnScreen)
-		{
+	{
 		(expr->GetWindow())->PlaceAsDialogWindow();
-		}
+	}
 	expr->Activate();
 	itsExprList->Append(expr);
 	return expr;
@@ -181,15 +181,15 @@ THXApp::SetKeyPadVisible
 	)
 {
 	if (visible != itsKeyPadVisibleFlag)
-		{
+	{
 		itsKeyPadVisibleFlag = visible;
 
 		const JSize count = itsExprList->GetElementCount();
 		for (JIndex i=1; i<=count; i++)
-			{
+		{
 			(itsExprList->GetElement(i))->UpdateDisplay();
-			}
 		}
+	}
 }
 
 /******************************************************************************
@@ -231,11 +231,11 @@ THXApp::Create2DPlot()
 	its2DPlotFnDialog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
 
 	if (plotIndex > its2DPlotList->GetElementCount())
-		{
+	{
 		auto* plot = jnew THX2DPlotDirector(this);
 		assert( plot != nullptr );
 		its2DPlotList->Append(plot);
-		}
+	}
 
 	THX2DPlotDirector* plot = its2DPlotList->GetElement(plotIndex);
 	plot->AddFunction(itsVarList, *f, curveName, xMin, xMax);
@@ -277,56 +277,56 @@ THXApp::RestoreProgramState()
 JIndex i;
 
 	if (!JGetPrefsDirectory(&itsStatePath))
-		{
+	{
 		JGetUserNotification()->ReportError(JGetString("NoPrefsDir::THXApp"));
 		JThisProcess::Exit(1);
-		}
+	}
 
 	const JString fullName = JCombinePathAndName(itsStatePath, kStateFileName);
 	if (!JFileExists(fullName))
-		{
+	{
 		const JString oldName = JCombinePathAndName(itsStatePath, kOldStateFileName);
 		if (!JFileExists(oldName) || !(JRenameFile(oldName, fullName)).OK())
-			{
+		{
 			InitProgramState();
 			DisplayAbout();
 			return;
-			}
 		}
+	}
 
 	std::ifstream input(fullName.GetBytes());
 
 	JFileVersion vers;
 	input >> vers;
 	if (input.eof() || input.fail())
-		{
+	{
 		InitProgramState();
 		return;
-		}
+	}
 	else if (vers > kCurrentStateVersion)
-		{
+	{
 		const JUtf8Byte* map[] =
-		{
+	{
 			"name", fullName.GetBytes()
-		};
+	};
 		const JString msg = JGetString("CannotReadNewerVersion::THXApp", map, sizeof(map));
 		JGetUserNotification()->ReportError(msg);
 		JThisProcess::Exit(1);
-		}
+	}
 
 	JString prevProgramVers;
 	input >> prevProgramVers;
 
 	bool displayAbout = false;
 	if (prevProgramVers != THXGetVersionNumberStr())
-		{
+	{
 		if (!JGetUserNotification()->AcceptLicense())
-			{
+		{
 			JThisProcess::Exit(0);
-			}
+		}
 
 		displayAbout = true;
-		}
+	}
 
 	itsVarList = jnew THXVarList(input, vers);
 	assert( itsVarList != nullptr );
@@ -338,69 +338,69 @@ JIndex i;
 	assert( itsBCDirector != nullptr );
 
 	if (vers >= 1)
-		{
+	{
 		input >> JBoolFromString(itsKeyPadVisibleFlag);
-		}
+	}
 
 	if (vers >= 2)
-		{
+	{
 		THXExprDirector::ReadPrefs(input, vers);
 
 		// ignoring obsolete JXGetHelpManager data, since it was removed in version 8
-		}
+	}
 
 	if (vers >= 5)
-		{
+	{
 		(JXGetChooseSaveFile())->ReadSetup(input);
-		}
+	}
 
 	if (vers >= 3)
-		{
+	{
 		(THXGetPSGraphPrinter())->ReadXPSSetup(input);
-		}
+	}
 	if (vers >= 7)
-		{
+	{
 		(THXGetEPSGraphPrinter())->ReadX2DEPSSetup(input);
-		}
+	}
 
 	JSize exprCount;
 	input >> exprCount;
 
 	if (exprCount == 0)
-		{
+	{
 		NewExpression(true);
-		}
+	}
 	else
-		{
+	{
 		for (i=1; i<=exprCount; i++)
-			{
+		{
 			auto* expr = jnew THXExprDirector(input, vers, this, itsVarList);
 			assert( expr != nullptr );
 			expr->Activate();
 			itsExprList->Append(expr);
 
 			if (exprCount == 1)
-				{
+			{
 				(expr->GetWindow())->Deiconify();
-				}
 			}
 		}
+	}
 
 	JSize plotCount;
 	input >> plotCount;
 
 	for (i=1; i<=plotCount; i++)
-		{
+	{
 		auto* plot = jnew THX2DPlotDirector(input, vers, this, itsVarList);
 		assert( plot != nullptr );
 		plot->Activate();
 		its2DPlotList->Append(plot);
-		}
+	}
 
 	if (displayAbout)
-		{
+	{
 		DisplayAbout(prevProgramVers);
-		}
+	}
 }
 
 /******************************************************************************
@@ -412,9 +412,9 @@ void
 THXApp::InitProgramState()
 {
 	if (!JGetUserNotification()->AcceptLicense())
-		{
+	{
 		JThisProcess::Exit(0);
-		}
+	}
 
 	itsVarList = jnew THXVarList;
 	assert( itsVarList != nullptr );
@@ -469,19 +469,19 @@ JIndex i;
 	output << ' ' << exprCount;
 
 	for (i=1; i<=exprCount; i++)
-		{
+	{
 		output << ' ';
 		(itsExprList->GetElement(i))->WriteState(output);
-		}
+	}
 
 	JSize plotCount = its2DPlotList->GetElementCount();
 	output << ' ' << plotCount;
 
 	for (i=1; i<=plotCount; i++)
-		{
+	{
 		output << ' ';
 		(its2DPlotList->GetElement(i))->WriteState(output);
-		}
+	}
 }
 
 /******************************************************************************
@@ -497,21 +497,21 @@ THXApp::Receive
 	)
 {
 	if (sender == its2DPlotFnDialog && message.Is(JXDialogDirector::kDeactivated))
-		{
+	{
 		const auto* info =
 			dynamic_cast<const JXDialogDirector::Deactivated*>(&message);
 		assert( info != nullptr );
 		if (info->Successful())
-			{
+		{
 			Create2DPlot();
-			}
-		its2DPlotFnDialog = nullptr;
 		}
+		its2DPlotFnDialog = nullptr;
+	}
 
 	else
-		{
+	{
 		JXApplication::Receive(sender, message);
-		}
+	}
 }
 
 /*****************************************************************************
@@ -533,21 +533,21 @@ THXApp::DirectorClosed
 	JIndex dirIndex;
 	auto* exprDir = (THXExprDirector*) theDirector;
 	if (exprDir != nullptr && itsExprList->Find(exprDir, &dirIndex))
-		{
+	{
 		itsExprList->RemoveElement(dirIndex);
-		}
+	}
 	auto* plot2DDir = (THX2DPlotDirector*) theDirector;
 	if (plot2DDir != nullptr && its2DPlotList->Find(plot2DDir, &dirIndex))
-		{
+	{
 		its2DPlotList->RemoveElement(dirIndex);
-		}
+	}
 
 	JXApplication::DirectorClosed(theDirector);
 
 	if (!itsStartupFlag && itsExprList->IsEmpty())
-		{
+	{
 		Quit();
-		}
+	}
 }
 
 /*****************************************************************************
@@ -575,25 +575,25 @@ THXApp::BuildPlotMenu
 
 	const JSize count = its2DPlotList->GetElementCount();
 	for (JIndex i=1; i<=count; i++)
-		{
+	{
 		const THX2DPlotDirector* plot = its2DPlotList->GetElement(i);
 		menu->AppendItem((plot->GetWindow())->GetTitle(), JXMenu::kRadioType);
 
 		if (plot == origPlot)
-			{
+		{
 			*initialChoice = i;
-			}
 		}
+	}
 
 	if (*initialChoice == 0)
-		{
+	{
 		*initialChoice = count+1;
-		}
+	}
 
 	if (count > 0)
-		{
+	{
 		menu->ShowSeparatorAfter(count);
-		}
+	}
 	menu->AppendItem(JGetString("NewWindowItem::THXApp"), JXMenu::kRadioType);
 	menu->SetUpdateAction(JXMenu::kDisableNone);
 }
@@ -667,38 +667,38 @@ THXApp::HandleHelpMenu
 	)
 {
 	if (index == kHelpAboutCmd)
-		{
+	{
 		DisplayAbout();
-		}
+	}
 
 	else if (index == kHelpTOCCmd)
-		{
+	{
 		(JXGetHelpManager())->ShowTOC();
-		}
+	}
 	else if (index == kHelpOverviewCmd)
-		{
+	{
 		(JXGetHelpManager())->ShowSection("THXOverviewHelp");
-		}
+	}
 	else if (index == kHelpWindowCmd)
-		{
+	{
 		(JXGetHelpManager())->ShowSection(windowSectionName);
-		}
+	}
 
 	else if (index == kTipCmd)
-		{
+	{
 		auto* dlog = jnew JXTipOfTheDayDialog;
 		assert( dlog != nullptr );
 		dlog->BeginDialog();
-		}
+	}
 
 	else if (index == kHelpChangeLogCmd)
-		{
+	{
 		(JXGetHelpManager())->ShowChangeLog();
-		}
+	}
 	else if (index == kHelpCreditsCmd)
-		{
+	{
 		(JXGetHelpManager())->ShowCredits();
-		}
+	}
 }
 
 /******************************************************************************
@@ -717,9 +717,9 @@ THXApp::CleanUpBeforeSuddenDeath
 	JXApplication::CleanUpBeforeSuddenDeath(reason);
 
 	if (reason != JXDocumentManager::kAssertFired)
-		{
+	{
 		SaveProgramState();
-		}
+	}
 }
 
 /******************************************************************************

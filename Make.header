@@ -9,8 +9,7 @@ SEARCHDIRS := -I./code \
               -I${JX_ROOT}/include/jcore \
               -I${JX_ROOT}/include/jx \
               -I${JX_ROOT}/include/jexpr \
-              -I${JX_ROOT}/include/j2dplot \
-              -I${JX_ROOT}/include/reflex
+              -I${JX_ROOT}/include/j2dplot
 
 # other constants
 

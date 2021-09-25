@@ -179,9 +179,9 @@ THX2DPlotFunctionDialog::GetSettings
 	*curveName = itsCurveName->GetText()->GetText();
 
 	if (curveName->IsEmpty())
-		{
+	{
 		*curveName = (**f).Print();
-		}
+	}
 
 	JFloat min, max;
 
@@ -208,21 +208,21 @@ THX2DPlotFunctionDialog::Receive
 	)
 {
 	if (sender == itsPlotMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		itsPlotMenu->CheckItem(itsPlotIndex);
-		}
+	}
 	else if (sender == itsPlotMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		itsPlotIndex = selection->GetIndex();
-		}
+	}
 
 	else
-		{
+	{
 		JXDialogDirector::Receive(sender, message);
-		}
+	}
 }
 
 /******************************************************************************
@@ -234,22 +234,22 @@ bool
 THX2DPlotFunctionDialog::OKToDeactivate()
 {
 	if (!JXDialogDirector::OKToDeactivate())
-		{
+	{
 		return false;
-		}
+	}
 	else if (Cancelled())
-		{
+	{
 		return true;
-		}
+	}
 
 	else if (itsExprWidget->ContainsUIF())
-		{
+	{
 		JGetUserNotification()->ReportError(JGetString("FinishFunction::THX2DPlotFunctionDialog"));
 		itsExprWidget->Focus();
 		return false;
-		}
+	}
 	else
-		{
+	{
 		return true;
-		}
+	}
 }

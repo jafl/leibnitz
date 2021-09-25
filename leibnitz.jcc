@@ -4,9 +4,9 @@ jx_browser_data 89
 T
 1 "main"
 T
-2 "leibnitz.cpp"
+2 "main.cpp"
 F
-"./code/leibnitz.cpp"
+"./code/main.cpp"
 T
 2 "thxGlobals.cpp"
 F

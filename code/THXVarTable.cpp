@@ -107,11 +107,11 @@ THXVarTable::RemoveSelectedConstant()
 {
 	JPoint cell;
 	if (GetEditedCell(&cell))
-		{
+	{
 		CancelEditing();
 		RemoveRow(cell.y);
 		itsVarList->RemoveFunction(cell.y + THXVarList::kUserFnOffset);
-		}
+	}
 }
 
 /******************************************************************************
@@ -131,13 +131,13 @@ THXVarTable::HandleMouseDown
 {
 	JPoint cell;
 	if (button == kJXLeftButton && GetCell(pt, &cell))
-		{
+	{
 		BeginEditing(cell);
-		}
+	}
 	else
-		{
+	{
 		ScrollForWheel(button, modifiers);
-		}
+	}
 }
 
 /******************************************************************************
@@ -155,24 +155,24 @@ THXVarTable::TableDrawCell
 {
 	JPoint editCell;
 	if (GetEditedCell(&editCell) && cell == editCell)
-		{
+	{
 		return;
-		}
+	}
 
 	JRect r = rect;
 	r.left += kHMarginWidth;
 
 	const JIndex varIndex = cell.y + THXVarList::kUserFnOffset;
 	if (cell.x == kNameColumn)
-		{
+	{
 		p.String(r, itsVarList->GetVariableName(varIndex),
 				 JPainter::kHAlignLeft, JPainter::kVAlignCenter);
-		}
+	}
 	else if (cell.x == kFnColumn)
-		{
+	{
 		const JString s = (itsVarList->GetFunction(varIndex))->Print();
 		p.String(r, s, JPainter::kHAlignLeft, JPainter::kVAlignCenter);
-		}
+	}
 }
 
 /******************************************************************************
@@ -197,15 +197,15 @@ THXVarTable::CreateXInputField
 
 	const JIndex varIndex = cell.y + THXVarList::kUserFnOffset;
 	if (cell.x == kNameColumn)
-		{
+	{
 		itsTextInput->SetVarName(itsVarList->GetVariableName(varIndex));
-		}
+	}
 	else
-		{
+	{
 		assert( cell.x == kFnColumn );
 		const JString s = (itsVarList->GetFunction(varIndex))->Print();
 		itsTextInput->SetVarName(s);
-		}
+	}
 
 	itsOrigText = itsTextInput->GetVarName();
 
@@ -229,29 +229,29 @@ THXVarTable::ExtractInputData
 
 	const JString s = itsTextInput->GetVarName();
 	if (s == itsOrigText)
-		{
+	{
 		return true;
-		}
+	}
 	else if (itsTextInput->InputValid())
-		{
+	{
 		bool ok;
 		const JIndex varIndex = cell.y + THXVarList::kUserFnOffset;
 		if (cell.x == kNameColumn)
-			{
+		{
 			ok = itsVarList->SetVariableName(varIndex, s);
-			}
+		}
 		else
-			{
+		{
 			assert( cell.x == kFnColumn );
 			ok = itsVarList->SetFunction(varIndex, s);
-			}
+		}
 
 		return ok;
-		}
+	}
 	else
-		{
+	{
 		return false;
-		}
+	}
 }
 
 /******************************************************************************
@@ -281,10 +281,10 @@ THXVarTable::Receive
 	)
 {
 	if (sender == this && message.Is(kColWidthChanged))
-		{
+	{
 		// do it regardless of which column changed so they can't shrink fn column
 		AdjustColWidths();
-		}
+	}
 
 	JXEditTable::Receive(sender, message);
 }
@@ -321,13 +321,13 @@ THXVarTable::AdjustColWidths()
 	const JSize usedWidth = GetColWidth(kNameColumn) + lineWidth;
 
 	if (apWidth > usedWidth)
-		{
+	{
 		SetColWidth(kFnColumn, apWidth - usedWidth);
-		}
+	}
 	else
-		{
+	{
 		const JSize nameWidth = apWidth/3;
 		SetColWidth(kNameColumn, nameWidth);
 		SetColWidth(kFnColumn, apWidth - nameWidth - lineWidth);
-		}
+	}
 }

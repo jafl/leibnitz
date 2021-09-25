@@ -56,9 +56,9 @@ void
 THXMDIServer::PrintCommandLineHelp()
 {
 	const JUtf8Byte* map[] =
-		{
+	{
 		"vers", THXGetVersionNumberStr().GetBytes()
-		};
+	};
 	JString s = JGetString("CommandLineHelp::THXMDIServer");
 	JGetStringManager()->Replace(&s, map, sizeof(map));
 	std::cout << std::endl << s << std::endl << std::endl;

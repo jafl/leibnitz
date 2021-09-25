@@ -1,5 +1,5 @@
 /******************************************************************************
- leibnitz.cpp
+ main.cpp
 
 	Calculator and function plotter.
 
@@ -34,9 +34,9 @@ main
 	ParseTextOptions(argc, argv);
 
 	if (!THXMDIServer::WillBeMDIServer(THXApp::GetAppSignature(), argc, argv))
-		{
+	{
 		return 0;
-		}
+	}
 
 	auto* app = jnew THXApp(&argc, argv);
 	assert( app != nullptr );
@@ -66,21 +66,21 @@ ParseTextOptions
 {
 	long index = 1;
 	while (index < argc)
-		{
+	{
 		if (JIsVersionRequest(argv[index]))
-			{
+		{
 			THXApp::InitStrings();
 			PrintVersion();
 			exit(0);
-			}
+		}
 		else if (JIsHelpRequest(argv[index]))
-			{
+		{
 			THXApp::InitStrings();
 			THXMDIServer::PrintCommandLineHelp();
 			exit(0);
-			}
-		index++;
 		}
+		index++;
+	}
 }
 
 /******************************************************************************

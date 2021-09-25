@@ -171,14 +171,14 @@ THXKeyPad::CreateButtons()
 	itsOpButton[kDivideOpIndex]->SetLabel(JGetString("DivisionSymbol::THXKeyPad"));
 
 	for (JUnsignedOffset i=0; i<10; i++)
-		{
+	{
 		ListenTo(itsDigitButton[i]);
-		}
+	}
 
 	for (JUnsignedOffset i=0; i<kOpCount; i++)
-		{
+	{
 		ListenTo(itsOpButton[i]);
-		}
+	}
 
 	ListenTo(itsClearAllButton);
 }
@@ -196,13 +196,13 @@ THXKeyPad::Receive
 	)
 {
 	if (message.Is(JXButton::kPushed) && HandleButton(sender))
-		{
+	{
 		// work is done by function
-		}
+	}
 	else
-		{
+	{
 		JXWidgetSet::Receive(sender, message);
-		}
+	}
 }
 
 /******************************************************************************
@@ -220,52 +220,52 @@ THXKeyPad::HandleButton
 JXKeyModifiers modifiers(GetDisplay());
 
 	if (itsExpr == nullptr || !itsExpr->Focus())
-		{
+	{
 		return false;
-		}
+	}
 
 	for (JUnsignedOffset i=0; i<10; i++)
-		{
+	{
 		if (sender == itsDigitButton[i])
-			{
+		{
 			if (!itsExpr->HasSelection() && !itsExpr->UIFIsActive())
-				{
+			{
 				if (itsExpr->ContainsUIF())
-					{
+				{
 					itsExpr->ActivateNextUIF();
-					}
-				else
-					{
-					itsExpr->SelectAll();
-					}
 				}
+				else
+				{
+					itsExpr->SelectAll();
+				}
+			}
 
 			itsExpr->HandleKeyPress(JUtf8Character('0' + i), 0, modifiers);
 			return true;
-			}
 		}
+	}
 
 	for (JUnsignedOffset i=0; i<kOpCount; i++)
-		{
+	{
 		if (sender == itsOpButton[i])
-			{
+		{
 			if (!itsExpr->HasSelection() && !itsExpr->UIFIsActive())
-				{
+			{
 				itsExpr->SelectAll();
-				}
+			}
 
 			itsExpr->HandleKeyPress(JUtf8Character(kOpKey[i]), 0, modifiers);
 			return true;
-			}
 		}
+	}
 
 	if (sender == itsClearAllButton)
-		{
+	{
 		itsExpr->CancelEditing();
 		itsExpr->SelectAll();
 		itsExpr->DeleteSelection();
 		return true;
-		}
+	}
 
 	return false;
 }

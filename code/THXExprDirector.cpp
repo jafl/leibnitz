@@ -123,11 +123,11 @@ THXExprDirector::THXExprDirector
 	itsTapeWidget->GetText()->SetText(tapeText);
 
 	if (vers >= 4)
-		{
+	{
 		JString printName;
 		input >> printName;
 		itsTapeWidget->SetPTPrintFileName(printName);
-		}
+	}
 
 	GetWindow()->ReadGeometry(input);
 	itsPartition->ReadGeometry(input);
@@ -187,9 +187,9 @@ THXExprDirector::ReadPrefs
 	)
 {
 	if (vers >= 2)
-		{
+	{
 		input >> theDefGeom;
-		}
+	}
 }
 
 /******************************************************************************
@@ -215,21 +215,21 @@ void
 THXExprDirector::UseDefaultGeometry()
 {
 	if (!theDefGeom.IsEmpty())
-		{
+	{
 		const std::string s(theDefGeom.GetRawBytes(), theDefGeom.GetByteCount());
 		std::istringstream input(s);
 
 		JFileVersion vers;
 		input >> vers;
 		if (vers <= kCurrentDefGeomVersion)
-			{
+		{
 			JCoordinate w,h;
 			input >> w >> h;
 			GetWindow()->SetSize(w,h);
 
 			itsPartition->ReadGeometry(input);
-			}
 		}
+	}
 }
 
 /******************************************************************************
@@ -383,15 +383,15 @@ void
 THXExprDirector::UpdateDisplay()
 {
 	if (itsKeyPad->WouldBeVisible() && !(THXGetApplication())->KeyPadIsVisible())
-		{
+	{
 		itsKeyPad->Hide();
 		itsPartition->AdjustSize(itsKeyPad->GetFrameWidth(), 0);
-		}
+	}
 	else if (!itsKeyPad->WouldBeVisible() && (THXGetApplication())->KeyPadIsVisible())
-		{
+	{
 		itsKeyPad->Show();
 		itsPartition->AdjustSize(-itsKeyPad->GetFrameWidth(), 0);
-		}
+	}
 }
 
 /******************************************************************************
@@ -407,46 +407,46 @@ THXExprDirector::Receive
 	)
 {
 	if (sender == itsActionsMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		UpdateActionsMenu();
-		}
+	}
 	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleActionsMenu(selection->GetIndex());
-		}
+	}
 
 	else if (sender == itsPrefsMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		UpdatePrefsMenu();
-		}
+	}
 	else if (sender == itsPrefsMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandlePrefsMenu(selection->GetIndex());
-		}
+	}
 
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
-		{
+	{
 		(THXGetApplication())->UpdateHelpMenu(itsHelpMenu);
-		}
+	}
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
-		{
+	{
 		const auto* selection =
 			dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		(THXGetApplication())->HandleHelpMenu(itsHelpMenu, "THXExprHelp",
 											  selection->GetIndex());
-		}
+	}
 
 	else
-		{
+	{
 		JXWindowDirector::Receive(sender, message);
-		}
+	}
 }
 
 /******************************************************************************
@@ -471,51 +471,51 @@ THXExprDirector::HandleActionsMenu
 	)
 {
 	if (index == kNewExprCmd)
-		{
+	{
 		(THXGetApplication())->NewExpression();
-		}
+	}
 	else if (index == kEditConstCmd)
-		{
+	{
 		(THXGetApplication())->ShowConstants();
-		}
+	}
 	else if (index == kNew2DPlotCmd)
-		{
+	{
 		(THXGetApplication())->New2DPlot();
-		}
+	}
 	else if (index == kConvBaseCmd)
-		{
+	{
 		(THXGetApplication())->ShowBaseConversion();
-		}
+	}
 
 	else if (index == kPageSetupCmd)
-		{
+	{
 		itsTapeWidget->HandlePTPageSetup();
-		}
+	}
 	else if (index == kPrintTapeCmd)
-		{
+	{
 		itsTapeWidget->PrintPT();
-		}
+	}
 
 	else if (index == kSaveTapeCmd)
-		{
+	{
 		SaveTape();
-		}
+	}
 	else if (index == kClearTapeCmd)
-		{
+	{
 		// this way, it is undoable
 
 		itsTapeWidget->SelectAll();
 		itsTapeWidget->DeleteSelection();
-		}
+	}
 
 	else if (index == kCloseWindowCmd)
-		{
+	{
 		GetWindow()->Close();
-		}
+	}
 	else if (index == kQuitCmd)
-		{
+	{
 		(THXGetApplication())->Quit();
-		}
+	}
 }
 
 /******************************************************************************
@@ -530,12 +530,12 @@ THXExprDirector::SaveTape()
 	if ((JXGetChooseSaveFile())->SaveFile(
 			JGetString("SaveTapePrompt::THXExprDirector"),
 			JString::empty, itsTapeName, &newName))
-		{
+	{
 		itsTapeName = newName;
 
 		std::ofstream output(itsTapeName.GetBytes());
 		itsTapeWidget->GetText()->GetText().Print(output);
-		}
+	}
 }
 
 /******************************************************************************
@@ -547,9 +547,9 @@ void
 THXExprDirector::UpdatePrefsMenu()
 {
 	if ((THXGetApplication())->KeyPadIsVisible())
-		{
+	{
 		itsPrefsMenu->CheckItem(kToggleKeyPadVisibleCmd);
-		}
+	}
 }
 
 /******************************************************************************
@@ -564,16 +564,16 @@ THXExprDirector::HandlePrefsMenu
 	)
 {
 	if (index == kToggleKeyPadVisibleCmd)
-		{
+	{
 		(THXGetApplication())->ToggleKeyPadVisible();
-		}
+	}
 	else if (index == kEditMacWinPrefsCmd)
-		{
+	{
 		JXMacWinPrefsDialog::EditPrefs();
-		}
+	}
 
 	else if (index == kSaveWindSizeCmd)
-		{
+	{
 		SetDefaultGeometry();
-		}
+	}
 }

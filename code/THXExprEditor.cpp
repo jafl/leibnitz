@@ -63,27 +63,27 @@ THXExprEditor::HandleKeyPress
 	)
 {
 	if (c == '=')
-		{
+	{
 		JIndex selection;
 		const bool hadSelection = GetSelection(&selection);
 		if (hadSelection)
-			{
+		{
 			ClearSelection();
-			}
+		}
 		else if (!EndEditing())
-			{
+		{
 			return;
-			}
+		}
 		EvaluateSelection();
 		if (hadSelection)
-			{
-			SetSelection(selection);
-			}
-		}
-	else
 		{
-		JXExprEditor::HandleKeyPress(c, keySym, modifiers);
+			SetSelection(selection);
 		}
+	}
+	else
+	{
+		JXExprEditor::HandleKeyPress(c, keySym, modifiers);
+	}
 }
 
 /******************************************************************************
@@ -97,28 +97,28 @@ THXExprEditor::EvaluateSelection()
 {
 	const JFunction* f;
 	if (!GetConstSelectedFunction(&f))
-		{
+	{
 		f = GetFunction();
-		}
+	}
 
 	JComplex value;
 	JString valueStr;
 	if (f->Evaluate(&value))
-		{
+	{
 		valueStr = JPrintComplexNumber(value);
-		}
+	}
 	else
-		{
+	{
 		valueStr = "Error";
-		}
+	}
 
 	const JSize textLength = itsTapeWidget->GetText()->GetText().GetCharacterCount();
 
 	JString newText = f->Print();
 	if (textLength > 0)
-		{
+	{
 		newText.Prepend("\n\n");
-		}
+	}
 	newText.Append("\n");
 	newText.Append(valueStr);
 

@@ -14,7 +14,7 @@ class JFunction;
 class JXTextButton;
 class JXTextMenu;
 class JX2DPlotWidget;
-class J2DPlotJFunction;
+class J2DPlotFunction;
 class THXVarList;
 class THX2DPlotFunctionDialog;
 
@@ -46,7 +46,7 @@ private:
 	JXTextMenu*			itsHelpMenu;
 	JIndex				itsEditFunctionItemIndex;	// index of item on Curve Options pop up menu
 
-	JPtrArray<J2DPlotJFunction>*	itsFnList;			// contents not owned
+	JPtrArray<J2DPlotFunction>*	itsFnList;			// contents not owned
 	THX2DPlotFunctionDialog*		itsEditFnDialog;	// nullptr unless editing
 	JIndex							itsEditFnIndex;		// index of curve being edited
 

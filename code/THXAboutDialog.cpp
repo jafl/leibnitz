@@ -110,16 +110,16 @@ THXAboutDialog::BuildWindow
 
 	JString text = THXGetVersionStr();
 	if (!prevVersStr.IsEmpty())
-		{
+	{
 		const JUtf8Byte* map[] =
-			{
+		{
 			"vers", prevVersStr.GetBytes()
-			};
+		};
 		text += JGetString("UpgradeNotice::THXAboutDialog");
 		JGetStringManager()->Replace(&text, map, sizeof(map));
 		itsHelpButton->SetLabel(JGetString("ChangeButtonLabel::THXAboutDialog"));
 		itsIsUpgradeFlag = true;
-		}
+	}
 	textWidget->GetText()->SetText(text);
 
 	// Program icon
@@ -135,9 +135,9 @@ THXAboutDialog::BuildWindow
 	const JSize bdh = textWidget->GetBoundsHeight();
 	const JSize aph = textWidget->GetApertureHeight();
 	if (bdh > aph)
-		{
+	{
 		window->AdjustSize(0, bdh - aph);	// safe to calculate once bdh > aph
-		}
+	}
 }
 
 /******************************************************************************
@@ -155,26 +155,26 @@ THXAboutDialog::Receive
 	)
 {
 	if (sender == itsHelpButton && message.Is(JXButton::kPushed))
-		{
+	{
 		if (itsIsUpgradeFlag)
-			{
+		{
 			(JXGetHelpManager())->ShowChangeLog();
-			}
-		else
-			{
-			(JXGetHelpManager())->ShowTOC();
-			}
-		EndDialog(true);
 		}
+		else
+		{
+			(JXGetHelpManager())->ShowTOC();
+		}
+		EndDialog(true);
+	}
 
 	else if (sender == itsCreditsButton && message.Is(JXButton::kPushed))
-		{
+	{
 		(JXGetHelpManager())->ShowCredits();
 		EndDialog(true);
-		}
+	}
 
 	else
-		{
+	{
 		JXDialogDirector::Receive(sender, message);
-		}
+	}
 }

@@ -57,7 +57,7 @@ THXBaseConvDirector::THXBaseConvDirector
 	BuildWindow();
 
 	if (vers <= 8)
-		{
+	{
 		JSize fromBase, toBase;
 		input >> fromBase >> toBase;
 
@@ -65,19 +65,19 @@ THXBaseConvDirector::THXBaseConvDirector
 		input >> fromValue;
 
 		switch (fromBase)
-			{
+		{
 			case  2:  its2Input->GetText()->SetText(fromValue); break;
 			case  8:  its8Input->GetText()->SetText(fromValue); break;
 			case 10: its10Input->GetText()->SetText(fromValue); break;
 			case 16: its16Input->GetText()->SetText(fromValue); break;
-			}
 		}
+	}
 	else
-		{
+	{
 		JString s;
 		input >> s;
 		its10Input->GetText()->SetText(s);
-		}
+	}
 
 	JXWindow* window = GetWindow();
 	window->ReadGeometry(input);
@@ -85,9 +85,9 @@ THXBaseConvDirector::THXBaseConvDirector
 	bool active;
 	input >> JBoolFromString(active);
 	if (active)
-		{
+	{
 		Activate();
-		}
+	}
 }
 
 /******************************************************************************
@@ -233,27 +233,27 @@ THXBaseConvDirector::Receive
 	)
 {
 	if (sender == itsCloseButton && message.Is(JXButton::kPushed))
-		{
+	{
 		GetWindow()->Close();
-		}
+	}
 	else if (sender == itsHelpButton && message.Is(JXButton::kPushed))
-		{
+	{
 		(JXGetHelpManager())->ShowSection("THXBaseConvHelp");
-		}
+	}
 
 	else
-		{
+	{
 		if (!itsIgnoreTextFlag &&
 			(message.Is(JStyledText::kTextSet) ||
 			 message.Is(JStyledText::kTextChanged)))
-			{
+		{
 			itsIgnoreTextFlag = true;
 			Convert(sender);
 			itsIgnoreTextFlag = false;
-			}
+		}
 
 		JXWindowDirector::Receive(sender, message);
-		}
+	}
 }
 
 /******************************************************************************
@@ -271,39 +271,39 @@ THXBaseConvDirector::Convert
 	JSize base          = 0;
 
 	for (JUnsignedOffset i=0; i<kTHXBaseCount; i++)
-		{
+	{
 		if (sender == itsInput[i])
-			{
+		{
 			input = itsInput[i];
 			base  = kBase[i];
 			break;
-			}
 		}
+	}
 
 	if (input == nullptr)
-		{
+	{
 		return;
-		}
+	}
 
 	JUInt value;
 	if (!input->GetText()->GetText().ConvertToUInt(&value, base))
-		{
+	{
 		for (JUnsignedOffset i=0; i<kTHXBaseCount; i++)
-			{
+		{
 			if (itsInput[i] != input)
-				{
+			{
 				itsInput[i]->GetText()->SetText(JString::empty);
-				}
 			}
-		return;
 		}
+		return;
+	}
 
 	for (JUnsignedOffset i=0; i<kTHXBaseCount; i++)
-		{
+	{
 		if (itsInput[i] != input)
-			{
+		{
 			const JString s(value, kBase[i], true);
 			itsInput[i]->GetText()->SetText(s);
-			}
 		}
+	}
 }
