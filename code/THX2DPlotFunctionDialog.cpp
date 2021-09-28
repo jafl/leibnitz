@@ -10,15 +10,15 @@
 #include "THX2DPlotFunctionDialog.h"
 #include "THXVarList.h"
 #include "thxGlobals.h"
-#include <JXWindow.h>
-#include <JXStaticText.h>
-#include <JXTextButton.h>
-#include <JXTextMenu.h>
-#include <JXFloatInput.h>
-#include <JXExprEditorSet.h>
-#include <JXExprEditor.h>
-#include <JFunction.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXWindow.h>
+#include <jx-af/jx/JXStaticText.h>
+#include <jx-af/jx/JXTextButton.h>
+#include <jx-af/jx/JXTextMenu.h>
+#include <jx-af/jx/JXFloatInput.h>
+#include <jx-af/jexpr/JXExprEditorSet.h>
+#include <jx-af/jexpr/JXExprEditor.h>
+#include <jx-af/jexpr/JFunction.h>
+#include <jx-af/jcore/jAssert.h>
 
 /******************************************************************************
  Constructor

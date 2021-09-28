@@ -10,7 +10,7 @@
 #ifndef _H_THXMDIServer
 #define _H_THXMDIServer
 
-#include <JXMDIServer.h>
+#include <jx-af/jx/JXMDIServer.h>
 
 class THXMDIServer : public JXMDIServer
 {

@@ -10,7 +10,7 @@
 #ifndef _H_THXExprEditor
 #define _H_THXExprEditor
 
-#include <JXExprEditor.h>
+#include <jx-af/jexpr/JXExprEditor.h>
 
 class JXTEBase;
 class THXVarList;

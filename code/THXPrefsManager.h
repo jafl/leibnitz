@@ -8,7 +8,7 @@
 #ifndef _H_THXPrefsManager
 #define _H_THXPrefsManager
 
-#include <JXPrefsManager.h>
+#include <jx-af/jx/JXPrefsManager.h>
 
 // Preferences -- do not change ID's once they are assigned
 

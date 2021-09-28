@@ -13,18 +13,18 @@
 #include "THXVarList.h"
 #include "THXVarTable.h"
 #include "thxGlobals.h"
-#include <JXHelpManager.h>
-#include <JXWindow.h>
-#include <JXTextButton.h>
-#include <JXMenuBar.h>
-#include <JXTextMenu.h>
-#include <JXExprInput.h>
-#include <JXScrollbarSet.h>
-#include <JXScrollbar.h>
-#include <JXColHeaderWidget.h>
-#include <jXActionDefs.h>
-#include <JString.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXHelpManager.h>
+#include <jx-af/jx/JXWindow.h>
+#include <jx-af/jx/JXTextButton.h>
+#include <jx-af/jx/JXMenuBar.h>
+#include <jx-af/jx/JXTextMenu.h>
+#include <jx-af/jexpr/JXExprInput.h>
+#include <jx-af/jx/JXScrollbarSet.h>
+#include <jx-af/jx/JXScrollbar.h>
+#include <jx-af/jx/JXColHeaderWidget.h>
+#include <jx-af/jx/jXActionDefs.h>
+#include <jx-af/jcore/JString.h>
+#include <jx-af/jcore/jAssert.h>
 
 // Actions menu
 

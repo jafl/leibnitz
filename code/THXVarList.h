@@ -10,8 +10,8 @@
 #ifndef _H_THXVarList
 #define _H_THXVarList
 
-#include <JVariableList.h>
-#include <JPtrArray.h>
+#include <jx-af/jexpr/JVariableList.h>
+#include <jx-af/jcore/JPtrArray.h>
 
 class JString;
 class JFunction;

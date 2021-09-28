@@ -8,7 +8,7 @@
 #ifndef _H_THXTapeText
 #define _H_THXTapeText
 
-#include <JXTEBase.h>
+#include <jx-af/jx/JXTEBase.h>
 
 class THXTapeText : public JXTEBase
 {

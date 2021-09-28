@@ -10,7 +10,7 @@
 #ifndef _H_THXAboutDialog
 #define _H_THXAboutDialog
 
-#include <JXDialogDirector.h>
+#include <jx-af/jx/JXDialogDirector.h>
 
 class JXTextButton;
 

@@ -11,7 +11,7 @@
 
 #include "THXPrefsManager.h"
 #include "thxGlobals.h"
-#include <jAssert.h>
+#include <jx-af/jcore/jAssert.h>
 
 const JFileVersion kCurrentPrefsFileVersion = 0;
 

@@ -10,8 +10,8 @@
 #ifndef _H_THXExprDirector
 #define _H_THXExprDirector
 
-#include <JXWindowDirector.h>
-#include <JString.h>
+#include <jx-af/jx/JXWindowDirector.h>
+#include <jx-af/jcore/JString.h>
 
 class JXTextButton;
 class JXTextMenu;

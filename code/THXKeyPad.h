@@ -10,7 +10,7 @@
 #ifndef _H_THXKeyPad
 #define _H_THXKeyPad
 
-#include <JXWidgetSet.h>
+#include <jx-af/jx/JXWidgetSet.h>
 
 class JXTextButton;
 class THXExprEditor;

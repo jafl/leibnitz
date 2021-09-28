@@ -9,13 +9,13 @@
 
 #include "THXVarTable.h"
 #include "THXVarList.h"
-#include <JXExprInput.h>
-#include <jXConstants.h>
-#include <JFunction.h>
-#include <JFontManager.h>
-#include <JPainter.h>
-#include <jGlobals.h>
-#include <jAssert.h>
+#include <jx-af/jexpr/JXExprInput.h>
+#include <jx-af/jx/jXConstants.h>
+#include <jx-af/jexpr/JFunction.h>
+#include <jx-af/jcore/JFontManager.h>
+#include <jx-af/jcore/JPainter.h>
+#include <jx-af/jcore/jGlobals.h>
+#include <jx-af/jcore/jAssert.h>
 
 const JCoordinate kHMarginWidth = 3;
 const JCoordinate kVMarginWidth = 1;

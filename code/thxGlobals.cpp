@@ -10,12 +10,12 @@
 #include "thxGlobals.h"
 #include "THXMDIServer.h"
 #include "THXPrefsManager.h"
-#include <JXDisplay.h>
-#include <JXWindow.h>
-#include <JXPTPrinter.h>
-#include <JXPSPrinter.h>
-#include <JX2DPlotEPSPrinter.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXDisplay.h>
+#include <jx-af/jx/JXWindow.h>
+#include <jx-af/jx/JXPTPrinter.h>
+#include <jx-af/jx/JXPSPrinter.h>
+#include <jx-af/j2dplot/JX2DPlotEPSPrinter.h>
+#include <jx-af/jcore/jAssert.h>
 
 static THXApp*				theApplication     = nullptr;	// owns itself
 static THXMDIServer*		theMDIServer       = nullptr;	// owned by JX

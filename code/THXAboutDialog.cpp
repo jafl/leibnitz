@@ -9,14 +9,14 @@
 
 #include "THXAboutDialog.h"
 #include "thxGlobals.h"
-#include <JXApplication.h>
-#include <JXHelpManager.h>
-#include <JXWindow.h>
-#include <JXTextButton.h>
-#include <JXStaticText.h>
-#include <JXImageWidget.h>
-#include <JXImage.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXApplication.h>
+#include <jx-af/jx/JXHelpManager.h>
+#include <jx-af/jx/JXWindow.h>
+#include <jx-af/jx/JXTextButton.h>
+#include <jx-af/jx/JXStaticText.h>
+#include <jx-af/jx/JXImageWidget.h>
+#include <jx-af/jx/JXImage.h>
+#include <jx-af/jcore/jAssert.h>
 
 /******************************************************************************
  Constructor

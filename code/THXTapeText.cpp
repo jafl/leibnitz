@@ -8,10 +8,10 @@
  ******************************************************************************/
 
 #include "THXTapeText.h"
-#include <JXStyledText.h>
-#include <jXConstants.h>
-#include <jGlobals.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXStyledText.h>
+#include <jx-af/jx/jXConstants.h>
+#include <jx-af/jcore/jGlobals.h>
+#include <jx-af/jcore/jAssert.h>
 
 /******************************************************************************
  Constructor

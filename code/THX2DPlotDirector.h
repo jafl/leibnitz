@@ -8,7 +8,7 @@
 #ifndef _H_THX2DPlotDirector
 #define _H_THX2DPlotDirector
 
-#include <JXWindowDirector.h>
+#include <jx-af/jx/JXWindowDirector.h>
 
 class JFunction;
 class JXTextButton;

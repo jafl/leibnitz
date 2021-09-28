@@ -10,7 +10,7 @@
 #ifndef _H_THXVarDirector
 #define _H_THXVarDirector
 
-#include <JXWindowDirector.h>
+#include <jx-af/jx/JXWindowDirector.h>
 
 class JXTextMenu;
 class JXTextButton;

@@ -10,7 +10,7 @@
 #ifndef _H_THXApp
 #define _H_THXApp
 
-#include <JXApplication.h>
+#include <jx-af/jx/JXApplication.h>
 
 class JString;
 class JXMenuBar;

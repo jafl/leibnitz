@@ -118,11 +118,12 @@ F
 "${LIB_DEPS}"
 "make -k all"
 # search paths
-T "../JX/include/j2dplot" T
-T "../JX/include/jcore" T
-T "../JX/include/jexpr/" T
-T "../JX/include/jx/" T
-T "./code/" T
+T "../JX/include" T
+T "../JX/include/jx-af/j2dplot" T
+T "../JX/include/jx-af/jcore" T
+T "../JX/include/jx-af/jexpr" T
+T "../JX/include/jx-af/jx" T
+T "./code" T
 F
 # C preprocessor
 F

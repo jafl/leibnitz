@@ -11,19 +11,19 @@
 #include "THX2DPlotFunctionDialog.h"
 #include "THXVarList.h"
 #include "thxGlobals.h"
-#include <JXDisplay.h>
-#include <JXWindow.h>
-#include <JXTextButton.h>
-#include <JXMenuBar.h>
-#include <JXTextMenu.h>
-#include <JXHelpManager.h>
-#include <JXImage.h>
-#include <jXActionDefs.h>
-#include <JX2DPlotWidget.h>
-#include <J2DPlotFunction.h>
-#include <JExprParser.h>
-#include <JFunction.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXDisplay.h>
+#include <jx-af/jx/JXWindow.h>
+#include <jx-af/jx/JXTextButton.h>
+#include <jx-af/jx/JXMenuBar.h>
+#include <jx-af/jx/JXTextMenu.h>
+#include <jx-af/jx/JXHelpManager.h>
+#include <jx-af/jx/JXImage.h>
+#include <jx-af/jx/jXActionDefs.h>
+#include <jx-af/j2dplot/JX2DPlotWidget.h>
+#include <jx-af/j2dplot/J2DPlotFunction.h>
+#include <jx-af/jexpr/JExprParser.h>
+#include <jx-af/jexpr/JFunction.h>
+#include <jx-af/jcore/jAssert.h>
 
 // Actions menu
 

@@ -18,24 +18,24 @@
 #include "thxGlobals.h"
 #include "thxStringData.h"
 #include "thxFileVersions.h"
-#include <JXHelpManager.h>
-#include <JXWindow.h>
-#include <JXMenuBar.h>
-#include <JXTextMenu.h>
-#include <JXPSPrinter.h>
-#include <JX2DPlotEPSPrinter.h>
-#include <JXChooseSaveFile.h>
-#include <JXSharedPrefsManager.h>
-#include <JXSplashWindow.h>
-#include <JXTipOfTheDayDialog.h>
-#include <jXActionDefs.h>
-#include <JThisProcess.h>
-#include <JString.h>
-#include <jFileUtil.h>
-#include <jDirUtil.h>
+#include <jx-af/jx/JXHelpManager.h>
+#include <jx-af/jx/JXWindow.h>
+#include <jx-af/jx/JXMenuBar.h>
+#include <jx-af/jx/JXTextMenu.h>
+#include <jx-af/jx/JXPSPrinter.h>
+#include <jx-af/j2dplot/JX2DPlotEPSPrinter.h>
+#include <jx-af/jx/JXChooseSaveFile.h>
+#include <jx-af/jx/JXSharedPrefsManager.h>
+#include <jx-af/jx/JXSplashWindow.h>
+#include <jx-af/jx/JXTipOfTheDayDialog.h>
+#include <jx-af/jx/jXActionDefs.h>
+#include <jx-af/jcore/JThisProcess.h>
+#include <jx-af/jcore/JString.h>
+#include <jx-af/jcore/jFileUtil.h>
+#include <jx-af/jcore/jDirUtil.h>
 #include <fstream>
 #include <sstream>
-#include <jAssert.h>
+#include <jx-af/jcore/jAssert.h>
 
 // application signature (MDI)
 

@@ -10,7 +10,7 @@
 #ifndef _H_THX2DPlotFunctionDialog
 #define _H_THX2DPlotFunctionDialog
 
-#include <JXDialogDirector.h>
+#include <jx-af/jx/JXDialogDirector.h>
 
 class JFunction;
 class JXTextMenu;

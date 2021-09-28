@@ -10,7 +10,7 @@
 #ifndef _H_THXVarTable
 #define _H_THXVarTable
 
-#include <JXEditTable.h>
+#include <jx-af/jx/JXEditTable.h>
 
 class JXTextMenu;
 class JXExprInput;

@@ -10,7 +10,7 @@
 #ifndef _H_thxFileVersions
 #define _H_thxFileVersions
 
-#include <jTypes.h>
+#include <jx-af/jcore/jTypes.h>
 
 const JFileVersion kCurrentStateVersion = 11;
 

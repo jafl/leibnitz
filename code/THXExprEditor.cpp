@@ -9,10 +9,10 @@
 
 #include "THXExprEditor.h"
 #include "THXVarList.h"
-#include <JXTEBase.h>
-#include <JFunction.h>
-#include <JString.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXTEBase.h>
+#include <jx-af/jexpr/JFunction.h>
+#include <jx-af/jcore/JString.h>
+#include <jx-af/jcore/jAssert.h>
 
 /******************************************************************************
  Constructor

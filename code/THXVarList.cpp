@@ -8,12 +8,12 @@
  ******************************************************************************/
 
 #include "THXVarList.h"
-#include <JExprParser.h>
-#include <JUserInputFunction.h>
-#include <JConstantValue.h>
-#include <JStringIterator.h>
-#include <jGlobals.h>
-#include <jAssert.h>
+#include <jx-af/jexpr/JExprParser.h>
+#include <jx-af/jexpr/JUserInputFunction.h>
+#include <jx-af/jexpr/JConstantValue.h>
+#include <jx-af/jcore/JStringIterator.h>
+#include <jx-af/jcore/jGlobals.h>
+#include <jx-af/jcore/jAssert.h>
 
 static const JString kXName("x");
 static const JString kYName("y");

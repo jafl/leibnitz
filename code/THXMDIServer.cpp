@@ -9,8 +9,8 @@
 
 #include "THXMDIServer.h"
 #include "thxGlobals.h"
-#include <JXDisplay.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXDisplay.h>
+#include <jx-af/jcore/jAssert.h>
 
 /******************************************************************************
  Constructor

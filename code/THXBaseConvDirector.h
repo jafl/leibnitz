@@ -10,7 +10,7 @@
 #ifndef _H_THXBaseConvDirector
 #define _H_THXBaseConvDirector
 
-#include <JXWindowDirector.h>
+#include <jx-af/jx/JXWindowDirector.h>
 
 class JString;
 class JXStaticText;

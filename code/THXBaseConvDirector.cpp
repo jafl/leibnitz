@@ -12,16 +12,16 @@
 
 #include "THXBaseConvDirector.h"
 #include "thxGlobals.h"
-#include <JXHelpManager.h>
-#include <JXDisplay.h>
-#include <JXWindow.h>
-#include <JXTextButton.h>
-#include <JXStaticText.h>
-#include <JXInputField.h>
-#include <JXImage.h>
-#include <JRegex.h>
-#include <JString.h>
-#include <jAssert.h>
+#include <jx-af/jx/JXHelpManager.h>
+#include <jx-af/jx/JXDisplay.h>
+#include <jx-af/jx/JXWindow.h>
+#include <jx-af/jx/JXTextButton.h>
+#include <jx-af/jx/JXStaticText.h>
+#include <jx-af/jx/JXInputField.h>
+#include <jx-af/jx/JXImage.h>
+#include <jx-af/jcore/JRegex.h>
+#include <jx-af/jcore/JString.h>
+#include <jx-af/jcore/jAssert.h>
 
 static const JString::Base kBase[] =
 {
