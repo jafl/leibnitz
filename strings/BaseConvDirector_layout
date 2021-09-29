@@ -1,0 +1,9 @@
+0
+itsHelpButton::BaseConvDirector::shortcuts::JXLayout "F1"
+base10Label::BaseConvDirector::JXLayout "Base 10:"
+itsCloseButton::BaseConvDirector::shortcuts::JXLayout "#W^["
+base2Label::BaseConvDirector::JXLayout "Base 2:"
+itsCloseButton::BaseConvDirector::JXLayout "Close"
+itsHelpButton::BaseConvDirector::JXLayout "Help"
+base16Label::BaseConvDirector::JXLayout "Base 16:"
+base8Label::BaseConvDirector::JXLayout "Base 8:"

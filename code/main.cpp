@@ -7,9 +7,9 @@
 
  ******************************************************************************/
 
-#include "THXMDIServer.h"
-#include "THXPrefsManager.h"
-#include "thxGlobals.h"
+#include "MDIServer.h"
+#include "PrefsManager.h"
+#include "globals.h"
 #include <jx-af/jcore/jCommandLine.h>
 #include <jx-af/jcore/jWebUtil.h>
 #include <jx-af/jcore/jAssert.h>
@@ -33,15 +33,15 @@ main
 {
 	ParseTextOptions(argc, argv);
 
-	if (!THXMDIServer::WillBeMDIServer(THXApp::GetAppSignature(), argc, argv))
+	if (!MDIServer::WillBeMDIServer(App::GetAppSignature(), argc, argv))
 	{
 		return 0;
 	}
 
-	auto* app = jnew THXApp(&argc, argv);
+	auto* app = jnew App(&argc, argv);
 	assert( app != nullptr );
 
-	JCheckForNewerVersion(THXGetPrefsManager(), kTHXVersionCheckID);
+	JCheckForNewerVersion(GetPrefsManager(), kVersionCheckID);
 
 	app->Run();
 	return 0;
@@ -69,14 +69,14 @@ ParseTextOptions
 	{
 		if (JIsVersionRequest(argv[index]))
 		{
-			THXApp::InitStrings();
+			App::InitStrings();
 			PrintVersion();
 			exit(0);
 		}
 		else if (JIsHelpRequest(argv[index]))
 		{
-			THXApp::InitStrings();
-			THXMDIServer::PrintCommandLineHelp();
+			App::InitStrings();
+			MDIServer::PrintCommandLineHelp();
 			exit(0);
 		}
 		index++;
@@ -92,6 +92,6 @@ void
 PrintVersion()
 {
 	std::cout << std::endl;
-	std::cout << THXGetVersionStr() << std::endl;
+	std::cout << GetVersionStr() << std::endl;
 	std::cout << std::endl;
 }

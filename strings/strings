@@ -1,0 +1,101 @@
+1
+
+# main
+
+COPYRIGHT
+"Copyright (C) 1998-2018 John Lindal.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Leibnitz is a trademark of John Lindal.
+
+https://sourceforge.net/projects/leibnitz/"
+
+HELP_URL		"http://leibnitz.sourceforge.net/help.html"
+CHANGE_LOG_URL	"http://leibnitz.sourceforge.net/ChangeLog.html"
+VERSION_URL		"http://leibnitz.sourceforge.net/VERSION"
+DOWNLOAD_URL	"https://sourceforge.net/projects/leibnitz/"
+
+# thxGlobals
+
+Description::globals
+"Leibnitz $version
+
+Electronic paper for calculations and graphs
+
+$copyright"
+
+# THXMDIServer
+#2345678901234567890123456789012345678901234567890123456789012345678901234567890
+
+ActionsMenuTitle::globals	"Actions"
+
+CommandLineHelp::MDIServer
+
+"Leibnitz $vers
+
+This X application provides electronic paper for evaluating algebraic
+expressions and plotting functions.
+
+--help     prints this help
+--version  prints version information"
+
+#2345678901234567890123456789012345678901234567890123456789012345678901234567890
+
+# THXAboutDialog
+
+WindowTitle::AboutDialog		"About"
+ChangeButtonLabel::AboutDialog	"Changes"
+
+UpgradeNotice::AboutDialog
+"
+
+
+You have just upgraded from version $vers"
+
+# THXApp
+
+NoPrefsDir::App		"I am unable to find your preferences directory."
+NewWindowItem::App	"New window"
+
+CannotReadNewerVersion::App
+"Unable to read the file \"$name\" because it was created by a newer version of this program."
+
+# THXExprDirector
+
+WindowTitle::ExprDirector		"Leibnitz"
+SaveTapePrompt::ExprDirector	"Save tape as:"
+
+# THX2DPlotDirector
+
+EditFunctionItem::2DPlotDirector	"Edit function"
+PlotTitle::2DPlotDirector			"New plot"
+
+# THX2DPlotFunctionDialog
+
+WindowTitle::2DPlotFunctionDialog		"Plot 2D function"
+FinishFunction::2DPlotFunctionDialog	"Please finish entering the function."
+
+# THXVarDirector
+
+WindowTitle::VarDirector		"Constants"
+NameColumnTitle::VarDirector	"Name"
+ValueColumnTitle::VarDirector	"Value"
+
+# THXVarList
+
+NewVarName::VarList	"new"
+NameUsed::VarList	"This variable name is already used."
+
+# THXBaseConvDirector
+
+WindowTitle::BaseConvDirector	"Base Conversion"
+
+# THXKeyPad
+
+MultiplicationSymbol::KeyPad	"×"
+DivisionSymbol::KeyPad			"÷"

@@ -7,7 +7,7 @@ Number of forms: 7
 Unit of measure: FL_COORD_PIXEL
 
 =============== FORM ===============
-Name: THXExprDirector
+Name: ExprDirector
 Width: 360
 Height: 240
 Number of Objects: 4
@@ -76,7 +76,7 @@ alignment: FL_ALIGN_CENTER
 style: FL_NORMAL_STYLE
 size: FL_NORMAL_SIZE
 lcol: FL_BLACK
-label: THXKeyPad
+label: KeyPad
 shortcut: 
 resize: FL_RESIZE_ALL
 gravity: FL_East FL_NoGravity
@@ -85,7 +85,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: THXVarDirector
+Name: VarDirector
 Width: 260
 Height: 250
 Number of Objects: 4
@@ -163,7 +163,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: THX2DPlotFunctionDialog
+Name: 2DPlotFunctionDialog
 Width: 330
 Height: 320
 Number of Objects: 11
@@ -367,7 +367,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: THXAboutDialog
+Name: AboutDialog
 Width: 430
 Height: 180
 Number of Objects: 7
@@ -499,7 +499,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: THXKeyPad__kpLayout__this
+Name: KeyPad__kpLayout__this
 Width: 60
 Height: 160
 Number of Objects: 20
@@ -865,7 +865,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: THX2DPlotDirector
+Name: 2DPlotDirector
 Width: 600
 Height: 400
 Number of Objects: 3
@@ -925,7 +925,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: THXBaseConvDirector
+Name: BaseConvDirector
 Width: 180
 Height: 160
 Number of Objects: 11

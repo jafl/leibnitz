@@ -5,20 +5,20 @@
 @leibnitz
 
 .cpp ./code/main
-.cpp ./code/thxGlobals
-.cpp ./code/THXApp
-.cpp ./code/THXMDIServer
-.cpp ./code/THXPrefsManager
-.cpp ./code/THXAboutDialog
-.cpp ./code/THXExprDirector
-.cpp ./code/THXExprEditor
-.cpp ./code/THXTapeText
-.cpp ./code/THXKeyPad
-.cpp ./code/THX2DPlotDirector
-.cpp ./code/THX2DPlotFunctionDialog
-.cpp ./code/THXVarDirector
-.cpp ./code/THXVarTable
-.cpp ./code/THXVarList
-.cpp ./code/THXBaseConvDirector
+.cpp ./code/globals
+.cpp ./code/App
+.cpp ./code/MDIServer
+.cpp ./code/PrefsManager
+.cpp ./code/AboutDialog
+.cpp ./code/ExprDirector
+.cpp ./code/ExprEditor
+.cpp ./code/TapeText
+.cpp ./code/KeyPad
+.cpp ./code/Plot2DDirector
+.cpp ./code/Plot2DFunctionDialog
+.cpp ./code/VarDirector
+.cpp ./code/VarTable
+.cpp ./code/VarList
+.cpp ./code/BaseConvDirector
 
 literal: ${LIB_DEPS}
