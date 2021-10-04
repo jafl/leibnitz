@@ -673,15 +673,15 @@ App::HandleHelpMenu
 
 	else if (index == kHelpTOCCmd)
 	{
-		(JXGetHelpManager())->ShowTOC();
+		JXGetHelpManager()->ShowTOC();
 	}
 	else if (index == kHelpOverviewCmd)
 	{
-		(JXGetHelpManager())->ShowSection("OverviewHelp");
+		JXGetHelpManager()->ShowSection("OverviewHelp");
 	}
 	else if (index == kHelpWindowCmd)
 	{
-		(JXGetHelpManager())->ShowSection(windowSectionName);
+		JXGetHelpManager()->ShowSection(windowSectionName);
 	}
 
 	else if (index == kTipCmd)
@@ -693,11 +693,11 @@ App::HandleHelpMenu
 
 	else if (index == kHelpChangeLogCmd)
 	{
-		(JXGetHelpManager())->ShowChangeLog();
+		JXGetHelpManager()->ShowChangeLog();
 	}
 	else if (index == kHelpCreditsCmd)
 	{
-		(JXGetHelpManager())->ShowCredits();
+		JXGetHelpManager()->ShowCredits();
 	}
 }
 

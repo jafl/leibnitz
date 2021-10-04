@@ -16,15 +16,15 @@
 <h2>Table of Contents</h2>
 
 <ul>
-	<li><a href="#THXOverviewHelp">Overview</a></li>
+	<li><a href="#OverviewHelp">Overview</a></li>
 
-	<li><a href="#THXExprHelp">Evaluating expressions</a></li>
+	<li><a href="#ExprHelp">Evaluating expressions</a></li>
 
-	<li><a href="#THX2DPlotHelp">Plotting 2D functions</a></li>
+	<li><a href="#2DPlotHelp">Plotting 2D functions</a></li>
 
-	<li><a href="#THXConstantsHelp">Defining named constants</a></li>
+	<li><a href="#ConstantsHelp">Defining named constants</a></li>
 
-	<li><a href="#THXBaseConvHelp">Base conversions</a></li>
+	<li><a href="#BaseConvHelp">Base conversions</a></li>
 
 	<li><a href="ChangeLog.html">Changes from previous versions</a></li>
 
@@ -66,7 +66,7 @@ recognition.  The major features that it provides are:</p>
 
 <p>New expressions are initally empty.  This is drawn as a single question mark (?), which represents an empty input field.  When you click on the input field, it becomes active, and you are ready to start typing.</p>
 
-<p>Input fields accept numbers and the named constants defined in the <a href="#THXConstantsHelp">Constants</a> window.  When you type an operator, the input field is parsed and becomes part of the expression, and a new input field is created based on which operator you typed.  The operators are as follows:</p>
+<p>Input fields accept numbers and the named constants defined in the <a href="#ConstantsHelp">Constants</a> window.  When you type an operator, the input field is parsed and becomes part of the expression, and a new input field is created based on which operator you typed.  The operators are as follows:</p>
 
 <pre>
    +  addition
@@ -178,11 +178,11 @@ recognition.  The major features that it provides are:</p>
 <hr>
 <h2><a name="THXConstantsHelp">Defining Constants</a></h2>
 
-<p>The Constants window lets you define named constants for use in <a href="#THXExprHelp">expressions</a> and <a href="#THX2DPlotHelp">plots</a>.  The names x and y are reserved as the independent variables when plotting <a href="#THX2DPlotHelp">2D</a> functions.  The name t is reserved as the independent variable for the future, when parametric plots are implemented.  pi, Pi, &pi;, e, E, i, <code>I</code>, and j are also reserved to represent the standard mathematical constants 3.14..., 2.718..., and sqrt(-1).</p>
+<p>The Constants window lets you define named constants for use in <a href="#ExprHelp">expressions</a> and <a href="#2DPlotHelp">plots</a>.  The names x and y are reserved as the independent variables when plotting <a href="#2DPlotHelp">2D</a> functions.  The name t is reserved as the independent variable for the future, when parametric plots are implemented.  pi, Pi, &pi;, e, E, i, <code>I</code>, and j are also reserved to represent the standard mathematical constants 3.14..., 2.718..., and sqrt(-1).</p>
 
 <p>To include a Greek character in a name, either use the Font menu or type a back quote ( ` ).  The back quote toggles between Normal and Greek fonts.</p>
 
-<p>Following standard mathematical convention, all letters in the name beyond the first one are displayed as a subscript when the constant is used in an <a href="#THXExprHelp">Expression</a> window.</p>
+<p>Following standard mathematical convention, all letters in the name beyond the first one are displayed as a subscript when the constant is used in an <a href="#ExprHelp">Expression</a> window.</p>
 
 <p>The value of a named constant can be any valid expression such as 3 or -1+0.5*i. You can even include other named constants.  This allows you to reuse a value in several other constants and to store functions of x for plotting.</p>
 
@@ -198,7 +198,7 @@ recognition.  The major features that it provides are:</p>
 
 <p>The Base Conversion window lets you convert between base 2, 8, 10, and 16.  Simply enter the starting value in the text field corresponding to the original base and the values in all the other bases will be displayed automatically.  You can copy the text in any text field with the keyboard shortcut Meta-C.</p>
 
-<p>The <a href="#THXExprHelp">Expression</a> window also accepts hexadecimal values prefixed by <code>0x</code>, so you can convert from hex to decimal by simply typing the number and pressing return.</p>
+<p>The <a href="#ExprHelp">Expression</a> window also accepts hexadecimal values prefixed by <code>0x</code>, so you can convert from hex to decimal by simply typing the number and pressing return.</p>
 
 </body>
 </html>
