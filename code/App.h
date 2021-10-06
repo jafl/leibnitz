@@ -55,10 +55,10 @@ public:
 
 protected:
 
-	virtual bool	Close() override;
-	virtual void	CleanUpBeforeSuddenDeath(const JXDocumentManager::SafetySaveReason reason) override;
-	virtual void	DirectorClosed(JXDirector* theDirector) override;
-	virtual void	Receive(JBroadcaster* sender, const Message& message) override;
+	bool	Close() override;
+	void	CleanUpBeforeSuddenDeath(const JXDocumentManager::SafetySaveReason reason) override;
+	void	DirectorClosed(JXDirector* theDirector) override;
+	void	Receive(JBroadcaster* sender, const Message& message) override;
 
 private:
 
