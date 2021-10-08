@@ -26,7 +26,7 @@ public:
 	Plot2DDirector(std::istream& input, const JFileVersion vers,
 					  JXDirector* supervisor, VarList* varList);
 
-	virtual ~Plot2DDirector();
+	~Plot2DDirector() override;
 
 	void	AddFunction(VarList* varList, const JFunction& f,
 						const JString& name,
@@ -41,14 +41,14 @@ protected:
 
 private:
 
-	JXTextMenu*			itsActionsMenu;
-	JXTextMenu*			itsEditFnMenu;
-	JXTextMenu*			itsHelpMenu;
-	JIndex				itsEditFunctionItemIndex;	// index of item on Curve Options pop up menu
+	JXTextMenu*	itsActionsMenu;
+	JXTextMenu*	itsEditFnMenu;
+	JXTextMenu*	itsHelpMenu;
+	JIndex		itsEditFunctionItemIndex;	// index of item on Curve Options pop up menu
 
 	JPtrArray<J2DPlotFunction>*	itsFnList;			// contents not owned
 	Plot2DFunctionDialog*		itsEditFnDialog;	// nullptr unless editing
-	JIndex							itsEditFnIndex;		// index of curve being edited
+	JIndex						itsEditFnIndex;		// index of curve being edited
 
 // begin JXLayout
 

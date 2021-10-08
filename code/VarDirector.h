@@ -25,7 +25,7 @@ public:
 	VarDirector(std::istream& input, const JFileVersion vers,
 				   JXDirector* supervisor, VarList* varList);
 
-	virtual ~VarDirector();
+	~VarDirector() override;
 
 	void	WriteState(std::ostream& output) const;
 
@@ -40,8 +40,8 @@ protected:
 private:
 
 	VarTable*	itsVarTable;
-	JXTextMenu*		itsActionsMenu;
-	JXTextMenu*		itsHelpMenu;
+	JXTextMenu*	itsActionsMenu;
+	JXTextMenu*	itsHelpMenu;
 
 // begin JXLayout
 

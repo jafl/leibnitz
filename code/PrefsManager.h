@@ -23,11 +23,11 @@ public:
 
 	PrefsManager(bool* isNew);
 
-	virtual	~PrefsManager();
+	~PrefsManager() override;
 
 protected:
 
-	virtual void	UpgradeData(const bool isNew, const JFileVersion currentVersion);
+	void	UpgradeData(const bool isNew, const JFileVersion currentVersion) override;
 };
 
 #endif

@@ -28,7 +28,7 @@ public:
 
 	App(int* argc, char* argv[]);
 
-	virtual ~App();
+	~App() override;
 
 	void	DisplayAbout(const JString& prevVersStr = JString::empty);
 

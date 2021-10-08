@@ -29,7 +29,7 @@ public:
 	ExprDirector(std::istream& input, const JFileVersion vers,
 				   JXDirector* supervisor, const VarList* varList);
 
-	virtual ~ExprDirector();
+	~ExprDirector() override;
 
 	void	Activate() override;
 
@@ -45,8 +45,8 @@ protected:
 
 private:
 
-	ExprEditor*	itsExprWidget;
-	TapeText*	itsTapeWidget;
+	ExprEditor*		itsExprWidget;
+	TapeText*		itsTapeWidget;
 	JXTextMenu*		itsActionsMenu;
 	JXTextMenu*		itsPrefsMenu;
 	JXTextMenu*		itsHelpMenu;

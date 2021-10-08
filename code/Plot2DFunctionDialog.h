@@ -30,7 +30,7 @@ public:
 							const JFunction& f, const JString& curveName,
 							const JFloat min, const JFloat max);
 
-	virtual ~Plot2DFunctionDialog();
+	~Plot2DFunctionDialog() override;
 
 	void	GetSettings(JIndex* plotIndex,
 						const JFunction** f, JString* curveName,
@@ -39,7 +39,7 @@ public:
 protected:
 
 	bool	OKToDeactivate() override;
-	void		Receive(JBroadcaster* sender, const Message& message) override;
+	void	Receive(JBroadcaster* sender, const Message& message) override;
 
 private:
 

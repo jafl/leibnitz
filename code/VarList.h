@@ -37,40 +37,40 @@ public:
 	VarList();
 	VarList(std::istream& input, const JFileVersion vers);
 
-	virtual ~VarList();
+	~VarList() override;
 
-	JIndex		NewFunction();
+	JIndex	NewFunction();
 	bool	SetVariableName(const JIndex index, const JString& name);
 
 	const JFunction*	GetFunction(const JIndex index) const;
-	bool			SetFunction(const JIndex index, const JString& expr);
+	bool				SetFunction(const JIndex index, const JString& expr);
 
 	bool	OKToRemoveFunction(const JIndex index) const;
-	void		RemoveFunction(const JIndex index);
+	void	RemoveFunction(const JIndex index);
 
 // implementation of JVariableList
 
 	const JString&	GetVariableName(const JIndex index) const override;
 	void			GetVariableName(const JIndex index, JString* name,
-											JString* subscript) const override;
+									JString* subscript) const override;
 
 	bool	IsArray(const JIndex index) const override;
 	bool	ArrayIndexValid(const JIndex variableIndex,
-										const JIndex elementIndex) const override;
+								const JIndex elementIndex) const override;
 
 	bool	GetNumericValue(const JIndex variableIndex,
-										const JIndex elementIndex,
-										JFloat* value) const override;
+							const JIndex elementIndex,
+							JFloat* value) const override;
 	bool	GetNumericValue(const JIndex variableIndex,
-										const JIndex elementIndex,
-										JComplex* value) const override;
+							const JIndex elementIndex,
+							JComplex* value) const override;
 
 	void	SetNumericValue(const JIndex variableIndex,
-									const JIndex elementIndex,
-									const JFloat value) override;
+							const JIndex elementIndex,
+							const JFloat value) override;
 	void	SetNumericValue(const JIndex variableIndex,
-									const JIndex elementIndex,
-									const JComplex& value) override;
+							const JIndex elementIndex,
+							const JComplex& value) override;
 
 private:
 

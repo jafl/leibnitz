@@ -28,7 +28,7 @@ public:
 	BaseConvDirector(std::istream& input, const JFileVersion vers,
 						JXDirector* supervisor);
 
-	virtual ~BaseConvDirector();
+	~BaseConvDirector() override;
 
 	void	WriteState(std::ostream& output) const;
 
