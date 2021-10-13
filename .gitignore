@@ -6,3 +6,5 @@ code/stringData.h
 strings/version
 strings/leibnitz_menu_strings
 .jcc
+0-RELEASE
+Brewfile.lock.json
