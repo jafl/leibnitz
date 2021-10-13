@@ -1,3 +1,12 @@
+[![Github CI](https://github.com/jafl/leibnitz/actions/workflows/ci.yml/badge.svg)](https://github.com/jafl/leibnitz/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=main&project=jafl_leibnitz&metric=alert_status)](https://sonarcloud.io/dashboard?id=jafl_leibnitz&branch=main)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?branch=main&project=jafl_leibnitz&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=jafl_leibnitz&branch=main)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?branch=main&project=jafl_leibnitz&metric=security_rating)](https://sonarcloud.io/dashboard?id=jafl_leibnitz&branch=main)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?branch=main&project=jafl_leibnitz&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=jafl_leibnitz&branch=main)
+
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?branch=main&project=jafl_leibnitz&metric=ncloc)](https://sonarcloud.io/dashboard?id=jafl_leibnitz&branch=main)
+
 # Leibnitz
 
 Leibnitz provides a calculator and the ability to plot functions.  The [on-line help](http://leibnitz.sourceforge.net/help.html) explains all the features of the program.
@@ -6,6 +15,7 @@ Leibnitz provides a calculator and the ability to plot functions.  The [on-line 
 ## Building from source
 
 1. Install the [JX Application Framework](https://github.com/jafl/jx_application_framework),  and set the `JX_ROOT` environment variable to point to its `include` directory.
+1. `./configure`
 1. `makemake`
 1. `make`
 
