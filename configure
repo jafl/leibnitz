@@ -40,7 +40,7 @@ elif command -v apt-get; then
 		sudo apt install ./jx-application-framework.deb
 	fi;
 
-endif
+fi
 
 if [[ ! -d /usr/local/include/jx-af/ && -z $JX_ROOT ]]; then
 
