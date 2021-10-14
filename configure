@@ -38,6 +38,13 @@ elif command -v apt-get; then
 
 fi
 
+if [[ ! -d /usr/local/include/reflex/ ]]; then
+
+	echo "Please install RE/flex library.";
+	exit 1;
+
+fi
+
 if [[ ! -d /usr/local/include/jx-af/ && -z $JX_ROOT ]]; then
 
 	echo "Please install jx-application-framework.";

@@ -58,6 +58,8 @@ jobs:
 
       - name: Configure
         run: |
+          curl -O http://libjx.sourceforge.net/ci/re-flex.deb
+          sudo apt install ./re-flex.deb
           curl -O http://libjx.sourceforge.net/ci/jx-application-framework.deb
           sudo apt install ./jx-application-framework.deb
           ./configure release
