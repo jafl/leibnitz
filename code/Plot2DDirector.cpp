@@ -334,8 +334,7 @@ Plot2DDirector::Receive
 	}
 	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
 	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
+		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleActionsMenu(selection->GetIndex());
 	}
@@ -346,23 +345,20 @@ Plot2DDirector::Receive
 	}
 	else if (sender == itsEditFnMenu && message.Is(JXMenu::kItemSelected))
 	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
+		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleEditFnMenu(selection->GetIndex());
 	}
 
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
 	{
-		(GetApplication())->UpdateHelpMenu(itsHelpMenu);
+		GetApplication()->UpdateHelpMenu(itsHelpMenu);
 	}
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
 	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
+		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
-		(GetApplication())->HandleHelpMenu(itsHelpMenu, "2DPlotHelp",
-											  selection->GetIndex());
+		GetApplication()->HandleHelpMenu("2DPlotHelp", selection->GetIndex());
 	}
 
 	else if (sender == itsPlotWidget->GetCurveOptionsMenu() &&
@@ -373,16 +369,14 @@ Plot2DDirector::Receive
 	else if (sender == itsPlotWidget->GetCurveOptionsMenu() &&
 			 message.Is(JXMenu::kItemSelected))
 	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
+		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleCurveOptionsMenu(selection->GetIndex());
 	}
 
 	else if (sender == itsEditFnDialog && message.Is(JXDialogDirector::kDeactivated))
 	{
-		const auto* info =
-			dynamic_cast<const JXDialogDirector::Deactivated*>(&message);
+		const auto* info = dynamic_cast<const JXDialogDirector::Deactivated*>(&message);
 		assert( info != nullptr );
 		if (info->Successful())
 		{

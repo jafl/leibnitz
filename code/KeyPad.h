@@ -52,7 +52,7 @@ private:
 
 private:
 
-	ExprEditor*	itsExpr;				// not owned
+	ExprEditor*		itsExpr;				// not owned
 	JXTextButton*	itsDigitButton[10];
 	JXTextButton*	itsOpButton [ kOpCount ];
 

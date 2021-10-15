@@ -661,7 +661,6 @@ App::UpdateHelpMenu
 void
 App::HandleHelpMenu
 	(
-	JXTextMenu*			menu,
 	const JUtf8Byte*	windowSectionName,
 	const JIndex		index
 	)

@@ -43,8 +43,7 @@ public:
 
 	JXTextMenu*	CreateHelpMenu(JXMenuBar* menuBar, const JUtf8Byte* idNamespace);
 	void		UpdateHelpMenu(JXTextMenu* menu);
-	void		HandleHelpMenu(JXTextMenu* menu, const JUtf8Byte* windowSectionName,
-							   const JIndex index);
+	void		HandleHelpMenu(const JUtf8Byte* windowSectionName, const JIndex index);
 
 	bool	KeyPadIsVisible() const;
 	void	SetKeyPadVisible(const bool visible);

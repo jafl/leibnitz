@@ -170,14 +170,14 @@ KeyPad::CreateButtons()
 	itsOpButton[kMultiplyOpIndex]->SetLabel(JGetString("MultiplicationSymbol::KeyPad"));
 	itsOpButton[kDivideOpIndex]->SetLabel(JGetString("DivisionSymbol::KeyPad"));
 
-	for (JUnsignedOffset i=0; i<10; i++)
+	for (auto* button : itsDigitButton)
 	{
-		ListenTo(itsDigitButton[i]);
+		ListenTo(button);
 	}
 
-	for (JUnsignedOffset i=0; i<kOpCount; i++)
+	for (auto* button : itsOpButton)
 	{
-		ListenTo(itsOpButton[i]);
+		ListenTo(button);
 	}
 
 	ListenTo(itsClearAllButton);

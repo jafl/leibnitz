@@ -412,8 +412,7 @@ ExprDirector::Receive
 	}
 	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
 	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
+		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandleActionsMenu(selection->GetIndex());
 	}
@@ -424,23 +423,20 @@ ExprDirector::Receive
 	}
 	else if (sender == itsPrefsMenu && message.Is(JXMenu::kItemSelected))
 	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
+		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
 		HandlePrefsMenu(selection->GetIndex());
 	}
 
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
 	{
-		(GetApplication())->UpdateHelpMenu(itsHelpMenu);
+		GetApplication()->UpdateHelpMenu(itsHelpMenu);
 	}
 	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
 	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
+		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
 		assert( selection != nullptr );
-		(GetApplication())->HandleHelpMenu(itsHelpMenu, "ExprHelp",
-											  selection->GetIndex());
+		GetApplication()->HandleHelpMenu("ExprHelp", selection->GetIndex());
 	}
 
 	else
