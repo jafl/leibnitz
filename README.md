@@ -24,9 +24,9 @@ Leibnitz provides a calculator and the ability to plot functions.  The [on-line 
 
 For macOS, the easiest way to install is via [Homebrew](https://brew.sh):
 
-* `brew install --cask xquartz`
-* `brew tap jafl/jx`
-* `brew install jafl/jx/leibnitz`
+    brew install --cask xquartz
+    brew tap jafl/jx
+    brew install jafl/jx/leibnitz
 
 For all other systems, download a package from:
 
