@@ -16,7 +16,6 @@ Leibnitz provides a calculator and the ability to plot functions.  The [on-line 
 
 1. Install the [JX Application Framework](https://github.com/jafl/jx_application_framework),  and set the `JX_ROOT` environment variable to point to its `include` directory.
 1. `./configure`
-1. `makemake`
 1. `make`
 
 
@@ -31,7 +30,6 @@ For macOS, the easiest way to install is via [Homebrew](https://brew.sh):
 For all other systems, download a package from:
 
 * https://github.com/jafl/leibnitz/releases
-* http://sourceforge.net/p/leibnitz
 
 If you download the tar, unpack it, cd into the directory, and run `sudo ./install`.
 

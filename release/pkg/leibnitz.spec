@@ -1,5 +1,5 @@
 Summary: Leibnitz provides electronic paper for calculations and graphs.
-Name: Leibnitz
+Name: %app_name
 Version: %pkg_version
 Release: 1
 License: GPL
@@ -17,24 +17,16 @@ Leibnitz provides electronic paper for calculations and graphs.
 %install
 
 %define leibnitz_doc_dir  /usr/share/doc/leibnitz
-%define leibnitz_lib_dir  /usr/lib/leibnitz
 %define gnome_app_path    /usr/share/applications
 %define gnome_icon_path   /usr/share/pixmaps
 
-./install "$RPM_BUILD_ROOT"
-
-%post
-gunzip %leibnitz_lib_dir/*.gz
-
-%postun
-rm -rf %leibnitz_lib_dir
+./install "$RPM_BUILD_ROOT"/usr
 
 %files
 
 %docdir %leibnitz_doc_dir
 
 /usr/bin/leibnitz
-%leibnitz_lib_dir
 %leibnitz_doc_dir
 
 %gnome_app_path/leibnitz.desktop
