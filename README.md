@@ -11,6 +11,8 @@
 
 Leibnitz provides a calculator and the ability to plot functions.  The [on-line help](http://leibnitz.sourceforge.net/help.html) explains all the features of the program.
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/leibnitz)
+
 
 ## Building from source
 

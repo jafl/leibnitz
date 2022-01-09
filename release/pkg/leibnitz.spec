@@ -9,7 +9,6 @@ Requires: libX11, libXinerama, libXpm, libXft, libxml2, gd, libjpeg, libpng, lib
 
 %description
 Leibnitz provides electronic paper for calculations and graphs.
-(http://www.newplanetsoftware.com/leibnitz/)
 
 %prep
 %setup
