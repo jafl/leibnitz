@@ -1,7 +1,7 @@
 name: leibnitz
 title: Leibnitz
 base: core20
-version: "1.2.0"
+version: "3.0.1"
 #source-code: https://github.com/jafl/leibnitz
 #issues: https://github.com/jafl/leibnitz/issues
 #contact: https://johnlindal.wixsite.com/aboutme/contact-me
@@ -29,7 +29,6 @@ parts:
   leibnitz:
     plugin: autotools
     source: .
-    disable-parallel: true
     build-environment:
       - JX_ROOT: /snap/jx-application-framework/current
       - PATH: $PATH:$JX_ROOT/bin
@@ -63,6 +62,7 @@ parts:
       - aspell
     build-snaps:
       - jx-application-framework
+    after: [ libs ]
   libs:
     plugin: nil
     stage-packages:
