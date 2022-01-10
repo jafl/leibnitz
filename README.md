@@ -12,7 +12,9 @@
 Leibnitz provides a calculator and the ability to plot functions.  The [on-line help](http://leibnitz.sourceforge.net/help.html) explains all the features of the program.
 
 [![Download from Github](http://libjx.sourceforge.net/github.png)](https://github.com/jafl/leibnitz/releases/latest)
-[![Download from Sourceforge](https://sourceforge.net/sflogo.php?type=17&group_id=170488)](https://sourceforge.net/p/leibnitz/files/)
+
+<a href="https://sourceforge.net/p/leibnitz/"><img alt="Download Leibnitz" src="https://sourceforge.net/sflogo.php?type=17&group_id=170488" width="250"></a>
+
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/leibnitz)
 
 
