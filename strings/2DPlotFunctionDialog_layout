@@ -1,8 +1,0 @@
-0
-okButton::2DPlotFunctionDialog::JXLayout "OK"
-cancelButton::2DPlotFunctionDialog::JXLayout "Cancel"
-curveLabel::2DPlotFunctionDialog::JXLayout "Curve name:"
-okButton::2DPlotFunctionDialog::shortcuts::JXLayout "^M"
-itsPlotMenu::2DPlotFunctionDialog::JXLayout "Window to use:"
-rangeLabel::2DPlotFunctionDialog::JXLayout "Initial range:"
-toLabel::2DPlotFunctionDialog::JXLayout "to"

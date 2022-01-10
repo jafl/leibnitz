@@ -72,13 +72,13 @@ SaveTapePrompt::ExprDirector	"Save tape as:"
 
 # Plot2DDirector
 
-EditFunctionItem::2DPlotDirector	"Edit function"
-PlotTitle::2DPlotDirector			"New plot"
+EditFunctionItem::Plot2DDirector	"Edit function"
+PlotTitle::Plot2DDirector			"New plot"
 
 # Plot2DFunctionDialog
 
-WindowTitle::2DPlotFunctionDialog		"Plot 2D function"
-FinishFunction::2DPlotFunctionDialog	"Please finish entering the function."
+WindowTitle::Plot2DFunctionDialog		"Plot 2D function"
+FinishFunction::Plot2DFunctionDialog	"Please finish entering the function."
 
 # VarDirector
 

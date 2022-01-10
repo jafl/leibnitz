@@ -163,7 +163,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: 2DPlotFunctionDialog
+Name: Plot2DFunctionDialog
 Width: 330
 Height: 320
 Number of Objects: 11
@@ -865,7 +865,7 @@ callback:
 argument: 
 
 =============== FORM ===============
-Name: 2DPlotDirector
+Name: Plot2DDirector
 Width: 600
 Height: 400
 Number of Objects: 3
