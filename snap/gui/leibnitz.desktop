@@ -2,7 +2,7 @@
 Categories=Utility;Calculator;X-Red-Hat-Base;
 Name=Leibnitz Graphing Calculator
 Comment=Electronic Paper (evaluate expressions and plot functions)
-Icon=leibnitz
+Icon=${SNAP}/meta/gui/leibnitz
 Exec=leibnitz
 Type=Application
 MapNotify=true
