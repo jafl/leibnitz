@@ -29,4 +29,4 @@ Leibnitz provides electronic paper for calculations and graphs.
 %leibnitz_doc_dir
 
 %gnome_app_path/leibnitz.desktop
-%gnome_icon_path/leibnitz.xpm
+%gnome_icon_path/leibnitz.png
