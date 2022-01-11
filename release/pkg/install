@@ -3,14 +3,11 @@
 # With no arguments, this script must install from an unpacked tgz.
 
 PRE=$1;
-if [[ -z $PRE ]]; then
-	PRE=/usr;
-fi
 
-BIN=$PRE/bin;
-DOC=$PRE/share/doc/leibnitz;
-APP=$PRE/share/applications;
-ICON=$PRE/share/pixmaps;
+BIN=$PRE/usr/bin;
+DOC=$PRE/usr/share/doc/leibnitz;
+APP=$PRE/usr/share/applications;
+ICON=$PRE/usr/share/pixmaps;
 
 mkdir -p $BIN;
 install -m755 leibnitz $BIN;
