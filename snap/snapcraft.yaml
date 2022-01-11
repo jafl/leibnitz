@@ -30,6 +30,9 @@ parts:
   leibnitz:
     plugin: autotools
     source: .
+    override-pull: |
+      snapcraftctl pull
+      perl -pi -e 's|Icon=|Icon=${SNAP}/meta/gui/|' snap/gui/leibnitz.dekstop
     build-environment:
       - JX_ROOT: /snap/jx-application-framework/current
       - PATH: $PATH:$JX_ROOT/bin
