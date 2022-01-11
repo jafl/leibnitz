@@ -32,7 +32,7 @@ parts:
     source: .
     override-pull: |
       snapcraftctl pull
-      perl -pi -e 's|Icon=|Icon=${SNAP}/meta/gui/|' snap/gui/leibnitz.dekstop
+      perl -pi -e 's|Icon=|Icon=${SNAP}/meta/gui/|' snap/gui/leibnitz.desktop
     build-environment:
       - JX_ROOT: /snap/jx-application-framework/current
       - PATH: $PATH:$JX_ROOT/bin
