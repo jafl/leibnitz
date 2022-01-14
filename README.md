@@ -10,7 +10,6 @@
 # Leibnitz
 
 Leibnitz provides a calculator and the ability to plot functions.  The [on-line help](http://leibnitz.sourceforge.net/help.html) explains all the features of the program.
-aft.io/leibnitz)
 
 
 ## Requirements
@@ -32,7 +31,7 @@ For all other systems, download a package:
 
 <a href="https://sourceforge.net/p/leibnitz/"><img alt="Download Leibnitz" src="https://sourceforge.net/sflogo.php?type=17&group_id=170488" width="250"></a>
 
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcr
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/leibnitz)
 
 If you download a tar, unpack it, cd into the directory, and run `sudo ./install`.
 
