@@ -2,9 +2,10 @@ name: leibnitz
 title: Leibnitz
 base: core20
 version: "3.0.2"
-#source-code: https://github.com/jafl/leibnitz
-#issues: https://github.com/jafl/leibnitz/issues
-#contact: https://johnlindal.wixsite.com/aboutme/contact-me
+license: GPL-3.0-or-later
+source-code: https://github.com/jafl/leibnitz
+issues: https://github.com/jafl/leibnitz/issues
+contact: https://johnlindal.wixsite.com/aboutme/contact-me
 summary: Leibnitz provides electronic paper for calculations and graphs.
 description: |
   Leibnitz provides electronic paper for calculations and graphs.
