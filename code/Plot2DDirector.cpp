@@ -399,7 +399,7 @@ Plot2DDirector::Receive
 void
 Plot2DDirector::UpdateActionsMenu()
 {
-	itsActionsMenu->SetItemEnable(kPrintMarksEPSCmd, itsPlotWidget->HasMarks());
+	itsActionsMenu->SetItemEnabled(kPrintMarksEPSCmd, itsPlotWidget->HasMarks());
 }
 
 /******************************************************************************

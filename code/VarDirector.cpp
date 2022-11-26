@@ -239,7 +239,7 @@ VarDirector::Receive
 void
 VarDirector::UpdateActionsMenu()
 {
-	itsActionsMenu->SetItemEnable(kRemoveConstCmd,
+	itsActionsMenu->SetItemEnabled(kRemoveConstCmd,
 								  itsVarTable->OKToRemoveSelectedConstant());
 }
 
