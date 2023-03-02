@@ -10,7 +10,7 @@
 #ifndef _H_Plot2DFunctionDialog
 #define _H_Plot2DFunctionDialog
 
-#include <jx-af/jx/JXDialogDirector.h>
+#include <jx-af/jx/JXModalDialogDirector.h>
 
 class JFunction;
 class JXTextMenu;
@@ -20,13 +20,13 @@ class JXExprEditor;
 class Plot2DDirector;
 class VarList;
 
-class Plot2DFunctionDialog : public JXDialogDirector
+class Plot2DFunctionDialog : public JXModalDialogDirector
 {
 public:
 
-	Plot2DFunctionDialog(JXDirector* supervisor, const VarList* varList,
+	Plot2DFunctionDialog(const VarList* varList,
 							const Plot2DDirector* prevPlot = nullptr);
-	Plot2DFunctionDialog(JXDirector* supervisor, const VarList* varList,
+	Plot2DFunctionDialog(const VarList* varList,
 							const JFunction& f, const JString& curveName,
 							const JFloat min, const JFloat max);
 

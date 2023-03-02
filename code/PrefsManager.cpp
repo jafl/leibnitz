@@ -25,7 +25,7 @@ PrefsManager::PrefsManager
 	bool* isNew
 	)
 	:
-	JXPrefsManager(kCurrentPrefsFileVersion, true)
+	JXPrefsManager(kCurrentPrefsFileVersion, true, JPrefID())
 {
 	*isNew = JPrefsManager::UpgradeData();
 }
@@ -48,7 +48,7 @@ PrefsManager::~PrefsManager()
 void
 PrefsManager::UpgradeData
 	(
-	const bool		isNew,
+	const bool			isNew,
 	const JFileVersion	currentVersion
 	)
 {

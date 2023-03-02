@@ -66,7 +66,7 @@ VarDirector::VarDirector
 
 VarDirector::VarDirector
 	(
-	std::istream&			input,
+	std::istream&		input,
 	const JFileVersion	vers,
 	JXDirector*			supervisor,
 	VarList*			varList

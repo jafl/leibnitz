@@ -19,7 +19,6 @@ class VarList;
 class VarDirector;
 class ExprDirector;
 class Plot2DDirector;
-class Plot2DFunctionDialog;
 class BaseConvDirector;
 
 class App : public JXApplication
@@ -30,7 +29,10 @@ public:
 
 	~App() override;
 
-	void	DisplayAbout(const JString& prevVersStr = JString::empty);
+	void	Quit() override;
+
+	void	DisplayAbout(const bool showLicense = false,
+						 const JString& prevVersStr = JString::empty);
 
 	VarList*		GetVariableList() const;
 	ExprDirector*	NewExpression(const bool centerOnScreen = false);
@@ -54,10 +56,8 @@ public:
 
 protected:
 
-	bool	Close() override;
 	void	CleanUpBeforeSuddenDeath(const JXDocumentManager::SafetySaveReason reason) override;
 	void	DirectorClosed(JXDirector* theDirector) override;
-	void	Receive(JBroadcaster* sender, const Message& message) override;
 
 private:
 
@@ -69,7 +69,6 @@ private:
 	JPtrArray<ExprDirector>*	itsExprList;
 	bool						itsKeyPadVisibleFlag;
 	JPtrArray<Plot2DDirector>*	its2DPlotList;
-	Plot2DFunctionDialog*		its2DPlotFnDialog;	// nullptr unless asking user
 	BaseConvDirector*			itsBCDirector;
 
 private:

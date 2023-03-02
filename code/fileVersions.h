@@ -12,8 +12,10 @@
 
 #include <jx-af/jcore/jTypes.h>
 
-const JFileVersion kCurrentStateVersion = 11;
+const JFileVersion kCurrentStateVersion = 12;
 
+// version 12:
+//	Upgraded to JXCSFDialogBase::GetState().
 // version 11:
 //	Discarded 3DPlotDirector state.
 // version 10:

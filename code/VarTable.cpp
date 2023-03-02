@@ -166,12 +166,12 @@ VarTable::TableDrawCell
 	if (cell.x == kNameColumn)
 	{
 		p.String(r, itsVarList->GetVariableName(varIndex),
-				 JPainter::kHAlignLeft, JPainter::kVAlignCenter);
+				 JPainter::HAlign::kLeft, JPainter::VAlign::kCenter);
 	}
 	else if (cell.x == kFnColumn)
 	{
-		const JString s = (itsVarList->GetFunction(varIndex))->Print();
-		p.String(r, s, JPainter::kHAlignLeft, JPainter::kVAlignCenter);
+		const JString s = itsVarList->GetFunction(varIndex)->Print();
+		p.String(r, s, JPainter::HAlign::kLeft, JPainter::VAlign::kCenter);
 	}
 }
 
@@ -203,7 +203,7 @@ VarTable::CreateXInputField
 	else
 	{
 		assert( cell.x == kFnColumn );
-		const JString s = (itsVarList->GetFunction(varIndex))->Print();
+		const JString s = itsVarList->GetFunction(varIndex)->Print();
 		itsTextInput->SetVarName(s);
 	}
 

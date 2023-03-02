@@ -8,6 +8,7 @@
  ******************************************************************************/
 
 #include "App.h"
+#include "PrefsManager.h"
 #include "VarList.h"
 #include "VarDirector.h"
 #include "ExprDirector.h"
@@ -24,15 +25,14 @@
 #include <jx-af/jx/JXTextMenu.h>
 #include <jx-af/jx/JXPSPrinter.h>
 #include <jx-af/j2dplot/JX2DPlotEPSPrinter.h>
-#include <jx-af/jx/JXChooseSaveFile.h>
 #include <jx-af/jx/JXSharedPrefsManager.h>
 #include <jx-af/jx/JXSplashWindow.h>
 #include <jx-af/jx/JXTipOfTheDayDialog.h>
+#include <jx-af/jx/JXCSFDialogBase.h>
 #include <jx-af/jx/jXActionDefs.h>
 #include <jx-af/jcore/JThisProcess.h>
-#include <jx-af/jcore/JString.h>
-#include <jx-af/jcore/jFileUtil.h>
 #include <jx-af/jcore/jDirUtil.h>
+#include <jx-af/jcore/jWebUtil.h>
 #include <fstream>
 #include <sstream>
 #include <jx-af/jcore/jAssert.h>
@@ -90,12 +90,12 @@ App::App
 	its2DPlotList->SetCompareFunction(Compare2DPlotTitles);
 	its2DPlotList->SetSortOrder(JListT::kSortAscending);
 
-	its2DPlotFnDialog = nullptr;
-
 	CreateGlobals(this);
-	RestoreProgramState();
 
-	itsStartupFlag = false;
+	StartFiber([this]()
+	{
+		RestoreProgramState();
+	});
 }
 
 /******************************************************************************
@@ -108,27 +108,29 @@ App::App
 App::~App()
 {
 	jdelete itsVarList;
-	jdelete itsExprList;		// objects deleted by JXDirector
+	jdelete itsExprList;	// objects deleted by JXDirector
 	jdelete its2DPlotList;	// objects deleted by JXDirector
 
 	DeleteGlobals();
 }
 
 /******************************************************************************
- Close (virtual protected)
+ Quit (virtual)
 
  ******************************************************************************/
 
-bool
-App::Close()
+void
+App::Quit()
 {
-	if (!itsVarDirector->OKToDeactivate())
+	if (itsVarDirector == nullptr || itsVarDirector->OKToDeactivate())
 	{
-		return false;
-	}
+		if (!IsQuitting() && HasPrefsManager())
+		{
+			SaveProgramState();
+		}
 
-	SaveProgramState();
-	return JXApplication::Close();
+		JXApplication::Quit();
+	}
 }
 
 /******************************************************************************
@@ -139,12 +141,26 @@ App::Close()
 void
 App::DisplayAbout
 	(
-	const JString& prevVersStr
+	const bool		showLicense,
+	const JString&	prevVersStr
 	)
 {
-	auto* dlog = jnew AboutDialog(this, prevVersStr);
-	assert( dlog != nullptr );
-	dlog->BeginDialog();
+	StartFiber([showLicense, prevVersStr]()
+	{
+		if (!showLicense || JGetUserNotification()->AcceptLicense())
+		{
+			auto* dlog = jnew AboutDialog(prevVersStr);
+			assert( dlog != nullptr );
+			dlog->DoDialog();
+
+			JCheckForNewerVersion(GetPrefsManager(), kVersionCheckID);
+		}
+		else
+		{
+			ForgetPrefsManager();
+			JXGetApplication()->Quit();
+		}
+	});
 }
 
 /******************************************************************************
@@ -162,7 +178,7 @@ App::NewExpression
 	assert( expr != nullptr );
 	if (centerOnScreen)
 	{
-		(expr->GetWindow())->PlaceAsDialogWindow();
+		expr->GetWindow()->PlaceAsDialogWindow();
 	}
 	expr->Activate();
 	itsExprList->Append(expr);
@@ -206,40 +222,27 @@ App::New2DPlot
 	const Plot2DDirector* prevPlot
 	)
 {
-	assert( its2DPlotFnDialog == nullptr );
-
-	its2DPlotFnDialog = jnew Plot2DFunctionDialog(this, itsVarList, prevPlot);
-	assert( its2DPlotFnDialog != nullptr );
-	its2DPlotFnDialog->BeginDialog();
-	ListenTo(its2DPlotFnDialog);
-}
-
-/******************************************************************************
- Create2DPlot (private)
-
- ******************************************************************************/
-
-void
-App::Create2DPlot()
-{
-	assert( its2DPlotFnDialog != nullptr );
-
-	JIndex plotIndex;
-	const JFunction* f;
-	JString curveName;
-	JFloat xMin, xMax;
-	its2DPlotFnDialog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
-
-	if (plotIndex > its2DPlotList->GetElementCount())
+	auto* dlog = jnew Plot2DFunctionDialog(itsVarList, prevPlot);
+	assert( dlog != nullptr );
+	if (dlog->DoDialog())
 	{
-		auto* plot = jnew Plot2DDirector(this);
-		assert( plot != nullptr );
-		its2DPlotList->Append(plot);
-	}
+		JIndex plotIndex;
+		const JFunction* f;
+		JString curveName;
+		JFloat xMin, xMax;
+		dlog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
 
-	Plot2DDirector* plot = its2DPlotList->GetElement(plotIndex);
-	plot->AddFunction(itsVarList, *f, curveName, xMin, xMax);
-	plot->Activate();
+		if (plotIndex > its2DPlotList->GetElementCount())
+		{
+			auto* plot = jnew Plot2DDirector(this);
+			assert( plot != nullptr );
+			its2DPlotList->Append(plot);
+		}
+
+		Plot2DDirector* plot = its2DPlotList->GetElement(plotIndex);
+		plot->AddFunction(itsVarList, *f, curveName, xMin, xMax);
+		plot->Activate();
+	}
 }
 
 /******************************************************************************
@@ -274,12 +277,11 @@ App::ShowBaseConversion()
 void
 App::RestoreProgramState()
 {
-JIndex i;
-
 	if (!JGetPrefsDirectory(&itsStatePath))
 	{
 		JGetUserNotification()->ReportError(JGetString("NoPrefsDir::App"));
-		JThisProcess::Exit(1);
+		Quit();
+		return;
 	}
 
 	const JString fullName = JCombinePathAndName(itsStatePath, kStateFileName);
@@ -289,7 +291,7 @@ JIndex i;
 		if (!JFileExists(oldName) || !(JRenameFile(oldName, fullName)).OK())
 		{
 			InitProgramState();
-			DisplayAbout();
+			DisplayAbout(true);
 			return;
 		}
 	}
@@ -306,27 +308,19 @@ JIndex i;
 	else if (vers > kCurrentStateVersion)
 	{
 		const JUtf8Byte* map[] =
-	{
+		{
 			"name", fullName.GetBytes()
-	};
+		};
 		const JString msg = JGetString("CannotReadNewerVersion::App", map, sizeof(map));
 		JGetUserNotification()->ReportError(msg);
-		JThisProcess::Exit(1);
+		Quit();
+		return;
 	}
 
 	JString prevProgramVers;
 	input >> prevProgramVers;
 
-	bool displayAbout = false;
-	if (prevProgramVers != GetVersionNumberStr())
-	{
-		if (!JGetUserNotification()->AcceptLicense())
-		{
-			JThisProcess::Exit(0);
-		}
-
-		displayAbout = true;
-	}
+	const bool displayAbout = prevProgramVers != GetVersionNumberStr();
 
 	itsVarList = jnew VarList(input, vers);
 	assert( itsVarList != nullptr );
@@ -349,18 +343,24 @@ JIndex i;
 		// ignoring obsolete JXGetHelpManager data, since it was removed in version 8
 	}
 
-	if (vers >= 5)
+	if (5 <= vers && vers < 12)
 	{
-		(JXGetChooseSaveFile())->ReadSetup(input);
+		JXCSFDialogBase::ReadOldState(input);
+	}
+	else if (vers >= 12)
+	{
+		JString s;
+		input >> s;
+		JXCSFDialogBase::SetState(s);
 	}
 
 	if (vers >= 3)
 	{
-		(GetPSGraphPrinter())->ReadXPSSetup(input);
+		GetPSGraphPrinter()->ReadXPSSetup(input);
 	}
 	if (vers >= 7)
 	{
-		(GetEPSGraphPrinter())->ReadX2DEPSSetup(input);
+		GetEPSGraphPrinter()->ReadX2DEPSSetup(input);
 	}
 
 	JSize exprCount;
@@ -372,7 +372,7 @@ JIndex i;
 	}
 	else
 	{
-		for (i=1; i<=exprCount; i++)
+		for (JIndex i=1; i<=exprCount; i++)
 		{
 			auto* expr = jnew ExprDirector(input, vers, this, itsVarList);
 			assert( expr != nullptr );
@@ -381,7 +381,7 @@ JIndex i;
 
 			if (exprCount == 1)
 			{
-				(expr->GetWindow())->Deiconify();
+				expr->GetWindow()->Deiconify();
 			}
 		}
 	}
@@ -389,7 +389,7 @@ JIndex i;
 	JSize plotCount;
 	input >> plotCount;
 
-	for (i=1; i<=plotCount; i++)
+	for (JIndex i=1; i<=plotCount; i++)
 	{
 		auto* plot = jnew Plot2DDirector(input, vers, this, itsVarList);
 		assert( plot != nullptr );
@@ -399,8 +399,10 @@ JIndex i;
 
 	if (displayAbout)
 	{
-		DisplayAbout(prevProgramVers);
+		DisplayAbout(true, prevProgramVers);
 	}
+
+	itsStartupFlag = false;
 }
 
 /******************************************************************************
@@ -411,11 +413,6 @@ JIndex i;
 void
 App::InitProgramState()
 {
-	if (!JGetUserNotification()->AcceptLicense())
-	{
-		JThisProcess::Exit(0);
-	}
-
 	itsVarList = jnew VarList;
 	assert( itsVarList != nullptr );
 
@@ -436,8 +433,6 @@ App::InitProgramState()
 void
 App::SaveProgramState()
 {
-JIndex i;
-
 	const JString fullName = JCombinePathAndName(itsStatePath, kStateFileName);
 	std::ofstream output(fullName.GetBytes());
 
@@ -456,61 +451,28 @@ JIndex i;
 	output << ' ';
 	ExprDirector::WritePrefs(output);
 
-	output << ' ';
-	(JXGetChooseSaveFile())->WriteSetup(output);
+	output << ' ' << JXCSFDialogBase::GetState();
 
 	output << ' ';
-	(GetPSGraphPrinter())->WriteXPSSetup(output);
+	GetPSGraphPrinter()->WriteXPSSetup(output);
 
 	output << ' ';
-	(GetEPSGraphPrinter())->WriteX2DEPSSetup(output);
+	GetEPSGraphPrinter()->WriteX2DEPSSetup(output);
 
-	const JSize exprCount = itsExprList->GetElementCount();
-	output << ' ' << exprCount;
+	output << ' ' << itsExprList->GetElementCount();
 
-	for (i=1; i<=exprCount; i++)
+	for (auto* e : *itsExprList)
 	{
 		output << ' ';
-		(itsExprList->GetElement(i))->WriteState(output);
+		e->WriteState(output);
 	}
 
-	JSize plotCount = its2DPlotList->GetElementCount();
-	output << ' ' << plotCount;
+	output << ' ' << its2DPlotList->GetElementCount();
 
-	for (i=1; i<=plotCount; i++)
+	for (auto* p : *its2DPlotList)
 	{
 		output << ' ';
-		(its2DPlotList->GetElement(i))->WriteState(output);
-	}
-}
-
-/******************************************************************************
- Receive (protected)
-
- ******************************************************************************/
-
-void
-App::Receive
-	(
-	JBroadcaster*	sender,
-	const Message&	message
-	)
-{
-	if (sender == its2DPlotFnDialog && message.Is(JXDialogDirector::kDeactivated))
-	{
-		const auto* info =
-			dynamic_cast<const JXDialogDirector::Deactivated*>(&message);
-		assert( info != nullptr );
-		if (info->Successful())
-		{
-			Create2DPlot();
-		}
-		its2DPlotFnDialog = nullptr;
-	}
-
-	else
-	{
-		JXApplication::Receive(sender, message);
+		p->WriteState(output);
 	}
 }
 
@@ -531,15 +493,21 @@ App::DirectorClosed
 	)
 {
 	JIndex dirIndex;
-	auto* exprDir = (ExprDirector*) theDirector;
+	auto* exprDir = dynamic_cast<ExprDirector*>(theDirector);
 	if (exprDir != nullptr && itsExprList->Find(exprDir, &dirIndex))
 	{
 		itsExprList->RemoveElement(dirIndex);
 	}
-	auto* plot2DDir = (Plot2DDirector*) theDirector;
+
+	auto* plot2DDir = dynamic_cast<Plot2DDirector*>(theDirector);
 	if (plot2DDir != nullptr && its2DPlotList->Find(plot2DDir, &dirIndex))
 	{
 		its2DPlotList->RemoveElement(dirIndex);
+	}
+
+	if (theDirector == itsVarDirector)
+	{
+		itsVarDirector = nullptr;
 	}
 
 	JXApplication::DirectorClosed(theDirector);
@@ -563,9 +531,9 @@ App::DirectorClosed
 void
 App::BuildPlotMenu
 	(
-	JXTextMenu*					menu,
+	JXTextMenu*				menu,
 	const Plot2DDirector*	origPlot,
-	JIndex*						initialChoice
+	JIndex*					initialChoice
 	)
 	const
 {
@@ -687,7 +655,7 @@ App::HandleHelpMenu
 	{
 		auto* dlog = jnew JXTipOfTheDayDialog;
 		assert( dlog != nullptr );
-		dlog->BeginDialog();
+		dlog->DoDialog();
 	}
 
 	else if (index == kHelpChangeLogCmd)

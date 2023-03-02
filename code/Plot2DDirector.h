@@ -16,7 +16,6 @@ class JXTextMenu;
 class JX2DPlotWidget;
 class J2DPlotFunction;
 class VarList;
-class Plot2DFunctionDialog;
 
 class Plot2DDirector : public JXWindowDirector
 {
@@ -47,8 +46,6 @@ private:
 	JIndex		itsEditFunctionItemIndex;	// index of item on Curve Options pop up menu
 
 	JPtrArray<J2DPlotFunction>*	itsFnList;			// contents not owned
-	Plot2DFunctionDialog*		itsEditFnDialog;	// nullptr unless editing
-	JIndex						itsEditFnIndex;		// index of curve being edited
 
 // begin JXLayout
 
@@ -64,7 +61,6 @@ private:
 						const JString& name,
 						const JFloat xMin, const JFloat xMax);
 	void	EditFunction(const JIndex index);
-	void	UpdateFunction();
 
 	void	UpdateActionsMenu();
 	void	HandleActionsMenu(const JIndex index);

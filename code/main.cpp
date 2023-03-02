@@ -8,10 +8,8 @@
  ******************************************************************************/
 
 #include "MDIServer.h"
-#include "PrefsManager.h"
 #include "globals.h"
 #include <jx-af/jcore/jCommandLine.h>
-#include <jx-af/jcore/jWebUtil.h>
 #include <jx-af/jcore/jAssert.h>
 
 // Prototypes
@@ -40,8 +38,6 @@ main
 
 	auto* app = jnew App(&argc, argv);
 	assert( app != nullptr );
-
-	JCheckForNewerVersion(GetPrefsManager(), kVersionCheckID);
 
 	app->Run();
 	return 0;

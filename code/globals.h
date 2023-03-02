@@ -21,7 +21,9 @@ class JX2DPlotEPSPrinter;
 
 App*				GetApplication();
 MDIServer*			GetMDIServer();
+bool				HasPrefsManager();
 PrefsManager*		GetPrefsManager();
+void				ForgetPrefsManager();
 JXPTPrinter*		GetTapePrinter();
 JXPSPrinter*		GetPSGraphPrinter();
 JX2DPlotEPSPrinter*	GetEPSGraphPrinter();

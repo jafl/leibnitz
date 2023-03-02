@@ -1,7 +1,7 @@
 /******************************************************************************
  Plot2DFunctionDialog.cpp
 
-	BASE CLASS = JXDialogDirector
+	BASE CLASS = JXModalDialogDirector
 
 	Copyright (C) 1998 by John Lindal.
 
@@ -29,27 +29,25 @@
 
 Plot2DFunctionDialog::Plot2DFunctionDialog
 	(
-	JXDirector*					supervisor,
 	const VarList*			varList,
 	const Plot2DDirector*	prevPlot
 	)
 	:
-	JXDialogDirector(supervisor, true)
+	JXModalDialogDirector()
 {
 	BuildWindow(varList, prevPlot);
 }
 
 Plot2DFunctionDialog::Plot2DFunctionDialog
 	(
-	JXDirector*			supervisor,
-	const VarList*	varList,
+	const VarList*		varList,
 	const JFunction&	f,
 	const JString&		curveName,
 	const JFloat		min,
 	const JFloat		max
 	)
 	:
-	JXDialogDirector(supervisor, true)
+	JXModalDialogDirector()
 {
 	BuildWindow(varList, nullptr);
 
@@ -221,7 +219,7 @@ Plot2DFunctionDialog::Receive
 
 	else
 	{
-		JXDialogDirector::Receive(sender, message);
+		JXModalDialogDirector::Receive(sender, message);
 	}
 }
 
@@ -233,7 +231,7 @@ Plot2DFunctionDialog::Receive
 bool
 Plot2DFunctionDialog::OKToDeactivate()
 {
-	if (!JXDialogDirector::OKToDeactivate())
+	if (!JXModalDialogDirector::OKToDeactivate())
 	{
 		return false;
 	}

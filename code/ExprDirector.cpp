@@ -25,7 +25,7 @@
 #include <jx-af/jx/JXScrollbarSet.h>
 #include <jx-af/jx/JXScrollbar.h>
 #include <jx-af/jx/JXHelpManager.h>
-#include <jx-af/jx/JXChooseSaveFile.h>
+#include <jx-af/jx/JXSaveFileDialog.h>
 #include <jx-af/jx/JXMacWinPrefsDialog.h>
 #include <jx-af/jx/JXImage.h>
 #include <jx-af/jx/jXActionDefs.h>
@@ -522,13 +522,10 @@ ExprDirector::HandleActionsMenu
 void
 ExprDirector::SaveTape()
 {
-	JString newName;
-	if ((JXGetChooseSaveFile())->SaveFile(
-			JGetString("SaveTapePrompt::ExprDirector"),
-			JString::empty, itsTapeName, &newName))
+	auto* dlog = JXSaveFileDialog::Create(JGetString("SaveTapePrompt::ExprDirector"), itsTapeName);
+	if (dlog->DoDialog())
 	{
-		itsTapeName = newName;
-
+		itsTapeName = dlog->GetFullName();
 		std::ofstream output(itsTapeName.GetBytes());
 		itsTapeWidget->GetText()->GetText().Print(output);
 	}

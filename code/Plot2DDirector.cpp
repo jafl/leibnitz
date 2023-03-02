@@ -119,8 +119,6 @@ Plot2DDirector::Plot2DDirectorX()
 {
 	itsFnList = jnew JPtrArray<J2DPlotFunction>(JPtrArrayT::kForgetAll);
 	assert( itsFnList != nullptr );
-
-	itsEditFnDialog = nullptr;
 }
 
 /******************************************************************************
@@ -374,17 +372,6 @@ Plot2DDirector::Receive
 		HandleCurveOptionsMenu(selection->GetIndex());
 	}
 
-	else if (sender == itsEditFnDialog && message.Is(JXDialogDirector::kDeactivated))
-	{
-		const auto* info = dynamic_cast<const JXDialogDirector::Deactivated*>(&message);
-		assert( info != nullptr );
-		if (info->Successful())
-		{
-			UpdateFunction();
-		}
-		itsEditFnDialog = nullptr;
-	}
-
 	else
 	{
 		JXWindowDirector::Receive(sender, message);
@@ -500,45 +487,31 @@ Plot2DDirector::EditFunction
 	const JIndex index
 	)
 {
-	assert( itsEditFnDialog == nullptr );
-
 	const J2DPlotFunction* curve = itsFnList->GetElement(index);
 
 	JFloat min, max;
 	curve->GetXRange(&min, &max);
 
-	itsEditFnDialog =
-		jnew Plot2DFunctionDialog(this, (GetApplication())->GetVariableList(),
-									curve->GetFunction(),
-									itsPlotWidget->GetCurveName(index), min, max);
-	assert( itsEditFnDialog != nullptr );
-	itsEditFnDialog->BeginDialog();
-	ListenTo(itsEditFnDialog);
+	auto* dlog =
+		jnew Plot2DFunctionDialog(GetApplication()->GetVariableList(),
+								  curve->GetFunction(),
+								  itsPlotWidget->GetCurveName(index), min, max);
+	assert( dlog != nullptr );
 
-	itsEditFnIndex = index;
-}
+	if (dlog->DoDialog())
+	{
+		JIndex plotIndex;
+		const JFunction* f;
+		JString curveName;
+		JFloat xMin, xMax;
+		dlog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
 
-/******************************************************************************
- UpdateFunction (private)
+		J2DPlotFunction* curve = itsFnList->GetElement(index);
+		curve->SetFunction(GetApplication()->GetVariableList(), f->Copy(), true,
+						   VarList::kXIndex, xMin, xMax);
 
- ******************************************************************************/
-
-void
-Plot2DDirector::UpdateFunction()
-{
-	assert( itsEditFnDialog != nullptr );
-
-	JIndex plotIndex;
-	const JFunction* f;
-	JString curveName;
-	JFloat xMin, xMax;
-	itsEditFnDialog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
-
-	J2DPlotFunction* curve = itsFnList->GetElement(itsEditFnIndex);
-	curve->SetFunction((GetApplication())->GetVariableList(), f->Copy(), true,
-					   VarList::kXIndex, xMin, xMax);
-
-	itsPlotWidget->SetCurveName(itsEditFnIndex, curveName);
+		itsPlotWidget->SetCurveName(index, curveName);
+	}
 }
 
 /******************************************************************************
@@ -549,7 +522,7 @@ Plot2DDirector::UpdateFunction()
 void
 Plot2DDirector::UpdateCurveOptionsMenu()
 {
-	(itsPlotWidget->GetCurveOptionsMenu())->EnableItem(itsEditFunctionItemIndex);
+	itsPlotWidget->GetCurveOptionsMenu()->EnableItem(itsEditFunctionItemIndex);
 }
 
 /******************************************************************************

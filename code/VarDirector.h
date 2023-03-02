@@ -23,7 +23,7 @@ public:
 
 	VarDirector(JXDirector* supervisor, VarList* varList);
 	VarDirector(std::istream& input, const JFileVersion vers,
-				   JXDirector* supervisor, VarList* varList);
+				JXDirector* supervisor, VarList* varList);
 
 	~VarDirector() override;
 
