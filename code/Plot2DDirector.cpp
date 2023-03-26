@@ -150,8 +150,8 @@ Plot2DDirector::WriteState
 
 	for (JIndex i=1; i<=fnCount; i++)
 	{
-		const J2DPlotDataBase& data      = itsPlotWidget->GetCurve(i);
-		const auto* fnData = dynamic_cast<const J2DPlotFunction*>(&data);
+		const J2DPlotDataBase* data = itsPlotWidget->GetCurve(i);
+		const auto* fnData = dynamic_cast<const J2DPlotFunction*>(data);
 		assert( fnData != nullptr );
 
 		JFloat xMin, xMax;
