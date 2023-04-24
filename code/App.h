@@ -79,7 +79,7 @@ private:
 
 	void	Create2DPlot();
 
-	static JListT::CompareResult
+	static std::weak_ordering
 		Compare2DPlotTitles(Plot2DDirector* const & p1, Plot2DDirector* const & p2);
 };
 

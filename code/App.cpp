@@ -545,7 +545,7 @@ App::BuildPlotMenu
 	for (JIndex i=1; i<=count; i++)
 	{
 		const Plot2DDirector* plot = its2DPlotList->GetElement(i);
-		menu->AppendItem((plot->GetWindow())->GetTitle(), JXMenu::kRadioType);
+		menu->AppendItem(plot->GetWindow()->GetTitle(), JXMenu::kRadioType);
 
 		if (plot == origPlot)
 		{
@@ -571,7 +571,7 @@ App::BuildPlotMenu
 
  ******************************************************************************/
 
-JListT::CompareResult
+std::weak_ordering
 App::Compare2DPlotTitles
 	(
 	Plot2DDirector* const & p1,
@@ -579,8 +579,8 @@ App::Compare2DPlotTitles
 	)
 {
 	return JCompareStringsCaseInsensitive(
-			const_cast<JString*>(&((p1->GetWindow())->GetTitle())),
-			const_cast<JString*>(&((p2->GetWindow())->GetTitle())));
+			const_cast<JString*>(&p1->GetWindow()->GetTitle()),
+			const_cast<JString*>(&p2->GetWindow()->GetTitle()));
 }
 
 /******************************************************************************
