@@ -145,7 +145,16 @@ Plot2DFunctionDialog::BuildWindow
 
 	(GetApplication())->BuildPlotMenu(itsPlotMenu, prevPlot, &itsPlotIndex);
 	itsPlotMenu->SetToPopupChoice(true, itsPlotIndex);
-	ListenTo(itsPlotMenu);
+
+	ListenTo(itsPlotMenu, std::function([this](const JXMenu::NeedsUpdate&)
+	{
+		itsPlotMenu->CheckItem(itsPlotIndex);
+	}));
+
+	ListenTo(itsPlotMenu, std::function([this](const JXMenu::ItemSelected& msg)
+	{
+		itsPlotIndex = msg.GetIndex();
+	}));
 
 	itsCurveName->ShareEditMenu(itsExprWidget->GetEditMenu());
 
@@ -191,36 +200,6 @@ Plot2DFunctionDialog::GetSettings
 
 	*fMin = JMin(min, max);
 	*fMax = JMax(min, max);
-}
-
-/******************************************************************************
- Receive (protected)
-
- ******************************************************************************/
-
-void
-Plot2DFunctionDialog::Receive
-	(
-	JBroadcaster*	sender,
-	const Message&	message
-	)
-{
-	if (sender == itsPlotMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		itsPlotMenu->CheckItem(itsPlotIndex);
-	}
-	else if (sender == itsPlotMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection =
-			dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		itsPlotIndex = selection->GetIndex();
-	}
-
-	else
-	{
-		JXModalDialogDirector::Receive(sender, message);
-	}
 }
 
 /******************************************************************************

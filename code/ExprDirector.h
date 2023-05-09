@@ -39,17 +39,12 @@ public:
 	static void	ReadPrefs(std::istream& input, const JFileVersion vers);
 	static void	WritePrefs(std::ostream& output);
 
-protected:
-
-	void	Receive(JBroadcaster* sender, const Message& message) override;
-
 private:
 
 	ExprEditor*		itsExprWidget;
 	TapeText*		itsTapeWidget;
 	JXTextMenu*		itsActionsMenu;
 	JXTextMenu*		itsPrefsMenu;
-	JXTextMenu*		itsHelpMenu;
 
 	static JString	theDefGeom;			// window size + partition geometry
 	JString			itsTapeName;		// file in which user last saved tape

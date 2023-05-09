@@ -35,14 +35,12 @@ public:
 
 protected:
 
-	void	Receive(JBroadcaster* sender, const Message& message) override;
 	void	ReceiveGoingAway(JBroadcaster* sender) override;
 
 private:
 
 	JXTextMenu*	itsActionsMenu;
 	JXTextMenu*	itsEditFnMenu;
-	JXTextMenu*	itsHelpMenu;
 	JIndex		itsEditFunctionItemIndex;	// index of item on Curve Options pop up menu
 
 	JPtrArray<J2DPlotFunction>*	itsFnList;			// contents not owned

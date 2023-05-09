@@ -206,12 +206,17 @@ Plot2DDirector::BuildWindow()
 	itsPlotWidget->SetPSPrinter(GetPSGraphPrinter());
 	itsPlotWidget->SetEPSPrinter(GetEPSGraphPrinter());
 
-	ListenTo(itsPlotWidget);
+	ListenTo(itsPlotWidget, std::function([this](const J2DPlotWidget::TitleChanged&)
+	{
+		GetWindow()->SetTitle(itsPlotWidget->GetTitle());
+	}));
 
 	itsActionsMenu = menuBar->PrependTextMenu(JGetString("ActionsMenuTitle::globals"));
 	itsActionsMenu->SetMenuItems(kActionsMenuStr);
 	itsActionsMenu->SetUpdateAction(JXMenu::kDisableNone);
-	ListenTo(itsActionsMenu);
+	itsActionsMenu->AttachHandlers(this,
+		&Plot2DDirector::UpdateActionsMenu,
+		&Plot2DDirector::HandleActionsMenu);
 
 	JXTextMenu* optionsMenu               = itsPlotWidget->GetOptionsMenu();
 	const JIndex editFunctionSubmenuIndex = optionsMenu->GetItemCount()+1;
@@ -220,16 +225,19 @@ Plot2DDirector::BuildWindow()
 	itsEditFnMenu = jnew JXTextMenu(optionsMenu, editFunctionSubmenuIndex, menuBar);
 	assert( itsEditFnMenu != nullptr );
 	itsEditFnMenu->SetUpdateAction(JXMenu::kDisableNone);
-	ListenTo(itsEditFnMenu);
+	itsEditFnMenu->AttachHandlers(this,
+		&Plot2DDirector::UpdateEditFnMenu,
+		&Plot2DDirector::HandleEditFnMenu);
 
-	itsHelpMenu = (GetApplication())->CreateHelpMenu(menuBar, "Plot2DDirector");
-	ListenTo(itsHelpMenu);
+	GetApplication()->CreateHelpMenu(menuBar, "Plot2DDirector", "2DPlotHelp");
 
 	JXTextMenu* curveOptionsMenu = itsPlotWidget->GetCurveOptionsMenu();
 	itsEditFunctionItemIndex     = curveOptionsMenu->GetItemCount()+1;
 	curveOptionsMenu->ShowSeparatorAfter(itsEditFunctionItemIndex-1);
 	curveOptionsMenu->AppendItem(JGetString("EditFunctionItem::Plot2DDirector"));
-	ListenTo(curveOptionsMenu);
+	curveOptionsMenu->AttachHandlers(this,
+		&Plot2DDirector::UpdateCurveOptionsMenu,
+		&Plot2DDirector::HandleCurveOptionsMenu);
 
 	// do this after everything is constructed so Receive() doesn't crash
 
@@ -307,75 +315,6 @@ Plot2DDirector::ReceiveGoingAway
 	}
 
 	JXWindowDirector::ReceiveGoingAway(sender);
-}
-
-/******************************************************************************
- Receive (virtual protected)
-
- ******************************************************************************/
-
-void
-Plot2DDirector::Receive
-	(
-	JBroadcaster*	sender,
-	const Message&	message
-	)
-{
-	if (sender == itsPlotWidget && message.Is(J2DPlotWidget::kTitleChanged))
-	{
-		GetWindow()->SetTitle(itsPlotWidget->GetTitle());
-	}
-
-	else if (sender == itsActionsMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		UpdateActionsMenu();
-	}
-	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		HandleActionsMenu(selection->GetIndex());
-	}
-
-	else if (sender == itsEditFnMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		UpdateEditFnMenu();
-	}
-	else if (sender == itsEditFnMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		HandleEditFnMenu(selection->GetIndex());
-	}
-
-	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		GetApplication()->UpdateHelpMenu(itsHelpMenu);
-	}
-	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		GetApplication()->HandleHelpMenu("2DPlotHelp", selection->GetIndex());
-	}
-
-	else if (sender == itsPlotWidget->GetCurveOptionsMenu() &&
-			 message.Is(JXMenu::kNeedsUpdate))
-	{
-		UpdateCurveOptionsMenu();
-	}
-	else if (sender == itsPlotWidget->GetCurveOptionsMenu() &&
-			 message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		HandleCurveOptionsMenu(selection->GetIndex());
-	}
-
-	else
-	{
-		JXWindowDirector::Receive(sender, message);
-	}
 }
 
 /******************************************************************************

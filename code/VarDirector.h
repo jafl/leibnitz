@@ -33,15 +33,10 @@ public:
 
 	bool	OKToDeactivate() override;
 
-protected:
-
-	void	Receive(JBroadcaster* sender, const Message& message) override;
-
 private:
 
 	VarTable*	itsVarTable;
 	JXTextMenu*	itsActionsMenu;
-	JXTextMenu*	itsHelpMenu;
 
 // begin JXLayout
 

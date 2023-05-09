@@ -13,7 +13,6 @@
 #include "VarList.h"
 #include "VarTable.h"
 #include "globals.h"
-#include <jx-af/jx/JXHelpManager.h>
 #include <jx-af/jx/JXWindow.h>
 #include <jx-af/jx/JXTextButton.h>
 #include <jx-af/jx/JXMenuBar.h>
@@ -166,13 +165,14 @@ VarDirector::BuildWindow
 	itsActionsMenu = menuBar->AppendTextMenu(JGetString("ActionsMenuTitle::globals"));
 	itsActionsMenu->SetMenuItems(kActionsMenuStr);
 	itsActionsMenu->SetUpdateAction(JXMenu::kDisableNone);
-	ListenTo(itsActionsMenu);
+	itsActionsMenu->AttachHandlers(this,
+		&VarDirector::UpdateActionsMenu,
+		&VarDirector::HandleActionsMenu);
 
 	JXTextMenu* fontMenu = JXExprInput::CreateFontMenu(menuBar);
 	menuBar->AppendMenu(fontMenu);
 
-	itsHelpMenu = (GetApplication())->CreateHelpMenu(menuBar, "VarDirector");
-	ListenTo(itsHelpMenu);
+	GetApplication()->CreateHelpMenu(menuBar, "VarDirector", "ConstantsHelp");
 
 	itsVarTable =
 		jnew VarTable(varList, fontMenu, scrollbarSet,
@@ -189,46 +189,6 @@ VarDirector::BuildWindow
 	colHeader->SetColTitle(1, JGetString("NameColumnTitle::VarDirector"));
 	colHeader->SetColTitle(2, JGetString("ValueColumnTitle::VarDirector"));
 	colHeader->TurnOnColResizing(20);
-}
-
-/******************************************************************************
- Receive (virtual protected)
-
- ******************************************************************************/
-
-void
-VarDirector::Receive
-	(
-	JBroadcaster*	sender,
-	const Message&	message
-	)
-{
-	if (sender == itsActionsMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		UpdateActionsMenu();
-	}
-	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		HandleActionsMenu(selection->GetIndex());
-	}
-
-	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		GetApplication()->UpdateHelpMenu(itsHelpMenu);
-	}
-	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		GetApplication()->HandleHelpMenu("ConstantsHelp", selection->GetIndex());
-	}
-
-	else
-	{
-		JXWindowDirector::Receive(sender, message);
-	}
 }
 
 /******************************************************************************

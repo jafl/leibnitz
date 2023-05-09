@@ -24,7 +24,6 @@
 #include <jx-af/jx/JXVertPartition.h>
 #include <jx-af/jx/JXScrollbarSet.h>
 #include <jx-af/jx/JXScrollbar.h>
-#include <jx-af/jx/JXHelpManager.h>
 #include <jx-af/jx/JXSaveFileDialog.h>
 #include <jx-af/jx/JXMacWinPrefsDialog.h>
 #include <jx-af/jx/JXImage.h>
@@ -359,15 +358,16 @@ ExprDirector::BuildWindow
 	itsActionsMenu = menuBar->PrependTextMenu(JGetString("ActionsMenuTitle::globals"));
 	itsActionsMenu->SetMenuItems(kActionsMenuStr);
 	itsActionsMenu->SetUpdateAction(JXMenu::kDisableNone);
-	ListenTo(itsActionsMenu);
+	itsActionsMenu->AttachHandler(this, &ExprDirector::HandleActionsMenu);
 
 	itsPrefsMenu = menuBar->AppendTextMenu(JGetString("PrefsMenuTitle::JXGlobal"));
 	itsPrefsMenu->SetMenuItems(kPrefsMenuStr);
 	itsPrefsMenu->SetUpdateAction(JXMenu::kDisableNone);
-	ListenTo(itsPrefsMenu);
+	itsPrefsMenu->AttachHandlers(this,
+		&ExprDirector::UpdatePrefsMenu,
+		&ExprDirector::HandlePrefsMenu);
 
-	itsHelpMenu = (GetApplication())->CreateHelpMenu(menuBar, "ExprDirector");
-	ListenTo(itsHelpMenu);
+	GetApplication()->CreateHelpMenu(menuBar, "ExprDirector", "ExprHelp");
 
 	// keypad visibility
 
@@ -395,67 +395,6 @@ ExprDirector::UpdateDisplay()
 }
 
 /******************************************************************************
- Receive (virtual protected)
-
- ******************************************************************************/
-
-void
-ExprDirector::Receive
-	(
-	JBroadcaster*	sender,
-	const Message&	message
-	)
-{
-	if (sender == itsActionsMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		UpdateActionsMenu();
-	}
-	else if (sender == itsActionsMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		HandleActionsMenu(selection->GetIndex());
-	}
-
-	else if (sender == itsPrefsMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		UpdatePrefsMenu();
-	}
-	else if (sender == itsPrefsMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		HandlePrefsMenu(selection->GetIndex());
-	}
-
-	else if (sender == itsHelpMenu && message.Is(JXMenu::kNeedsUpdate))
-	{
-		GetApplication()->UpdateHelpMenu(itsHelpMenu);
-	}
-	else if (sender == itsHelpMenu && message.Is(JXMenu::kItemSelected))
-	{
-		const auto* selection = dynamic_cast<const JXMenu::ItemSelected*>(&message);
-		assert( selection != nullptr );
-		GetApplication()->HandleHelpMenu("ExprHelp", selection->GetIndex());
-	}
-
-	else
-	{
-		JXWindowDirector::Receive(sender, message);
-	}
-}
-
-/******************************************************************************
- UpdateActionsMenu (private)
-
- ******************************************************************************/
-
-void
-ExprDirector::UpdateActionsMenu()
-{
-}
-
-/******************************************************************************
  HandleActionsMenu (private)
 
  ******************************************************************************/
@@ -468,19 +407,19 @@ ExprDirector::HandleActionsMenu
 {
 	if (index == kNewExprCmd)
 	{
-		(GetApplication())->NewExpression();
+		GetApplication()->NewExpression();
 	}
 	else if (index == kEditConstCmd)
 	{
-		(GetApplication())->ShowConstants();
+		GetApplication()->ShowConstants();
 	}
 	else if (index == kNew2DPlotCmd)
 	{
-		(GetApplication())->New2DPlot();
+		GetApplication()->New2DPlot();
 	}
 	else if (index == kConvBaseCmd)
 	{
-		(GetApplication())->ShowBaseConversion();
+		GetApplication()->ShowBaseConversion();
 	}
 
 	else if (index == kPageSetupCmd)
@@ -510,7 +449,7 @@ ExprDirector::HandleActionsMenu
 	}
 	else if (index == kQuitCmd)
 	{
-		(GetApplication())->Quit();
+		GetApplication()->Quit();
 	}
 }
 
@@ -539,7 +478,7 @@ ExprDirector::SaveTape()
 void
 ExprDirector::UpdatePrefsMenu()
 {
-	if ((GetApplication())->KeyPadIsVisible())
+	if (GetApplication()->KeyPadIsVisible())
 	{
 		itsPrefsMenu->CheckItem(kToggleKeyPadVisibleCmd);
 	}
@@ -558,7 +497,7 @@ ExprDirector::HandlePrefsMenu
 {
 	if (index == kToggleKeyPadVisibleCmd)
 	{
-		(GetApplication())->ToggleKeyPadVisible();
+		GetApplication()->ToggleKeyPadVisible();
 	}
 	else if (index == kEditMacWinPrefsCmd)
 	{
