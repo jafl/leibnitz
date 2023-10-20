@@ -24,6 +24,7 @@ apps:
     plugs:
       - unity7
       - network
+      - home
 
 parts:
   leibnitz:
