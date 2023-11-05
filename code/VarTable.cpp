@@ -193,7 +193,6 @@ VarTable::CreateXInputField
 	assert( itsTextInput == nullptr );
 
 	itsTextInput = jnew JXExprInput(this, kFixedLeft, kFixedTop, x,y, w,h);
-	assert( itsTextInput != nullptr );
 
 	const JIndex varIndex = cell.y + VarList::kUserFnOffset;
 	if (cell.x == kNameColumn)

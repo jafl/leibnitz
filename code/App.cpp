@@ -150,7 +150,6 @@ App::DisplayAbout
 		if (!showLicense || JGetUserNotification()->AcceptLicense())
 		{
 			auto* dlog = jnew AboutDialog(prevVersStr);
-			assert( dlog != nullptr );
 			dlog->DoDialog();
 
 			JCheckForNewerVersion(GetPrefsManager(), kVersionCheckID);
@@ -175,7 +174,6 @@ App::NewExpression
 	)
 {
 	auto* expr = jnew ExprDirector(this, itsVarList);
-	assert( expr != nullptr );
 	if (centerOnScreen)
 	{
 		expr->GetWindow()->PlaceAsDialogWindow();
@@ -223,7 +221,6 @@ App::New2DPlot
 	)
 {
 	auto* dlog = jnew Plot2DFunctionDialog(itsVarList, prevPlot);
-	assert( dlog != nullptr );
 	if (dlog->DoDialog())
 	{
 		JIndex plotIndex;
@@ -235,7 +232,6 @@ App::New2DPlot
 		if (plotIndex > its2DPlotList->GetElementCount())
 		{
 			auto* plot = jnew Plot2DDirector(this);
-			assert( plot != nullptr );
 			its2DPlotList->Append(plot);
 		}
 
@@ -323,13 +319,10 @@ App::RestoreProgramState()
 	const bool displayAbout = prevProgramVers != GetVersionNumberStr();
 
 	itsVarList = jnew VarList(input, vers);
-	assert( itsVarList != nullptr );
 
 	itsVarDirector = jnew VarDirector(input, vers, this, itsVarList);
-	assert( itsVarDirector != nullptr );
 
 	itsBCDirector = jnew BaseConvDirector(input, vers, this);
-	assert( itsBCDirector != nullptr );
 
 	if (vers >= 1)
 	{
@@ -375,7 +368,6 @@ App::RestoreProgramState()
 		for (JIndex i=1; i<=exprCount; i++)
 		{
 			auto* expr = jnew ExprDirector(input, vers, this, itsVarList);
-			assert( expr != nullptr );
 			expr->Activate();
 			itsExprList->Append(expr);
 
@@ -392,7 +384,6 @@ App::RestoreProgramState()
 	for (JIndex i=1; i<=plotCount; i++)
 	{
 		auto* plot = jnew Plot2DDirector(input, vers, this, itsVarList);
-		assert( plot != nullptr );
 		plot->Activate();
 		its2DPlotList->Append(plot);
 	}
@@ -414,13 +405,10 @@ void
 App::InitProgramState()
 {
 	itsVarList = jnew VarList;
-	assert( itsVarList != nullptr );
 
 	itsVarDirector = jnew VarDirector(this, itsVarList);
-	assert( itsVarDirector != nullptr );
 
 	itsBCDirector = jnew BaseConvDirector(this);
-	assert( itsBCDirector != nullptr );
 
 	NewExpression(true);
 }
@@ -647,7 +635,6 @@ App::HandleHelpMenu
 	else if (index == kTipCmd)
 	{
 		auto* dlog = jnew JXTipOfTheDayDialog;
-		assert( dlog != nullptr );
 		dlog->DoDialog();
 	}
 

@@ -287,7 +287,6 @@ ExprDirector::BuildWindow
 // begin JXLayout
 
 	auto* window = jnew JXWindow(this, 360,240, JString::empty);
-	assert( window != nullptr );
 
 	auto* menuBar =
 		jnew JXMenuBar(window,
@@ -313,7 +312,6 @@ ExprDirector::BuildWindow
 
 	JXDisplay* display = GetDisplay();
 	auto* icon      = jnew JXImage(display, thx_expr_window);
-	assert( icon != nullptr );
 	window->SetIcon(icon);
 
 	// create tape

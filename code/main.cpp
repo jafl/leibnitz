@@ -37,7 +37,6 @@ main
 	}
 
 	auto* app = jnew App(&argc, argv);
-	assert( app != nullptr );
 
 	app->Run();
 	return 0;

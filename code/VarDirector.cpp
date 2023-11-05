@@ -137,7 +137,6 @@ VarDirector::BuildWindow
 // begin JXLayout
 
 	auto* window = jnew JXWindow(this, 260,250, JString::empty);
-	assert( window != nullptr );
 
 	auto* menuBar =
 		jnew JXMenuBar(window,
@@ -184,7 +183,6 @@ VarDirector::BuildWindow
 	auto* colHeader =
 		jnew JXColHeaderWidget(itsVarTable, scrollbarSet, colHdrContainer,
 							  JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 10,10);
-	assert( colHeader != nullptr );
 	colHeader->FitToEnclosure();
 	colHeader->SetColTitle(1, JGetString("NameColumnTitle::VarDirector"));
 	colHeader->SetColTitle(2, JGetString("ValueColumnTitle::VarDirector"));

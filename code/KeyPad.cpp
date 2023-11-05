@@ -64,7 +64,6 @@ KeyPad::CreateButtons()
 {
 // begin kpLayout
 
-	const JRect kpLayout_Frame    = this->GetFrame();
 	const JRect kpLayout_Aperture = this->GetAperture();
 	this->AdjustSize(60 - kpLayout_Aperture.width(), 160 - kpLayout_Aperture.height());
 
@@ -163,7 +162,7 @@ KeyPad::CreateButtons()
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,80, 20,20);
 	assert( itsOpButton[kSubtractOpIndex] != nullptr );
 
-	this->SetSize(kpLayout_Frame.width(), kpLayout_Frame.height());
+	this->SetSize(kpLayout_Aperture.width(), kpLayout_Aperture.height());
 
 // end kpLayout
 

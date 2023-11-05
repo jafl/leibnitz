@@ -54,13 +54,11 @@ VarList::VarList
 	for (JIndex i=1; i<=varCount; i++)
 	{
 		auto* name = jnew JString;
-		assert( name != nullptr );
 		input >> *name;
 		name->Set(JUserInputFunction::ConvertToGreek(*name));
 		itsNames->Append(name);
 
 		auto* fStr = jnew JString;
-		assert( fStr != nullptr );
 		input >> *fStr;
 		JFunction* f;
 		if (p.Parse(*fStr, &f))
@@ -109,19 +107,16 @@ VarList::VarListX()
 	itsNames->Append(kXName);
 
 	itsXValue = jnew JConstantValue(0.0);
-	assert( itsXValue != nullptr );
 	itsFunctions->Append(itsXValue);
 
 	itsNames->Append(kYName);
 
 	itsYValue = jnew JConstantValue(0.0);
-	assert( itsYValue != nullptr );
 	itsFunctions->Append(itsYValue);
 
 	itsNames->Append(kTName);
 
 	itsTValue = jnew JConstantValue(0.0);
-	assert( itsTValue != nullptr );
 	itsFunctions->Append(itsTValue);
 }
 
@@ -145,7 +140,6 @@ JIndex
 VarList::NewFunction()
 {
 	auto* name = jnew JString;
-	assert( name != nullptr );
 
 	JUInt64 i = 1;
 	JIndex j;
@@ -163,7 +157,6 @@ VarList::NewFunction()
 	itsNames->Append(name);
 
 	JFunction* f = jnew JConstantValue(0.0);
-	assert( f != nullptr );
 	itsFunctions->Append(f);
 
 	const JIndex varIndex = GetElementCount();

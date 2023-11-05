@@ -82,7 +82,6 @@ Plot2DFunctionDialog::BuildWindow
 // begin JXLayout
 
 	auto* window = jnew JXWindow(this, 330,320, JString::empty);
-	assert( window != nullptr );
 
 	auto* exprEditorSet =
 		jnew JXExprEditorSet(varList, &itsExprWidget, window,

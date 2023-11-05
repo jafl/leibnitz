@@ -181,7 +181,6 @@ Plot2DDirector::BuildWindow()
 // begin JXLayout
 
 	auto* window = jnew JXWindow(this, 600,400, JString::empty);
-	assert( window != nullptr );
 
 	auto* menuBar =
 		jnew JXMenuBar(window,
@@ -200,7 +199,6 @@ Plot2DDirector::BuildWindow()
 
 	JXDisplay* display = GetDisplay();
 	auto* icon      = jnew JXImage(display, thx_2D_plot_window);
-	assert( icon != nullptr );
 	window->SetIcon(icon);
 
 	itsPlotWidget->SetPSPrinter(GetPSGraphPrinter());
@@ -223,7 +221,6 @@ Plot2DDirector::BuildWindow()
 	optionsMenu->AppendItem(JGetString("EditFunctionItem::Plot2DDirector"));
 
 	itsEditFnMenu = jnew JXTextMenu(optionsMenu, editFunctionSubmenuIndex, menuBar);
-	assert( itsEditFnMenu != nullptr );
 	itsEditFnMenu->SetUpdateAction(JXMenu::kDisableNone);
 	itsEditFnMenu->AttachHandlers(this,
 		&Plot2DDirector::UpdateEditFnMenu,
@@ -282,7 +279,6 @@ Plot2DDirector::AddFunction
 	auto* data =
 		jnew J2DPlotFunction(itsPlotWidget, varList, f, true,
 							 VarList::kXIndex, xMin, xMax);
-	assert( data != nullptr );
 
 	itsPlotWidget->AddCurve(data, true, name);
 

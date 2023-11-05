@@ -132,7 +132,6 @@ BaseConvDirector::BuildWindow()
 // begin JXLayout
 
 	auto* window = jnew JXWindow(this, 180,160, JString::empty);
-	assert( window != nullptr );
 
 	itsCloseButton =
 		jnew JXTextButton(JGetString("itsCloseButton::BaseConvDirector::JXLayout"), window,
@@ -201,7 +200,6 @@ BaseConvDirector::BuildWindow()
 
 	JXDisplay* display = GetDisplay();
 	auto* icon      = jnew JXImage(display, thx_base_conv_window);
-	assert( icon != nullptr );
 	window->SetIcon(icon);
 
 	ListenTo(its2Input);

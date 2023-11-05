@@ -45,23 +45,18 @@ CreateGlobals
 
 	bool isNew;
 	thePrefsManager	= jnew PrefsManager(&isNew);
-	assert( thePrefsManager != nullptr );
 
 	JXInitHelp();
 
 	theMDIServer = jnew MDIServer;
-	assert( theMDIServer != nullptr );
 
 	theTapePrinter = jnew JXPTPrinter;
-	assert( theTapePrinter != nullptr );
 
 	JXDisplay* display = app->GetDisplay(1);
 
 	thePSGraphPrinter = jnew JXPSPrinter(display);
-	assert( thePSGraphPrinter != nullptr );
 
 	theEPSGraphPrinter = jnew JX2DPlotEPSPrinter(display);
-	assert( theEPSGraphPrinter != nullptr );
 }
 
 /******************************************************************************
