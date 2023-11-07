@@ -69,22 +69,22 @@ VarList::VarList
 		else
 		{
 			itsFunctions->Append(nullptr);
-			misfitIndexList.AppendElement(i + kUserFnOffset);
+			misfitIndexList.AppendItem(i + kUserFnOffset);
 			misfitFnList.Append(fStr);
 		}
 	}
 
 	JGetUserNotification()->SetSilent(false);
 
-	const JSize misfitCount = misfitIndexList.GetElementCount();
+	const JSize misfitCount = misfitIndexList.GetItemCount();
 	for (JIndex i=1; i<=misfitCount; i++)
 	{
-		const JString* fStr = misfitFnList.GetElement(i);
+		const JString* fStr = misfitFnList.GetItem(i);
 		JFunction* f;
 		if (p.Parse(*fStr, &f))
 		{
-			const JIndex j = misfitIndexList.GetElement(i);
-			itsFunctions->SetElement(j, f, JPtrArrayT::kDelete);
+			const JIndex j = misfitIndexList.GetItem(i);
+			itsFunctions->SetItem(j, f, JPtrArrayT::kDelete);
 		}
 	}
 }
@@ -159,7 +159,7 @@ VarList::NewFunction()
 	JFunction* f = jnew JConstantValue(0.0);
 	itsFunctions->Append(f);
 
-	const JIndex varIndex = GetElementCount();
+	const JIndex varIndex = GetItemCount();
 	Broadcast(VarInserted(varIndex));
 	return varIndex;
 }
@@ -177,8 +177,8 @@ VarList::RemoveFunction
 {
 	assert( index > kUserFnOffset );
 
-	itsNames->DeleteElement(index);
-	itsFunctions->DeleteElement(index);
+	itsNames->DeleteItem(index);
+	itsFunctions->DeleteItem(index);
 	Broadcast(VarRemoved(index));
 }
 
@@ -208,7 +208,7 @@ VarList::SetVariableName
 	}
 	else
 	{
-		JString* varName = itsNames->GetElement(varIndex);
+		JString* varName = itsNames->GetItem(varIndex);
 		*varName = name;
 		Broadcast(VarNameChanged(varIndex));
 		return true;
@@ -234,7 +234,7 @@ VarList::SetFunction
 	JFunction* f;
 	if (p.Parse(expr, &f))
 	{
-		itsFunctions->SetElement(index, f, JPtrArrayT::kDelete);
+		itsFunctions->SetItem(index, f, JPtrArrayT::kDelete);
 		Broadcast(VarValueChanged(index,1));
 		return true;
 	}
@@ -263,7 +263,7 @@ VarList::GetVariableName
 	)
 	const
 {
-	return *(itsNames->GetElement(index));
+	return *(itsNames->GetItem(index));
 }
 
 void
@@ -275,7 +275,7 @@ VarList::GetVariableName
 	)
 	const
 {
-	const JString* fullName = itsNames->GetElement(index);
+	const JString* fullName = itsNames->GetItem(index);
 	if (fullName->GetCharacterCount() > 1)
 	{
 		*name      = fullName->GetFirstCharacter();
@@ -315,11 +315,11 @@ bool
 VarList::ArrayIndexValid
 	(
 	const JIndex variableIndex,
-	const JIndex elementIndex
+	const JIndex itemIndex
 	)
 	const
 {
-	return elementIndex == 1;
+	return itemIndex == 1;
 }
 
 /******************************************************************************
@@ -331,13 +331,13 @@ bool
 VarList::GetNumericValue
 	(
 	const JIndex	variableIndex,
-	const JIndex	elementIndex,
+	const JIndex	itemIndex,
 	JFloat*			value
 	)
 	const
 {
-	const JFunction* f = itsFunctions->GetElement(variableIndex);
-	if (elementIndex == 1)
+	const JFunction* f = itsFunctions->GetItem(variableIndex);
+	if (itemIndex == 1)
 	{
 		if (IsOnEvalStack(variableIndex))
 		{
@@ -360,13 +360,13 @@ bool
 VarList::GetNumericValue
 	(
 	const JIndex	variableIndex,
-	const JIndex	elementIndex,
+	const JIndex	itemIndex,
 	JComplex*		value
 	)
 	const
 {
-	const JFunction* f = itsFunctions->GetElement(variableIndex);
-	if (elementIndex == 1)
+	const JFunction* f = itsFunctions->GetItem(variableIndex);
+	if (itemIndex == 1)
 	{
 		if (IsOnEvalStack(variableIndex))
 		{
@@ -394,11 +394,11 @@ void
 VarList::SetNumericValue
 	(
 	const JIndex	variableIndex,
-	const JIndex	elementIndex,
+	const JIndex	itemIndex,
 	const JFloat	value
 	)
 {
-	assert( elementIndex == 1 );
+	assert( itemIndex == 1 );
 
 	if (variableIndex == kXIndex)
 	{
@@ -422,7 +422,7 @@ void
 VarList::SetNumericValue
 	(
 	const JIndex	variableIndex,
-	const JIndex	elementIndex,
+	const JIndex	itemIndex,
 	const JComplex&	value
 	)
 {
@@ -446,15 +446,15 @@ operator<<
 	const VarList&	varList
 	)
 {
-	const JSize varCount = (varList.itsNames)->GetElementCount();
+	const JSize varCount = (varList.itsNames)->GetItemCount();
 	output << varCount - VarList::kUserFnOffset;
 
 	for (JIndex i = 1+VarList::kUserFnOffset; i<=varCount; i++)
 	{
-		const JString* name = (varList.itsNames)->GetElement(i);
+		const JString* name = (varList.itsNames)->GetItem(i);
 		output << ' ' << *name;
 
-		const JFunction* f = (varList.itsFunctions)->GetElement(i);
+		const JFunction* f = (varList.itsFunctions)->GetItem(i);
 		output << ' ' << f->Print();
 	}
 

@@ -198,10 +198,10 @@ App::SetKeyPadVisible
 	{
 		itsKeyPadVisibleFlag = visible;
 
-		const JSize count = itsExprList->GetElementCount();
+		const JSize count = itsExprList->GetItemCount();
 		for (JIndex i=1; i<=count; i++)
 		{
-			(itsExprList->GetElement(i))->UpdateDisplay();
+			(itsExprList->GetItem(i))->UpdateDisplay();
 		}
 	}
 }
@@ -229,13 +229,13 @@ App::New2DPlot
 		JFloat xMin, xMax;
 		dlog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
 
-		if (plotIndex > its2DPlotList->GetElementCount())
+		if (plotIndex > its2DPlotList->GetItemCount())
 		{
 			auto* plot = jnew Plot2DDirector(this);
 			its2DPlotList->Append(plot);
 		}
 
-		Plot2DDirector* plot = its2DPlotList->GetElement(plotIndex);
+		Plot2DDirector* plot = its2DPlotList->GetItem(plotIndex);
 		plot->AddFunction(itsVarList, *f, curveName, xMin, xMax);
 		plot->Activate();
 	}
@@ -447,7 +447,7 @@ App::SaveProgramState()
 	output << ' ';
 	GetEPSGraphPrinter()->WriteX2DEPSSetup(output);
 
-	output << ' ' << itsExprList->GetElementCount();
+	output << ' ' << itsExprList->GetItemCount();
 
 	for (auto* e : *itsExprList)
 	{
@@ -455,7 +455,7 @@ App::SaveProgramState()
 		e->WriteState(output);
 	}
 
-	output << ' ' << its2DPlotList->GetElementCount();
+	output << ' ' << its2DPlotList->GetItemCount();
 
 	for (auto* p : *its2DPlotList)
 	{
@@ -484,13 +484,13 @@ App::DirectorClosed
 	auto* exprDir = dynamic_cast<ExprDirector*>(theDirector);
 	if (exprDir != nullptr && itsExprList->Find(exprDir, &dirIndex))
 	{
-		itsExprList->RemoveElement(dirIndex);
+		itsExprList->RemoveItem(dirIndex);
 	}
 
 	auto* plot2DDir = dynamic_cast<Plot2DDirector*>(theDirector);
 	if (plot2DDir != nullptr && its2DPlotList->Find(plot2DDir, &dirIndex))
 	{
-		its2DPlotList->RemoveElement(dirIndex);
+		its2DPlotList->RemoveItem(dirIndex);
 	}
 
 	if (theDirector == itsVarDirector)
@@ -529,10 +529,10 @@ App::BuildPlotMenu
 
 	*initialChoice = 0;
 
-	const JSize count = its2DPlotList->GetElementCount();
+	const JSize count = its2DPlotList->GetItemCount();
 	for (JIndex i=1; i<=count; i++)
 	{
-		const Plot2DDirector* plot = its2DPlotList->GetElement(i);
+		const Plot2DDirector* plot = its2DPlotList->GetItem(i);
 		menu->AppendItem(plot->GetWindow()->GetTitle(), JXMenu::kRadioType);
 
 		if (plot == origPlot)

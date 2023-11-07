@@ -51,7 +51,7 @@ VarTable::VarTable
 
 	AppendCols(2);	// name, function
 
-	const JSize count = itsVarList->GetElementCount() - VarList::kUserFnOffset;
+	const JSize count = itsVarList->GetItemCount() - VarList::kUserFnOffset;
 	AppendRows(count);
 
 	FitToEnclosure();	// make sure SetColWidth() won't fail

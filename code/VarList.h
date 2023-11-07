@@ -56,20 +56,20 @@ public:
 
 	bool	IsArray(const JIndex index) const override;
 	bool	ArrayIndexValid(const JIndex variableIndex,
-								const JIndex elementIndex) const override;
+								const JIndex itemIndex) const override;
 
 	bool	GetNumericValue(const JIndex variableIndex,
-							const JIndex elementIndex,
+							const JIndex itemIndex,
 							JFloat* value) const override;
 	bool	GetNumericValue(const JIndex variableIndex,
-							const JIndex elementIndex,
+							const JIndex itemIndex,
 							JComplex* value) const override;
 
 	void	SetNumericValue(const JIndex variableIndex,
-							const JIndex elementIndex,
+							const JIndex itemIndex,
 							const JFloat value) override;
 	void	SetNumericValue(const JIndex variableIndex,
-							const JIndex elementIndex,
+							const JIndex itemIndex,
 							const JComplex& value) override;
 
 private:
@@ -105,7 +105,7 @@ VarList::GetFunction
 	)
 	const
 {
-	return itsFunctions->GetElement(index);
+	return itsFunctions->GetItem(index);
 }
 
 /******************************************************************************

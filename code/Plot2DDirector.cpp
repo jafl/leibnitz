@@ -300,12 +300,12 @@ Plot2DDirector::ReceiveGoingAway
 	JBroadcaster* sender
 	)
 {
-	const JSize count = itsFnList->GetElementCount();
+	const JSize count = itsFnList->GetItemCount();
 	for (JIndex i=1; i<=count; i++)
 	{
-		if (sender == itsFnList->GetElement(i))
+		if (sender == itsFnList->GetItem(i))
 		{
-			itsFnList->RemoveElement(i);
+			itsFnList->RemoveItem(i);
 			break;
 		}
 	}
@@ -390,7 +390,7 @@ Plot2DDirector::UpdateEditFnMenu()
 {
 	itsEditFnMenu->RemoveAllItems();
 
-	const JSize count = itsFnList->GetElementCount();
+	const JSize count = itsFnList->GetItemCount();
 	for (JIndex i=1; i<=count; i++)
 	{
 		itsEditFnMenu->AppendItem(itsPlotWidget->GetCurveName(i));
@@ -422,7 +422,7 @@ Plot2DDirector::EditFunction
 	const JIndex index
 	)
 {
-	const J2DPlotFunction* curve = itsFnList->GetElement(index);
+	const J2DPlotFunction* curve = itsFnList->GetItem(index);
 
 	JFloat min, max;
 	curve->GetXRange(&min, &max);
@@ -441,7 +441,7 @@ Plot2DDirector::EditFunction
 		JFloat xMin, xMax;
 		dlog->GetSettings(&plotIndex, &f, &curveName, &xMin, &xMax);
 
-		J2DPlotFunction* curve = itsFnList->GetElement(index);
+		J2DPlotFunction* curve = itsFnList->GetItem(index);
 		curve->SetFunction(GetApplication()->GetVariableList(), f->Copy(), true,
 						   VarList::kXIndex, xMin, xMax);
 

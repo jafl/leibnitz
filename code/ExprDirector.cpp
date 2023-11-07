@@ -275,14 +275,14 @@ ExprDirector::BuildWindow
 	)
 {
 	JArray<JCoordinate> heights(2);
-	heights.AppendElement(100);
-	heights.AppendElement(0);
+	heights.AppendItem(100);
+	heights.AppendItem(0);
 
 	const JIndex elasticIndex = 2;
 
 	JArray<JCoordinate> minHeights(2);
-	minHeights.AppendElement(50);
-	minHeights.AppendElement(50);
+	minHeights.AppendItem(50);
+	minHeights.AppendItem(50);
 
 // begin JXLayout
 
