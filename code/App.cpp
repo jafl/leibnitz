@@ -46,25 +46,6 @@ static const JUtf8Byte* kAppSignature = "leibnitz";
 static const JString kStateFileName(".leibnitz.session");
 static const JString kOldStateFileName(".THX-1138.session");
 
-// Help menu
-
-static const JUtf8Byte* kHelpMenuStr =
-	"    About" 
-	"%l| Table of Contents       %i" kJXHelpTOCAction
-	"  | Overview"
-	"  | This window       %k F1 %i" kJXHelpSpecificAction
-	"%l| Tip of the Day"
-	"%l| Changes"
-	"  | Credits";
-
-enum
-{
-	kHelpAboutCmd = 1,
-	kHelpTOCCmd, kHelpOverviewCmd, kHelpWindowCmd,
-	kTipCmd,
-	kHelpChangeLogCmd, kHelpCreditsCmd
-};
-
 /******************************************************************************
  Constructor
 
@@ -576,23 +557,19 @@ App::Compare2DPlotTitles
 
  ******************************************************************************/
 
-#include <jx-af/image/jx/jx_help_toc.xpm>
-#include <jx-af/image/jx/jx_help_specific.xpm>
+#include "App-Help.h"
 
 JXTextMenu*
 App::CreateHelpMenu
 	(
 	JXMenuBar*			menuBar,
-	const JUtf8Byte*	idNamespace,
 	const JUtf8Byte*	sectionName
 	)
 {
-	JXTextMenu* menu = menuBar->AppendTextMenu(JGetString("HelpMenuTitle::JXGlobal"));
-	menu->SetMenuItems(kHelpMenuStr, idNamespace);
+	JXTextMenu* menu = menuBar->AppendTextMenu(JGetString("MenuTitle::App_Help"));
+	menu->SetMenuItems(kHelpMenuStr);
 	menu->SetUpdateAction(JXMenu::kDisableNone);
-
-	menu->SetItemImage(kHelpTOCCmd,    jx_help_toc);
-	menu->SetItemImage(kHelpWindowCmd, jx_help_specific);
+	ConfigureHelpMenu(menu);
 
 	ListenTo(menu, std::function([this, sectionName](const JXMenu::ItemSelected& msg)
 	{

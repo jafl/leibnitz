@@ -22,16 +22,16 @@
 ExprEditor::ExprEditor
 	(
 	const VarList*		varList,
-	JXMenuBar*				menuBar,
-	JXTEBase*				tapeWidget,
-	JXScrollbarSet*			scrollbarSet,
-	JXContainer*			enclosure,
-	const HSizingOption		hSizing,
-	const VSizingOption		vSizing,
-	const JCoordinate		x,
-	const JCoordinate		y,
-	const JCoordinate		w,
-	const JCoordinate		h
+	JXMenuBar*			menuBar,
+	JXTEBase*			tapeWidget,
+	JXScrollbarSet*		scrollbarSet,
+	JXContainer*		enclosure,
+	const HSizingOption	hSizing,
+	const VSizingOption	vSizing,
+	const JCoordinate	x,
+	const JCoordinate	y,
+	const JCoordinate	w,
+	const JCoordinate	h
 	)
 	:
 	JXExprEditor(varList, menuBar, scrollbarSet,

@@ -1,0 +1,116 @@
+jx_menu_editor 0
+670 355
+"ExprDirector"
+"Actions"
+'a
+40
+40
+100
+100
+100
+100
+100
+75
+
+0
+1
+0
+0 ""
+"New expression"
+"Ctrl-N"
+'n
+"__NewExpression"
+"kNewExprCmd"
+0
+
+1
+0
+0 ""
+"Edit constants"
+"Ctrl-E"
+'c
+"__EditConstants"
+"kEditConstCmd"
+0
+
+1
+0
+0 ""
+"Plot 2D function..."
+"Ctrl-Shift-P"
+'2
+"__Plot2DFunction"
+"kNew2DPlotCmd"
+0
+
+1
+0
+0 ""
+"Base conversion..."
+"Ctrl-B"
+'b
+"__BaseConversion"
+"kConvBaseCmd"
+1
+
+1
+0
+0 ""
+"Page setup..."
+""
+' 
+"__PageSetup"
+"kPageSetupCmd"
+0
+
+1
+0
+1 "jx_file_print.xpm"
+"Print tape..."
+"Ctrl-P"
+'p
+"__PrintTape"
+"kPrintTapeCmd"
+1
+
+1
+0
+1 "jx_file_save.xpm"
+"Save tape..."
+"Ctrl-S"
+'s
+"__SaveTape"
+"kSaveTapeCmd"
+0
+
+1
+0
+1 "jx_edit_clear.xpm"
+"Clear tape"
+""
+'l
+"__ClearTape"
+"kClearTapeCmd"
+1
+
+1
+0
+0 ""
+"Close window"
+"Ctrl-W"
+'w
+"__CloseWindow"
+"kCloseWindowCmd"
+0
+
+1
+0
+0 ""
+"Quit"
+"Ctrl-Q"
+'q
+"__Quit"
+"kQuitCmd"
+0
+
+0

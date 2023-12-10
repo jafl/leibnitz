@@ -1,0 +1,46 @@
+jx_menu_editor 0
+670 300
+"ExprDirector"
+"Preferences"
+'p
+40
+40
+100
+100
+100
+100
+100
+75
+
+0
+1
+1
+0 ""
+"Show keypad"
+""
+'k
+"__ShowKeypad"
+"kToggleKeyPadVisibleCmd"
+0
+
+1
+0
+0 ""
+"Mac/Win/X emulation..."
+""
+'e
+"__MacWinXEmulation"
+"kEditMacWinPrefsCmd"
+1
+
+1
+0
+0 ""
+"Save window size as default"
+""
+'s
+"__SaveWindowSizeAsDefault"
+"kSaveWindSizeCmd"
+0
+
+0

@@ -1,4 +1,4 @@
-jx_browser_data 92
+jx_browser_data 94
 # project tree
 0 "root"
 T
@@ -15,6 +15,10 @@ T
 2 "App.cpp"
 F
 "./code/App.cpp"
+T
+2 "App-Help.jxm"
+F
+"./code/App-Help.jxm"
 T
 2 "MDIServer.cpp"
 F
@@ -35,6 +39,14 @@ T
 F
 "./code/ExprDirector.cpp"
 T
+2 "ExprDirector-Actions.jxm"
+F
+"./code/ExprDirector-Actions.jxm"
+T
+2 "ExprDirector-Preferences.jxm"
+F
+"./code/ExprDirector-Preferences.jxm"
+T
 2 "ExprEditor.cpp"
 F
 "./code/ExprEditor.cpp"
@@ -54,6 +66,10 @@ T
 F
 "./code/Plot2DDirector.cpp"
 T
+2 "Plot2DDirector-Actions.jxm"
+F
+"./code/Plot2DDirector-Actions.jxm"
+T
 2 "Plot2DFunctionDialog.cpp"
 F
 "./code/Plot2DFunctionDialog.cpp"
@@ -64,6 +80,10 @@ T
 2 "VarDirector.cpp"
 F
 "./code/VarDirector.cpp"
+T
+2 "VarDirector-Actions.jxm"
+F
+"./code/VarDirector-Actions.jxm"
 T
 2 "VarTable.cpp"
 F

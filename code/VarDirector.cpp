@@ -25,28 +25,6 @@
 #include <jx-af/jcore/JString.h>
 #include <jx-af/jcore/jAssert.h>
 
-// Actions menu
-
-static const JUtf8Byte* kActionsMenuStr =
-	"    New constant        %k Meta-Shift-N"
-	"  | Remove constant     %k Meta-R"
-	"%l| New expression      %k Meta-N"
-	"  | Plot 2D function... %k Meta-Shift-P"
-	"  | Base conversion...  %k Meta-B"
-	"%l| Close window        %k Meta-W"
-	"  | Quit                %k Meta-Q";
-
-enum
-{
-	kNewConstCmd = 1,
-	kRemoveConstCmd,
-	kNewExprCmd,
-	kNew2DPlotCmd,
-	kConvBaseCmd,
-	kCloseWindowCmd,
-	kQuitCmd
-};
-
 /******************************************************************************
  Constructor
 
@@ -128,6 +106,8 @@ VarDirector::WriteState
 
  ******************************************************************************/
 
+#include "VarDirector-Actions.h"
+
 void
 VarDirector::BuildWindow
 	(
@@ -161,17 +141,18 @@ VarDirector::BuildWindow
 	window->SetCloseAction(JXWindow::kDeactivateDirector);
 	window->ShouldFocusWhenShow(true);
 
-	itsActionsMenu = menuBar->AppendTextMenu(JGetString("ActionsMenuTitle::globals"));
+	itsActionsMenu = menuBar->AppendTextMenu(JGetString("MenuTitle::VarDirector_Actions"));
 	itsActionsMenu->SetMenuItems(kActionsMenuStr);
 	itsActionsMenu->SetUpdateAction(JXMenu::kDisableNone);
 	itsActionsMenu->AttachHandlers(this,
 		&VarDirector::UpdateActionsMenu,
 		&VarDirector::HandleActionsMenu);
+	ConfigureActionsMenu(itsActionsMenu);
 
 	JXTextMenu* fontMenu = JXExprInput::CreateFontMenu(menuBar);
 	menuBar->AppendMenu(fontMenu);
 
-	GetApplication()->CreateHelpMenu(menuBar, "VarDirector", "ConstantsHelp");
+	GetApplication()->CreateHelpMenu(menuBar, "ConstantsHelp");
 
 	itsVarTable =
 		jnew VarTable(varList, fontMenu, scrollbarSet,
@@ -222,15 +203,15 @@ VarDirector::HandleActionsMenu
 	}
 	else if (index == kNewExprCmd)
 	{
-		(GetApplication())->NewExpression();
+		GetApplication()->NewExpression();
 	}
 	else if (index == kNew2DPlotCmd)
 	{
-		(GetApplication())->New2DPlot();
+		GetApplication()->New2DPlot();
 	}
 	else if (index == kConvBaseCmd)
 	{
-		(GetApplication())->ShowBaseConversion();
+		GetApplication()->ShowBaseConversion();
 	}
 
 	else if (index == kCloseWindowCmd)
@@ -239,7 +220,7 @@ VarDirector::HandleActionsMenu
 	}
 	else if (index == kQuitCmd)
 	{
-		(GetApplication())->Quit();
+		GetApplication()->Quit();
 	}
 }
 

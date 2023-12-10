@@ -25,31 +25,6 @@
 #include <jx-af/jexpr/JFunction.h>
 #include <jx-af/jcore/jAssert.h>
 
-// Actions menu
-
-static const JUtf8Byte* kActionsMenuStr =
-	"    New expression      %k Meta-N"
-	"  | Edit constants      %k Meta-E"
-	"  | Plot 2D function... %k Meta-Shift-P"
-	"  | Base conversion...  %k Meta-B"
-	"%l| PostScript page setup..."
-	"  | Print PostScript... %k Meta-P"
-	"%l| Print plot as EPS..."
-	"  | Print marks as EPS..."
-	"%l| Close window        %k Meta-W"
-	"  | Quit                %k Meta-Q";
-
-enum
-{
-	kNewExprCmd = 1,
-	kEditConstCmd,
-	kNew2DPlotCmd,
-	kConvBaseCmd,
-	kPSPageSetupCmd, kPrintPSCmd,
-	kPrintPlotEPSCmd, kPrintMarksEPSCmd,
-	kCloseWindowCmd, kQuitCmd
-};
-
 /******************************************************************************
  Constructor
 
@@ -174,6 +149,7 @@ Plot2DDirector::WriteState
  ******************************************************************************/
 
 #include "thx_2D_plot_window.xpm"
+#include "Plot2DDirector-Actions.h"
 
 void
 Plot2DDirector::BuildWindow()
@@ -209,12 +185,13 @@ Plot2DDirector::BuildWindow()
 		GetWindow()->SetTitle(itsPlotWidget->GetTitle());
 	}));
 
-	itsActionsMenu = menuBar->PrependTextMenu(JGetString("ActionsMenuTitle::globals"));
+	itsActionsMenu = menuBar->PrependTextMenu(JGetString("MenuTitle::Plot2DDirector_Actions"));
 	itsActionsMenu->SetMenuItems(kActionsMenuStr);
 	itsActionsMenu->SetUpdateAction(JXMenu::kDisableNone);
 	itsActionsMenu->AttachHandlers(this,
 		&Plot2DDirector::UpdateActionsMenu,
 		&Plot2DDirector::HandleActionsMenu);
+	ConfigureActionsMenu(itsActionsMenu);
 
 	JXTextMenu* optionsMenu               = itsPlotWidget->GetOptionsMenu();
 	const JIndex editFunctionSubmenuIndex = optionsMenu->GetItemCount()+1;
@@ -226,7 +203,7 @@ Plot2DDirector::BuildWindow()
 		&Plot2DDirector::UpdateEditFnMenu,
 		&Plot2DDirector::HandleEditFnMenu);
 
-	GetApplication()->CreateHelpMenu(menuBar, "Plot2DDirector", "2DPlotHelp");
+	GetApplication()->CreateHelpMenu(menuBar, "2DPlotHelp");
 
 	JXTextMenu* curveOptionsMenu = itsPlotWidget->GetCurveOptionsMenu();
 	itsEditFunctionItemIndex     = curveOptionsMenu->GetItemCount()+1;

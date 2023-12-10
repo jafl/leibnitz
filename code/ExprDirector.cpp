@@ -37,45 +37,6 @@
 JString	ExprDirector::theDefGeom;
 const JFileVersion kCurrentDefGeomVersion = 0;
 
-// Actions menu
-
-static const JUtf8Byte* kActionsMenuStr =
-	"    New expression      %k Meta-N"
-	"  | Edit constants      %k Meta-E"
-	"  | Plot 2D function... %k Meta-Shift-P"
-	"  | Base conversion...  %k Meta-B"
-	"%l| Page setup..."
-	"  | Print tape...       %k Meta-P"
-	"%l| Save tape...        %k Meta-S"
-	"  | Clear tape"
-	"%l| Close window        %k Meta-W"
-	"  | Quit                %k Meta-Q";
-
-enum
-{
-	kNewExprCmd = 1,
-	kEditConstCmd,
-	kNew2DPlotCmd,
-	kConvBaseCmd,
-	kPageSetupCmd, kPrintTapeCmd,
-	kSaveTapeCmd, kClearTapeCmd,
-	kCloseWindowCmd, kQuitCmd
-};
-
-// Preferences menu
-
-static const JUtf8Byte* kPrefsMenuStr =
-	"    Show keypad %b"
-	"  | Mac/Win/X emulation..."
-	"%l| Save window size as default";
-
-enum
-{
-	kToggleKeyPadVisibleCmd = 1,
-	kEditMacWinPrefsCmd,
-	kSaveWindSizeCmd
-};
-
 /******************************************************************************
  Constructor
 
@@ -267,6 +228,8 @@ ExprDirector::Activate()
  ******************************************************************************/
 
 #include "thx_expr_window.xpm"
+#include "ExprDirector-Actions.h"
+#include "ExprDirector-Preferences.h"
 
 void
 ExprDirector::BuildWindow
@@ -353,19 +316,21 @@ ExprDirector::BuildWindow
 
 	// create menus
 
-	itsActionsMenu = menuBar->PrependTextMenu(JGetString("ActionsMenuTitle::globals"));
+	itsActionsMenu = menuBar->PrependTextMenu(JGetString("MenuTitle::ExprDirector_Actions"));
 	itsActionsMenu->SetMenuItems(kActionsMenuStr);
 	itsActionsMenu->SetUpdateAction(JXMenu::kDisableNone);
 	itsActionsMenu->AttachHandler(this, &ExprDirector::HandleActionsMenu);
+	ConfigureActionsMenu(itsActionsMenu);
 
-	itsPrefsMenu = menuBar->AppendTextMenu(JGetString("PrefsMenuTitle::JXGlobal"));
-	itsPrefsMenu->SetMenuItems(kPrefsMenuStr);
+	itsPrefsMenu = menuBar->AppendTextMenu(JGetString("MenuTitle::ExprDirector_Preferences"));
+	itsPrefsMenu->SetMenuItems(kPreferencesMenuStr);
 	itsPrefsMenu->SetUpdateAction(JXMenu::kDisableNone);
 	itsPrefsMenu->AttachHandlers(this,
 		&ExprDirector::UpdatePrefsMenu,
 		&ExprDirector::HandlePrefsMenu);
+	ConfigurePreferencesMenu(itsPrefsMenu);
 
-	GetApplication()->CreateHelpMenu(menuBar, "ExprDirector", "ExprHelp");
+	GetApplication()->CreateHelpMenu(menuBar, "ExprHelp");
 
 	// keypad visibility
 

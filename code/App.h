@@ -43,8 +43,7 @@ public:
 	void	BuildPlotMenu(JXTextMenu* menu, const Plot2DDirector* origPlot,
 						  JIndex* initialChoice) const;
 
-	JXTextMenu*	CreateHelpMenu(JXMenuBar* menuBar, const JUtf8Byte* idNamespace,
-							   const JUtf8Byte* sectionName);
+	JXTextMenu*	CreateHelpMenu(JXMenuBar* menuBar, const JUtf8Byte* sectionName);
 	void		HandleHelpMenu(const JUtf8Byte* windowSectionName, const JIndex index);
 
 	bool	KeyPadIsVisible() const;
