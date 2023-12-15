@@ -21,7 +21,6 @@
 #include <jx-af/jx/JXScrollbarSet.h>
 #include <jx-af/jx/JXScrollbar.h>
 #include <jx-af/jx/JXColHeaderWidget.h>
-#include <jx-af/jx/jXActionDefs.h>
 #include <jx-af/jcore/JString.h>
 #include <jx-af/jcore/jAssert.h>
 

@@ -18,7 +18,6 @@
 #include <jx-af/jx/JXTextMenu.h>
 #include <jx-af/jx/JXHelpManager.h>
 #include <jx-af/jx/JXImage.h>
-#include <jx-af/jx/jXActionDefs.h>
 #include <jx-af/j2dplot/JX2DPlotWidget.h>
 #include <jx-af/j2dplot/J2DPlotFunction.h>
 #include <jx-af/jexpr/JExprParser.h>

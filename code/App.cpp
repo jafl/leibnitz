@@ -29,7 +29,6 @@
 #include <jx-af/jx/JXSplashWindow.h>
 #include <jx-af/jx/JXTipOfTheDayDialog.h>
 #include <jx-af/jx/JXCSFDialogBase.h>
-#include <jx-af/jx/jXActionDefs.h>
 #include <jx-af/jcore/JThisProcess.h>
 #include <jx-af/jcore/jDirUtil.h>
 #include <jx-af/jcore/jWebUtil.h>

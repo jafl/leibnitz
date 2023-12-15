@@ -27,7 +27,6 @@
 #include <jx-af/jx/JXSaveFileDialog.h>
 #include <jx-af/jx/JXMacWinPrefsDialog.h>
 #include <jx-af/jx/JXImage.h>
-#include <jx-af/jx/jXActionDefs.h>
 #include <jx-af/jexpr/JExprParser.h>
 #include <jx-af/jexpr/JFunction.h>
 #include <fstream>
