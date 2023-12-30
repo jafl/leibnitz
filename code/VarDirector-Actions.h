@@ -15,20 +15,12 @@ static const JUtf8Byte* kActionsMenuStr =
 "|* %i __Quit::VarDirector"
 ;
 
-enum {
-	kNewConstCmd=1,
-	kRemoveConstCmd,
-	kNewExprCmd,
-	kNew2DPlotCmd,
-	kConvBaseCmd,
-	kCloseWindowCmd,
-	kQuitCmd,
-};
+#include "VarDirector-Actions-enum.h"
 
 
 static void ConfigureActionsMenu(JXTextMenu* menu, const int offset = 0) {
-	if (menu->IsEmpty() && JXMenu::GetDisplayStyle() == JXMenu::kWindowsStyle) {
-		menu->SetShortcuts(JString("#a", JString::kNoCopy));
+	if (offset == 0 && JXMenu::GetDisplayStyle() == JXMenu::kWindowsStyle) {
+		menu->SetShortcuts("#a");
 	}
 };
 

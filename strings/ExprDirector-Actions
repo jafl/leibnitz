@@ -7,10 +7,10 @@
 MenuTitle::ExprDirector_Actions "Actions"
 
 __NewExpression::ExprDirector "New expression %k Ctrl-N %h n"
-__EditConstants::ExprDirector "Edit constants %k Ctrl-E %h c"
+__EditConstants::ExprDirector "Edit constants %k Ctrl-E %h e"
 __Plot2DFunction::ExprDirector "Plot 2D function... %k Ctrl-Shift-P %h 2"
 __BaseConversion::ExprDirector "Base conversion... %k Ctrl-B %h b"
-__PageSetup::ExprDirector "Page setup..."
+__PageSetup::ExprDirector "Page setup... %h g"
 __PrintTape::ExprDirector "Print tape... %k Ctrl-P %h p"
 __SaveTape::ExprDirector "Save tape... %k Ctrl-S %h s"
 __ClearTape::ExprDirector "Clear tape %h l"

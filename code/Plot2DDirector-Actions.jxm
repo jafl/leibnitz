@@ -1,15 +1,15 @@
 jx_menu_editor 0
-673 353
+779 353
 "Plot2DDirector"
 "Actions"
 'a
 40
 40
+156
 100
-100
-100
-100
-100
+39
+157
+137
 75
 
 0
@@ -58,7 +58,7 @@ jx_menu_editor 0
 0 ""
 "PostScript page setup..."
 ""
-' 
+'g
 "__PostScriptPageSetup"
 "kPSPageSetupCmd"
 0

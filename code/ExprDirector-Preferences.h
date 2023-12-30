@@ -11,16 +11,12 @@ static const JUtf8Byte* kPreferencesMenuStr =
 "|* %i __SaveWindowSizeAsDefault::ExprDirector"
 ;
 
-enum {
-	kToggleKeyPadVisibleCmd=1,
-	kEditMacWinPrefsCmd,
-	kSaveWindSizeCmd,
-};
+#include "ExprDirector-Preferences-enum.h"
 
 
 static void ConfigurePreferencesMenu(JXTextMenu* menu, const int offset = 0) {
-	if (menu->IsEmpty() && JXMenu::GetDisplayStyle() == JXMenu::kWindowsStyle) {
-		menu->SetShortcuts(JString("#p", JString::kNoCopy));
+	if (offset == 0 && JXMenu::GetDisplayStyle() == JXMenu::kWindowsStyle) {
+		menu->SetShortcuts("#p");
 	}
 };
 

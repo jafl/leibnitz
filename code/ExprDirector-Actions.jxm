@@ -1,15 +1,15 @@
 jx_menu_editor 0
-670 355
+710 349
 "ExprDirector"
 "Actions"
 'a
 40
 40
+125
 100
-100
-100
-100
-100
+43
+128
+129
 75
 
 0
@@ -28,7 +28,7 @@ jx_menu_editor 0
 0 ""
 "Edit constants"
 "Ctrl-E"
-'c
+'e
 "__EditConstants"
 "kEditConstCmd"
 0
@@ -58,7 +58,7 @@ jx_menu_editor 0
 0 ""
 "Page setup..."
 ""
-' 
+'g
 "__PageSetup"
 "kPageSetupCmd"
 0

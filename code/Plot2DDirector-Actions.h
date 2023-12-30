@@ -18,18 +18,7 @@ static const JUtf8Byte* kActionsMenuStr =
 "|* %i __Quit::Plot2DDirector"
 ;
 
-enum {
-	kNewExprCmd=1,
-	kEditConstCmd,
-	kNew2DPlotCmd,
-	kConvBaseCmd,
-	kPSPageSetupCmd,
-	kPrintPSCmd,
-	kPrintPlotEPSCmd,
-	kPrintMarksEPSCmd,
-	kCloseWindowCmd,
-	kQuitCmd,
-};
+#include "Plot2DDirector-Actions-enum.h"
 
 #ifndef _H_jx_af_image_jx_jx_file_print
 #define _H_jx_af_image_jx_jx_file_print
@@ -37,8 +26,8 @@ enum {
 #endif
 
 static void ConfigureActionsMenu(JXTextMenu* menu, const int offset = 0) {
-	if (menu->IsEmpty() && JXMenu::GetDisplayStyle() == JXMenu::kWindowsStyle) {
-		menu->SetShortcuts(JString("#a", JString::kNoCopy));
+	if (offset == 0 && JXMenu::GetDisplayStyle() == JXMenu::kWindowsStyle) {
+		menu->SetShortcuts("#a");
 	}
 	menu->SetItemImage(kPrintPSCmd + offset, jx_file_print);
 };
