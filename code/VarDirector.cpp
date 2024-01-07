@@ -160,6 +160,8 @@ VarDirector::BuildWindow
 						0,0, 10,10);
 	assert( itsVarTable != nullptr );
 
+	colHdrContainer->ClearNeedsInternalFTC();
+
 	auto* colHeader =
 		jnew JXColHeaderWidget(itsVarTable, scrollbarSet, colHdrContainer,
 							  JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 10,10);

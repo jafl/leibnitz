@@ -41,8 +41,6 @@ KeyPad::KeyPad
 {
 	itsExpr = nullptr;
 	CreateButtons();
-
-	SetNeedsInternalFTC();
 }
 
 /******************************************************************************
