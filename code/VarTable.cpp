@@ -10,6 +10,8 @@
 #include "VarTable.h"
 #include "VarList.h"
 #include <jx-af/jexpr/JXExprInput.h>
+#include <jx-af/jx/JXMenuBar.h>
+#include <jx-af/jx/JXTextMenu.h>
 #include <jx-af/jx/jXConstants.h>
 #include <jx-af/jexpr/JFunction.h>
 #include <jx-af/jcore/JFontManager.h>
@@ -28,7 +30,7 @@ const JCoordinate kVMarginWidth = 1;
 VarTable::VarTable
 	(
 	VarList*			varList,
-	JXTextMenu*			fontMenu,
+	JXMenuBar*			menuBar,
 	JXScrollbarSet*		scrollbarSet,
 	JXContainer*		enclosure,
 	const HSizingOption	hSizing,
@@ -39,15 +41,16 @@ VarTable::VarTable
 	const JCoordinate	h
 	)
 	:
-	JXEditTable(1,1, scrollbarSet, enclosure, hSizing,vSizing, x,y, w,h)
+	JXEditTable(1,1, scrollbarSet, enclosure, hSizing,vSizing, x,y, w,h),
+	itsVarList(varList),
+	itsTextInput(nullptr)
 {
 	const JSize rowHeight = 2*kVMarginWidth +
 		JFontManager::GetDefaultFont().GetLineHeight(GetFontManager());
 	SetDefaultRowHeight(rowHeight);
 
-	itsVarList   = varList;
-	itsTextInput = nullptr;
-	itsFontMenu  = fontMenu;
+	itsFontMenu = JXExprInput::CreateFontMenu(menuBar);
+	menuBar->AppendMenu(itsFontMenu);
 
 	AppendCols(2);	// name, function
 

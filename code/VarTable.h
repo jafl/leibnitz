@@ -12,6 +12,7 @@
 
 #include <jx-af/jx/JXEditTable.h>
 
+class JXMenuBar;
 class JXTextMenu;
 class JXExprInput;
 class VarList;
@@ -28,7 +29,7 @@ public:
 
 public:
 
-	VarTable(VarList*	varList, JXTextMenu* fontMenu,
+	VarTable(VarList*	varList, JXMenuBar* menuBar,
 				JXScrollbarSet* scrollbarSet, JXContainer* enclosure,
 				const HSizingOption hSizing, const VSizingOption vSizing,
 				const JCoordinate x, const JCoordinate y,

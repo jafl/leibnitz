@@ -81,12 +81,31 @@ Plot2DFunctionDialog::BuildWindow
 {
 // begin JXLayout
 
-	auto* window = jnew JXWindow(this, 330,320, JString::empty);
+	auto* window = jnew JXWindow(this, 330,320, JGetString("WindowTitle::Plot2DFunctionDialog::JXLayout"));
 
 	auto* exprEditorSet =
 		jnew JXExprEditorSet(varList, &itsExprWidget, window,
 					JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 330,150);
 	assert( exprEditorSet != nullptr );
+
+	itsPlotMenu =
+		jnew JXTextMenu(JGetString("itsPlotMenu::Plot2DFunctionDialog::JXLayout"), window,
+					JXWidget::kHElastic, JXWidget::kFixedBottom, 30,170, 260,30);
+
+	auto* curveLabel =
+		jnew JXStaticText(JGetString("curveLabel::Plot2DFunctionDialog::JXLayout"), window,
+					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 30,220, 80,20);
+	curveLabel->SetToLabel(false);
+
+	auto* rangeLabel =
+		jnew JXStaticText(JGetString("rangeLabel::Plot2DFunctionDialog::JXLayout"), window,
+					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 30,250, 80,20);
+	rangeLabel->SetToLabel(false);
+
+	auto* toLabel =
+		jnew JXStaticText(JGetString("toLabel::Plot2DFunctionDialog::JXLayout"), window,
+					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 190,250, 20,20);
+	toLabel->SetToLabel(false);
 
 	auto* cancelButton =
 		jnew JXTextButton(JGetString("cancelButton::Plot2DFunctionDialog::JXLayout"), window,
@@ -95,54 +114,28 @@ Plot2DFunctionDialog::BuildWindow
 
 	auto* okButton =
 		jnew JXTextButton(JGetString("okButton::Plot2DFunctionDialog::JXLayout"), window,
-					JXWidget::kHElastic, JXWidget::kVElastic, 200,290, 70,20);
-	assert( okButton != nullptr );
-	okButton->SetShortcuts(JGetString("okButton::Plot2DFunctionDialog::shortcuts::JXLayout"));
-
-	auto* curveLabel =
-		jnew JXStaticText(JGetString("curveLabel::Plot2DFunctionDialog::JXLayout"), window,
-					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 30,220, 80,20);
-	assert( curveLabel != nullptr );
-	curveLabel->SetToLabel();
+					JXWidget::kHElastic, JXWidget::kVElastic, 199,289, 72,22);
+	okButton->SetShortcuts(JGetString("okButton::shortcuts::Plot2DFunctionDialog::JXLayout"));
 
 	itsCurveName =
 		jnew JXInputField(window,
 					JXWidget::kHElastic, JXWidget::kFixedBottom, 110,220, 180,20);
-	assert( itsCurveName != nullptr );
-
-	auto* rangeLabel =
-		jnew JXStaticText(JGetString("rangeLabel::Plot2DFunctionDialog::JXLayout"), window,
-					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 30,250, 80,20);
-	assert( rangeLabel != nullptr );
-	rangeLabel->SetToLabel();
 
 	itsMinInput =
 		jnew JXFloatInput(window,
 					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 110,250, 80,20);
-	assert( itsMinInput != nullptr );
-
-	auto* toLabel =
-		jnew JXStaticText(JGetString("toLabel::Plot2DFunctionDialog::JXLayout"), window,
-					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 190,250, 20,20);
-	assert( toLabel != nullptr );
-	toLabel->SetToLabel();
+	itsMinInput->SetIsRequired(false);
 
 	itsMaxInput =
 		jnew JXFloatInput(window,
 					JXWidget::kFixedLeft, JXWidget::kFixedBottom, 210,250, 80,20);
-	assert( itsMaxInput != nullptr );
-
-	itsPlotMenu =
-		jnew JXTextMenu(JGetString("itsPlotMenu::Plot2DFunctionDialog::JXLayout"), window,
-					JXWidget::kHElastic, JXWidget::kFixedBottom, 30,170, 260,30);
-	assert( itsPlotMenu != nullptr );
+	itsMaxInput->SetIsRequired(false);
 
 // end JXLayout
 
-	window->SetTitle(JGetString("WindowTitle::Plot2DFunctionDialog"));
 	SetButtons(okButton, cancelButton);
 
-	(GetApplication())->BuildPlotMenu(itsPlotMenu, prevPlot, &itsPlotIndex);
+	GetApplication()->BuildPlotMenu(itsPlotMenu, prevPlot, &itsPlotIndex);
 	itsPlotMenu->SetToPopupChoice(true, itsPlotIndex);
 
 	ListenTo(itsPlotMenu, std::function([this](const JXMenu::NeedsUpdate&)

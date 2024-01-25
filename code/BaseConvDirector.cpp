@@ -131,75 +131,64 @@ BaseConvDirector::BuildWindow()
 {
 // begin JXLayout
 
-	auto* window = jnew JXWindow(this, 180,160, JString::empty);
-
-	itsCloseButton =
-		jnew JXTextButton(JGetString("itsCloseButton::BaseConvDirector::JXLayout"), window,
-					JXWidget::kFixedRight, JXWidget::kFixedTop, 100,130, 60,20);
-	assert( itsCloseButton != nullptr );
-	itsCloseButton->SetShortcuts(JGetString("itsCloseButton::BaseConvDirector::shortcuts::JXLayout"));
-
-	its10Input =
-		jnew JXInputField(window,
-					JXWidget::kHElastic, JXWidget::kFixedTop, 80,20, 80,20);
-	assert( its10Input != nullptr );
+	auto* window = jnew JXWindow(this, 180,160, JGetString("WindowTitle::BaseConvDirector::JXLayout"));
+	window->SetWMClass(JXGetApplication()->GetWMName().GetBytes(), "Leibnitz_Base_Conversion");
 
 	auto* base10Label =
 		jnew JXStaticText(JGetString("base10Label::BaseConvDirector::JXLayout"), window,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,20, 60,20);
-	assert( base10Label != nullptr );
-	base10Label->SetToLabel();
-
-	itsHelpButton =
-		jnew JXTextButton(JGetString("itsHelpButton::BaseConvDirector::JXLayout"), window,
-					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,130, 60,20);
-	assert( itsHelpButton != nullptr );
-	itsHelpButton->SetShortcuts(JGetString("itsHelpButton::BaseConvDirector::shortcuts::JXLayout"));
-
-	its2Input =
-		jnew JXInputField(window,
-					JXWidget::kHElastic, JXWidget::kFixedTop, 80,50, 80,20);
-	assert( its2Input != nullptr );
+	base10Label->SetToLabel(false);
 
 	auto* base2Label =
 		jnew JXStaticText(JGetString("base2Label::BaseConvDirector::JXLayout"), window,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,50, 60,20);
-	assert( base2Label != nullptr );
-	base2Label->SetToLabel();
-
-	its8Input =
-		jnew JXInputField(window,
-					JXWidget::kHElastic, JXWidget::kFixedTop, 80,70, 80,20);
-	assert( its8Input != nullptr );
+	base2Label->SetToLabel(false);
 
 	auto* base8Label =
 		jnew JXStaticText(JGetString("base8Label::BaseConvDirector::JXLayout"), window,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,70, 60,20);
-	assert( base8Label != nullptr );
-	base8Label->SetToLabel();
-
-	its16Input =
-		jnew JXInputField(window,
-					JXWidget::kHElastic, JXWidget::kFixedTop, 80,90, 80,20);
-	assert( its16Input != nullptr );
+	base8Label->SetToLabel(false);
 
 	auto* base16Label =
 		jnew JXStaticText(JGetString("base16Label::BaseConvDirector::JXLayout"), window,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,90, 60,20);
-	assert( base16Label != nullptr );
-	base16Label->SetToLabel();
+	base16Label->SetToLabel(false);
+
+	itsHelpButton =
+		jnew JXTextButton(JGetString("itsHelpButton::BaseConvDirector::JXLayout"), window,
+					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,130, 60,20);
+	itsHelpButton->SetShortcuts(JGetString("itsHelpButton::shortcuts::BaseConvDirector::JXLayout"));
+
+	itsCloseButton =
+		jnew JXTextButton(JGetString("itsCloseButton::BaseConvDirector::JXLayout"), window,
+					JXWidget::kFixedRight, JXWidget::kFixedTop, 100,130, 60,20);
+	itsCloseButton->SetShortcuts(JGetString("itsCloseButton::shortcuts::BaseConvDirector::JXLayout"));
+
+	its10Input =
+		jnew JXInputField(window,
+					JXWidget::kHElastic, JXWidget::kFixedTop, 80,20, 80,20);
+
+	its2Input =
+		jnew JXInputField(window,
+					JXWidget::kHElastic, JXWidget::kFixedTop, 80,50, 80,20);
+
+	its8Input =
+		jnew JXInputField(window,
+					JXWidget::kHElastic, JXWidget::kFixedTop, 80,70, 80,20);
+
+	its16Input =
+		jnew JXInputField(window,
+					JXWidget::kHElastic, JXWidget::kFixedTop, 80,90, 80,20);
 
 // end JXLayout
 
-	window->SetTitle(JGetString("WindowTitle::BaseConvDirector"));
-	window->SetWMClass(GetWMClassInstance(), GetBaseConvWindowClass());
 	window->LockCurrentMinSize();
 	window->SetCloseAction(JXWindow::kDeactivateDirector);
 	window->ShouldFocusWhenShow(true);
 	window->PlaceAsDialogWindow();
 
 	JXDisplay* display = GetDisplay();
-	auto* icon      = jnew JXImage(display, thx_base_conv_window);
+	auto* icon         = jnew JXImage(display, thx_base_conv_window);
 	window->SetIcon(icon);
 
 	ListenTo(its2Input);

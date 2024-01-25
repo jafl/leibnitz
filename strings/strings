@@ -48,7 +48,6 @@ expressions and plotting functions.
 
 # AboutDialog
 
-WindowTitle::AboutDialog		"About"
 ChangeButtonLabel::AboutDialog	"Changes"
 
 UpgradeNotice::AboutDialog
@@ -77,12 +76,10 @@ PlotTitle::Plot2DDirector			"New plot"
 
 # Plot2DFunctionDialog
 
-WindowTitle::Plot2DFunctionDialog		"Plot 2D function"
 FinishFunction::Plot2DFunctionDialog	"Please finish entering the function."
 
 # VarDirector
 
-WindowTitle::VarDirector		"Constants"
 NameColumnTitle::VarDirector	"Name"
 ValueColumnTitle::VarDirector	"Value"
 
@@ -90,12 +87,3 @@ ValueColumnTitle::VarDirector	"Value"
 
 NewVarName::VarList	"new"
 NameUsed::VarList	"This variable name is already used."
-
-# BaseConvDirector
-
-WindowTitle::BaseConvDirector	"Base Conversion"
-
-# KeyPad
-
-MultiplicationSymbol::KeyPad	"×"
-DivisionSymbol::KeyPad			"÷"

@@ -270,7 +270,7 @@ ExprDirector::BuildWindow
 	window->SetTitle(JGetString("WindowTitle::ExprDirector"));
 	window->LockCurrentMinSize();
 	window->ShouldFocusWhenShow(true);
-	window->SetWMClass(GetWMClassInstance(), GetExprWindowClass());
+	window->SetWMClass("Leibnitz", GetExprWindowClass());
 
 	JXDisplay* display = GetDisplay();
 	auto* icon      = jnew JXImage(display, thx_expr_window);

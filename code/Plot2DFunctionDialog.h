@@ -47,10 +47,10 @@ private:
 
 // begin JXLayout
 
+	JXTextMenu*   itsPlotMenu;
 	JXInputField* itsCurveName;
 	JXFloatInput* itsMinInput;
 	JXFloatInput* itsMaxInput;
-	JXTextMenu*   itsPlotMenu;
 
 // end JXLayout
 

@@ -68,104 +68,82 @@ KeyPad::CreateButtons()
 	itsDigitButton[7] =
 		jnew JXTextButton(JGetString("itsDigitButton[7]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,0, 20,20);
-	assert( itsDigitButton[7] != nullptr );
 
 	itsDigitButton[8] =
 		jnew JXTextButton(JGetString("itsDigitButton[8]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,0, 20,20);
-	assert( itsDigitButton[8] != nullptr );
 
 	itsDigitButton[9] =
 		jnew JXTextButton(JGetString("itsDigitButton[9]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 40,0, 20,20);
-	assert( itsDigitButton[9] != nullptr );
 
 	itsDigitButton[4] =
 		jnew JXTextButton(JGetString("itsDigitButton[4]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,20, 20,20);
-	assert( itsDigitButton[4] != nullptr );
 
 	itsDigitButton[5] =
 		jnew JXTextButton(JGetString("itsDigitButton[5]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,20, 20,20);
-	assert( itsDigitButton[5] != nullptr );
 
 	itsDigitButton[6] =
 		jnew JXTextButton(JGetString("itsDigitButton[6]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 40,20, 20,20);
-	assert( itsDigitButton[6] != nullptr );
 
 	itsDigitButton[1] =
 		jnew JXTextButton(JGetString("itsDigitButton[1]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,40, 20,20);
-	assert( itsDigitButton[1] != nullptr );
 
 	itsDigitButton[2] =
 		jnew JXTextButton(JGetString("itsDigitButton[2]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,40, 20,20);
-	assert( itsDigitButton[2] != nullptr );
 
 	itsDigitButton[3] =
 		jnew JXTextButton(JGetString("itsDigitButton[3]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 40,40, 20,20);
-	assert( itsDigitButton[3] != nullptr );
 
 	itsDigitButton[0] =
 		jnew JXTextButton(JGetString("itsDigitButton[0]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,60, 20,20);
-	assert( itsDigitButton[0] != nullptr );
 
 	itsOpButton[kPtOpIndex] =
 		jnew JXTextButton(JGetString("itsOpButton[kPtOpIndex]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,60, 20,20);
-	assert( itsOpButton[kPtOpIndex] != nullptr );
 
 	itsOpButton[kExpOpIndex] =
 		jnew JXTextButton(JGetString("itsOpButton[kExpOpIndex]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 40,60, 20,20);
-	assert( itsOpButton[kExpOpIndex] != nullptr );
-
-	itsClearAllButton =
-		jnew JXTextButton(JGetString("itsClearAllButton::KeyPad::kpLayout"), this,
-					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,140, 60,20);
-	assert( itsClearAllButton != nullptr );
-
-	itsOpButton[kClearOpIndex] =
-		jnew JXTextButton(JGetString("itsOpButton[kClearOpIndex]::KeyPad::kpLayout"), this,
-					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,120, 60,20);
-	assert( itsOpButton[kClearOpIndex] != nullptr );
-
-	itsOpButton[kEvalOpIndex] =
-		jnew JXTextButton(JGetString("itsOpButton[kEvalOpIndex]::KeyPad::kpLayout"), this,
-					JXWidget::kFixedLeft, JXWidget::kFixedTop, 40,80, 20,40);
-	assert( itsOpButton[kEvalOpIndex] != nullptr );
-
-	itsOpButton[kMultiplyOpIndex] =
-		jnew JXTextButton(JGetString("itsOpButton[kMultiplyOpIndex]::KeyPad::kpLayout"), this,
-					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,100, 20,20);
-	assert( itsOpButton[kMultiplyOpIndex] != nullptr );
-
-	itsOpButton[kDivideOpIndex] =
-		jnew JXTextButton(JGetString("itsOpButton[kDivideOpIndex]::KeyPad::kpLayout"), this,
-					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,100, 20,20);
-	assert( itsOpButton[kDivideOpIndex] != nullptr );
 
 	itsOpButton[kAddOpIndex] =
 		jnew JXTextButton(JGetString("itsOpButton[kAddOpIndex]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,80, 20,20);
-	assert( itsOpButton[kAddOpIndex] != nullptr );
 
 	itsOpButton[kSubtractOpIndex] =
 		jnew JXTextButton(JGetString("itsOpButton[kSubtractOpIndex]::KeyPad::kpLayout"), this,
 					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,80, 20,20);
-	assert( itsOpButton[kSubtractOpIndex] != nullptr );
+
+	itsOpButton[kEvalOpIndex] =
+		jnew JXTextButton(JGetString("itsOpButton[kEvalOpIndex]::KeyPad::kpLayout"), this,
+					JXWidget::kFixedLeft, JXWidget::kFixedTop, 40,80, 20,40);
+
+	itsOpButton[kMultiplyOpIndex] =
+		jnew JXTextButton(JGetString("itsOpButton[kMultiplyOpIndex]::KeyPad::kpLayout"), this,
+					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,100, 20,20);
+
+	itsOpButton[kDivideOpIndex] =
+		jnew JXTextButton(JGetString("itsOpButton[kDivideOpIndex]::KeyPad::kpLayout"), this,
+					JXWidget::kFixedLeft, JXWidget::kFixedTop, 20,100, 20,20);
+
+	itsOpButton[kClearOpIndex] =
+		jnew JXTextButton(JGetString("itsOpButton[kClearOpIndex]::KeyPad::kpLayout"), this,
+					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,120, 60,20);
+
+	itsClearAllButton =
+		jnew JXTextButton(JGetString("itsClearAllButton::KeyPad::kpLayout"), this,
+					JXWidget::kFixedLeft, JXWidget::kFixedTop, 0,140, 60,20);
 
 	this->SetSize(kpLayout_Aperture.width(), kpLayout_Aperture.height());
 
 // end kpLayout
-
-	itsOpButton[kMultiplyOpIndex]->SetLabel(JGetString("MultiplicationSymbol::KeyPad"));
-	itsOpButton[kDivideOpIndex]->SetLabel(JGetString("DivisionSymbol::KeyPad"));
 
 	for (auto* button : itsDigitButton)
 	{

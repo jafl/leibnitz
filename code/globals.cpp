@@ -24,11 +24,7 @@ static JXPTPrinter*			theTapePrinter     = nullptr;
 static JXPSPrinter*			thePSGraphPrinter  = nullptr;
 static JX2DPlotEPSPrinter*	theEPSGraphPrinter = nullptr;
 
-static const JUtf8Byte* kWMClassInstance = "Leibnitz";
 static const JUtf8Byte* kExprWindowClass = "Leibnitz_Expression";
-static const JUtf8Byte* kPlotWindowClass = "Leibnitz_Plot";
-static const JUtf8Byte* kConvWindowClass = "Leibnitz_Base_Conversion";
-static const JUtf8Byte* kVarWindowClass  = "Leibnitz_Constants";
 
 /******************************************************************************
  CreateGlobals
@@ -182,17 +178,6 @@ GetTapePrinter()
 }
 
 /******************************************************************************
- GetWMClassInstance
-
- ******************************************************************************/
-
-const JUtf8Byte*
-GetWMClassInstance()
-{
-	return kWMClassInstance;
-}
-
-/******************************************************************************
  GetExprWindowClass
 
  ******************************************************************************/
@@ -201,39 +186,6 @@ const JUtf8Byte*
 GetExprWindowClass()
 {
 	return kExprWindowClass;
-}
-
-/******************************************************************************
- GetPlotWindowClass
-
- ******************************************************************************/
-
-const JUtf8Byte*
-GetPlotWindowClass()
-{
-	return kPlotWindowClass;
-}
-
-/******************************************************************************
- GetBaseConvWindowClass
-
- ******************************************************************************/
-
-const JUtf8Byte*
-GetBaseConvWindowClass()
-{
-	return kConvWindowClass;
-}
-
-/******************************************************************************
- GetVarWindowClass
-
- ******************************************************************************/
-
-const JUtf8Byte*
-GetVarWindowClass()
-{
-	return kVarWindowClass;
 }
 
 /******************************************************************************

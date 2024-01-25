@@ -38,10 +38,6 @@ void DeleteGlobals();
 
 	// called by Directors
 
-const JUtf8Byte*	GetWMClassInstance();
 const JUtf8Byte*	GetExprWindowClass();
-const JUtf8Byte*	GetPlotWindowClass();
-const JUtf8Byte*	GetBaseConvWindowClass();
-const JUtf8Byte*	GetVarWindowClass();
 
 #endif

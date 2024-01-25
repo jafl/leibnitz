@@ -1,0 +1,62 @@
+jx_layout_editor 5
+260
+250
+"JXLayout"
+"Constants"
+"Leibnitz_Constants"
+""
+0
+
+1
+0
+"MenuBar"
+2
+0
+0 0 30 260
+"menuBar"
+0
+0
+0
+
+1
+0
+"ScrollbarSet"
+2
+2
+30 0 250 260
+"scrollbarSet"
+0
+0
+0
+
+1
+2
+"CustomWidget"
+2
+0
+0 0 20 245
+"colHeader"
+0
+0
+0
+"JXColHeaderWidget"
+"itsVarTable, scrollbarSet"
+0
+"itsVarTable"
+
+1
+2
+"CustomWidget"
+2
+2
+20 0 205 245
+"itsVarTable"
+1
+0
+0
+"VarTable"
+"varList, menuBar, scrollbarSet"
+0
+"menuBar"
+
+0

@@ -35,11 +35,11 @@ public:
 
 private:
 
-	VarTable*	itsVarTable;
 	JXTextMenu*	itsActionsMenu;
 
 // begin JXLayout
 
+	VarTable* itsVarTable;
 
 // end JXLayout
 

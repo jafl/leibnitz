@@ -156,6 +156,8 @@ Plot2DDirector::BuildWindow()
 // begin JXLayout
 
 	auto* window = jnew JXWindow(this, 600,400, JString::empty);
+	window->SetMinSize(300, 200);
+	window->SetWMClass(JXGetApplication()->GetWMName().GetBytes(), "Leibnitz_Plot");
 
 	auto* menuBar =
 		jnew JXMenuBar(window,
@@ -165,12 +167,8 @@ Plot2DDirector::BuildWindow()
 	itsPlotWidget =
 		jnew JX2DPlotWidget(menuBar, window,
 					JXWidget::kHElastic, JXWidget::kVElastic, 0,30, 600,370);
-	assert( itsPlotWidget != nullptr );
 
 // end JXLayout
-
-	window->SetMinSize(300, 200);
-	window->SetWMClass(GetWMClassInstance(), GetPlotWindowClass());
 
 	JXDisplay* display = GetDisplay();
 	auto* icon      = jnew JXImage(display, thx_2D_plot_window);

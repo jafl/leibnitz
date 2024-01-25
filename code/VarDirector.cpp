@@ -115,7 +115,8 @@ VarDirector::BuildWindow
 {
 // begin JXLayout
 
-	auto* window = jnew JXWindow(this, 260,250, JString::empty);
+	auto* window = jnew JXWindow(this, 260,250, JGetString("WindowTitle::VarDirector::JXLayout"));
+	window->SetWMClass(JXGetApplication()->GetWMName().GetBytes(), "Leibnitz_Constants");
 
 	auto* menuBar =
 		jnew JXMenuBar(window,
@@ -124,23 +125,24 @@ VarDirector::BuildWindow
 
 	auto* scrollbarSet =
 		jnew JXScrollbarSet(window,
-					JXWidget::kHElastic, JXWidget::kVElastic, 0,50, 260,200);
+					JXWidget::kHElastic, JXWidget::kVElastic, 0,30, 260,220);
 	assert( scrollbarSet != nullptr );
 
-	auto* colHdrContainer =
-		jnew JXWidgetSet(window,
-					JXWidget::kHElastic, JXWidget::kFixedTop, 0,30, 260,20);
-	assert( colHdrContainer != nullptr );
+	itsVarTable =
+		jnew VarTable(varList, menuBar, scrollbarSet, scrollbarSet->GetScrollEnclosure(),
+					JXWidget::kHElastic, JXWidget::kVElastic, 0,20, 260,200);
+
+	auto* colHeader =
+		jnew JXColHeaderWidget(itsVarTable, scrollbarSet, scrollbarSet->GetScrollEnclosure(),
+					JXWidget::kHElastic, JXWidget::kFixedTop, 0,0, 260,20);
+	assert( colHeader != nullptr );
 
 // end JXLayout
 
-	window->SetTitle(JGetString("WindowTitle::VarDirector"));
-	window->SetWMClass(GetWMClassInstance(), GetVarWindowClass());
-	window->SetMinSize(150,150);
 	window->SetCloseAction(JXWindow::kDeactivateDirector);
 	window->ShouldFocusWhenShow(true);
 
-	itsActionsMenu = menuBar->AppendTextMenu(JGetString("MenuTitle::VarDirector_Actions"));
+	itsActionsMenu = menuBar->PrependTextMenu(JGetString("MenuTitle::VarDirector_Actions"));
 	itsActionsMenu->SetMenuItems(kActionsMenuStr);
 	itsActionsMenu->SetUpdateAction(JXMenu::kDisableNone);
 	itsActionsMenu->AttachHandlers(this,
@@ -148,24 +150,9 @@ VarDirector::BuildWindow
 		&VarDirector::HandleActionsMenu);
 	ConfigureActionsMenu(itsActionsMenu);
 
-	JXTextMenu* fontMenu = JXExprInput::CreateFontMenu(menuBar);
-	menuBar->AppendMenu(fontMenu);
 
 	GetApplication()->CreateHelpMenu(menuBar, "ConstantsHelp");
 
-	itsVarTable =
-		jnew VarTable(varList, fontMenu, scrollbarSet,
-						scrollbarSet->GetScrollEnclosure(),
-						JXWidget::kHElastic, JXWidget::kVElastic,
-						0,0, 10,10);
-	assert( itsVarTable != nullptr );
-
-	colHdrContainer->ClearNeedsInternalFTC();
-
-	auto* colHeader =
-		jnew JXColHeaderWidget(itsVarTable, scrollbarSet, colHdrContainer,
-							  JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 10,10);
-	colHeader->FitToEnclosure();
 	colHeader->SetColTitle(1, JGetString("NameColumnTitle::VarDirector"));
 	colHeader->SetColTitle(2, JGetString("ValueColumnTitle::VarDirector"));
 	colHeader->TurnOnColResizing(20);

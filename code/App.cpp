@@ -56,7 +56,7 @@ App::App
 	char*	argv[]
 	)
 	:
-	JXApplication(argc, argv, kAppSignature, kDefaultStringData)
+	JXApplication(argc, argv, kAppSignature, "Leibnitz", kDefaultStringData)
 {
 	itsStartupFlag = true;
 
