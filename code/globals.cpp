@@ -24,8 +24,6 @@ static JXPTPrinter*			theTapePrinter     = nullptr;
 static JXPSPrinter*			thePSGraphPrinter  = nullptr;
 static JX2DPlotEPSPrinter*	theEPSGraphPrinter = nullptr;
 
-static const JUtf8Byte* kExprWindowClass = "Leibnitz_Expression";
-
 /******************************************************************************
  CreateGlobals
 
@@ -175,17 +173,6 @@ GetTapePrinter()
 {
 	assert( theTapePrinter != nullptr );
 	return theTapePrinter;
-}
-
-/******************************************************************************
- GetExprWindowClass
-
- ******************************************************************************/
-
-const JUtf8Byte*
-GetExprWindowClass()
-{
-	return kExprWindowClass;
 }
 
 /******************************************************************************

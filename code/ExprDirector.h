@@ -41,8 +41,6 @@ public:
 
 private:
 
-	ExprEditor*		itsExprWidget;
-	TapeText*		itsTapeWidget;
 	JXTextMenu*		itsActionsMenu;
 	JXTextMenu*		itsPrefsMenu;
 
@@ -53,6 +51,8 @@ private:
 
 	JXVertPartition* itsPartition;
 	KeyPad*          itsKeyPad;
+	TapeText*        itsTapeWidget;
+	ExprEditor*      itsExprWidget;
 
 // end JXLayout
 

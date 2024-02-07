@@ -36,8 +36,4 @@ JString				GetVersionStr();
 void CreateGlobals(App* app);
 void DeleteGlobals();
 
-	// called by Directors
-
-const JUtf8Byte*	GetExprWindowClass();
-
 #endif

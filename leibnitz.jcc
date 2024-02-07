@@ -43,6 +43,10 @@ T
 F
 "./code/ExprDirector.cpp"
 T
+2 "ExprDirector.jxl"
+F
+"./code/ExprDirector.jxl"
+T
 2 "ExprDirector-Actions.jxm"
 F
 "./code/ExprDirector-Actions.jxm"
@@ -96,6 +100,10 @@ T
 2 "VarDirector.cpp"
 F
 "./code/VarDirector.cpp"
+T
+2 "VarDirector.jxl"
+F
+"./code/VarDirector.jxl"
 T
 2 "VarDirector-Actions.jxm"
 F

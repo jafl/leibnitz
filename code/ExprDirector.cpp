@@ -236,19 +236,16 @@ ExprDirector::BuildWindow
 	const VarList* varList
 	)
 {
-	JArray<JCoordinate> heights(2);
-	heights.AppendItem(100);
-	heights.AppendItem(0);
-
-	const JIndex elasticIndex = 2;
-
-	JArray<JCoordinate> minHeights(2);
-	minHeights.AppendItem(50);
-	minHeights.AppendItem(50);
-
 // begin JXLayout
 
-	auto* window = jnew JXWindow(this, 360,240, JString::empty);
+	auto* window = jnew JXWindow(this, 360,240, JGetString("WindowTitle::ExprDirector::JXLayout"));
+	window->SetWMClass(JXGetApplication()->GetWMName().GetBytes(), "Leibnitz_Expression");
+
+	JArray<JCoordinate> itsPartition_sizes, itsPartition_minSizes;
+	itsPartition_sizes.AppendItem(105);
+	itsPartition_minSizes.AppendItem(50);
+	itsPartition_sizes.AppendItem(100);
+	itsPartition_minSizes.AppendItem(50);
 
 	auto* menuBar =
 		jnew JXMenuBar(window,
@@ -256,60 +253,41 @@ ExprDirector::BuildWindow
 	assert( menuBar != nullptr );
 
 	itsPartition =
-		jnew JXVertPartition(heights, elasticIndex, minHeights, window,
+		jnew JXVertPartition(itsPartition_sizes, 2, itsPartition_minSizes, window,
 					JXWidget::kHElastic, JXWidget::kVElastic, 0,30, 300,210);
-	assert( itsPartition != nullptr );
 
 	itsKeyPad =
 		jnew KeyPad(window,
 					JXWidget::kFixedRight, JXWidget::kVElastic, 300,30, 60,210);
-	assert( itsKeyPad != nullptr );
+
+	auto* scrollbarSet1 =
+		jnew JXScrollbarSet(itsPartition->GetCompartment(1),
+					JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 300,105);
+	assert( scrollbarSet1 != nullptr );
+
+	auto* scrollbarSet2 =
+		jnew JXScrollbarSet(itsPartition->GetCompartment(2),
+					JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 300,100);
+	assert( scrollbarSet2 != nullptr );
+
+	itsTapeWidget =
+		jnew TapeText(scrollbarSet2, scrollbarSet2->GetScrollEnclosure(),
+					JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 300,100);
+
+	itsExprWidget =
+		jnew ExprEditor(varList, menuBar, itsTapeWidget, scrollbarSet1, scrollbarSet1->GetScrollEnclosure(),
+					JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 300,105);
 
 // end JXLayout
 
-	window->SetTitle(JGetString("WindowTitle::ExprDirector"));
 	window->LockCurrentMinSize();
 	window->ShouldFocusWhenShow(true);
-	window->SetWMClass("Leibnitz", GetExprWindowClass());
 
 	JXDisplay* display = GetDisplay();
 	auto* icon      = jnew JXImage(display, thx_expr_window);
 	window->SetIcon(icon);
 
-	// create tape
-
-	auto* scrollbarSet2 =
-		jnew JXScrollbarSet(itsPartition->GetCompartment(2),
-						   JXWidget::kHElastic, JXWidget::kVElastic,
-						   0,0, 100,100);
-	assert( scrollbarSet2 != nullptr );
-	scrollbarSet2->FitToEnclosure();
-
-	itsTapeWidget =
-		jnew TapeText(scrollbarSet2, scrollbarSet2->GetScrollEnclosure(),
-						JXWidget::kHElastic, JXWidget::kVElastic,
-						0,0, 10,10);
-	assert( itsTapeWidget != nullptr );
-	itsTapeWidget->FitToEnclosure();
 	itsTapeWidget->SetPTPrinter(GetTapePrinter());
-
-	// create expr editor -- requires tape
-
-	auto* scrollbarSet1 =
-		jnew JXScrollbarSet(itsPartition->GetCompartment(1),
-						   JXWidget::kHElastic, JXWidget::kVElastic,
-						   0,0, 100,100);
-	assert( scrollbarSet1 != nullptr );
-	scrollbarSet1->FitToEnclosure();
-
-	itsExprWidget =
-		jnew ExprEditor(varList, menuBar, itsTapeWidget, scrollbarSet1,
-						  scrollbarSet1->GetScrollEnclosure(),
-						  JXWidget::kHElastic, JXWidget::kVElastic,
-						  0,0, 10,10);
-	assert( itsExprWidget != nullptr );
-	itsExprWidget->FitToEnclosure();
-
 	itsKeyPad->SetExprEditor(itsExprWidget);
 	itsTapeWidget->ShareEditMenu(itsExprWidget->GetEditMenu());
 
