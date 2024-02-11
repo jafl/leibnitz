@@ -141,8 +141,7 @@ VarList::NewFunction()
 {
 	auto* name = jnew JString;
 
-	JUInt64 i = 1;
-	JIndex j;
+	JIndex i=1, j;
 	do
 	{
 		*name = JGetString("NewVarName::VarList");
