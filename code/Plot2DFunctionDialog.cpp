@@ -114,7 +114,7 @@ Plot2DFunctionDialog::BuildWindow
 
 	auto* okButton =
 		jnew JXTextButton(JGetString("okButton::Plot2DFunctionDialog::JXLayout"), window,
-					JXWidget::kHElastic, JXWidget::kVElastic, 199,289, 72,22);
+					JXWidget::kHElastic, JXWidget::kVElastic, 200,290, 70,20);
 	okButton->SetShortcuts(JGetString("okButton::shortcuts::Plot2DFunctionDialog::JXLayout"));
 
 	itsCurveName =

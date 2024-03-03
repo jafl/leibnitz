@@ -1,4 +1,4 @@
-jx_layout_editor 5
+jx_layout_editor 8
 330
 320
 "JXLayout"
@@ -8,6 +8,7 @@ jx_layout_editor 5
 0
 
 1
+0
 0
 "CustomWidget"
 2
@@ -24,6 +25,7 @@ jx_layout_editor 5
 
 1
 0
+0
 "Menu"
 2
 1
@@ -39,6 +41,7 @@ jx_layout_editor 5
 0
 
 1
+0
 0
 "StaticText"
 0
@@ -57,6 +60,7 @@ jx_layout_editor 5
 
 1
 0
+0
 "InputField"
 2
 1
@@ -73,8 +77,11 @@ jx_layout_editor 5
 ""
 0
 0
+0
+""
 
 1
+0
 0
 "StaticText"
 0
@@ -93,6 +100,7 @@ jx_layout_editor 5
 
 1
 0
+0
 "FloatInput"
 0
 1
@@ -106,6 +114,7 @@ jx_layout_editor 5
 0 0
 
 1
+0
 0
 "StaticText"
 0
@@ -124,6 +133,7 @@ jx_layout_editor 5
 
 1
 0
+0
 "FloatInput"
 0
 1
@@ -138,6 +148,7 @@ jx_layout_editor 5
 
 1
 0
+0
 "TextButton"
 2
 2
@@ -150,6 +161,7 @@ jx_layout_editor 5
 ""
 
 1
+0
 0
 "TextButton"
 2
