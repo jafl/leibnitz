@@ -16,7 +16,7 @@ include ${MAKE_INCLUDE}/jx_config
 include ${MAKE_INCLUDE}/jexpr_constants
 include ${MAKE_INCLUDE}/j2dplot_constants
 
-SEARCHDIRS := -I./code -I./image ${SEARCHDIRS}
+SEARCHDIRS := -I./code -I./image-build ${SEARCHDIRS}
 
 # makemake variables
 
@@ -34,10 +34,6 @@ LIB_DEPS := ${JX_LIB_ROOT}/libj2dplot.a \
 LDLIBS := -lreflex ${J_STD_LIBS}
 
 #####
-
-EXTRA_MENU_STRING_FILES := \
-    ${JX_INCLUDE_ROOT}/jx-af/jexpr/*.cpp \
-    ${JX_INCLUDE_ROOT}/jx-af/j2dplot/*.cpp
 
 include ${MAKE_INCLUDE}/app_targets
 
