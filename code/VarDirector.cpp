@@ -116,6 +116,7 @@ VarDirector::BuildWindow
 // begin JXLayout
 
 	auto* window = jnew JXWindow(this, 260,250, JGetString("WindowTitle::VarDirector::JXLayout"));
+	window->SetMinSize(200, 200);
 	window->SetWMClass(JXGetApplication()->GetWMName().GetBytes(), "Leibnitz_Constants");
 
 	auto* menuBar =

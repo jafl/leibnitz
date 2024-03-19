@@ -256,14 +256,14 @@ ExprDirector::BuildWindow
 		jnew JXVertPartition(itsPartition_sizes, 2, itsPartition_minSizes, window,
 					JXWidget::kHElastic, JXWidget::kVElastic, 0,30, 300,210);
 
-	itsKeyPad =
-		jnew KeyPad(window,
-					JXWidget::kFixedRight, JXWidget::kVElastic, 300,30, 60,210);
-
 	auto* scrollbarSet1 =
 		jnew JXScrollbarSet(itsPartition->GetCompartment(1),
 					JXWidget::kHElastic, JXWidget::kVElastic, 0,0, 300,105);
 	assert( scrollbarSet1 != nullptr );
+
+	itsKeyPad =
+		jnew KeyPad(window,
+					JXWidget::kFixedRight, JXWidget::kVElastic, 300,30, 60,210);
 
 	auto* scrollbarSet2 =
 		jnew JXScrollbarSet(itsPartition->GetCompartment(2),
