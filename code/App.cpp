@@ -264,7 +264,7 @@ App::RestoreProgramState()
 	if (!JFileExists(fullName))
 	{
 		const JString oldName = JCombinePathAndName(itsStatePath, kOldStateFileName);
-		if (!JFileExists(oldName) || !(JRenameFile(oldName, fullName)).OK())
+		if (!JFileExists(oldName) || !JRenameFile(oldName, fullName))
 		{
 			InitProgramState();
 			DisplayAbout(true);
