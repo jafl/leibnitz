@@ -94,11 +94,8 @@ VarList::VarList
 void
 VarList::VarListX()
 {
-	itsNames = jnew JPtrArray<JString>(JPtrArrayT::kDeleteAll);
-	assert( itsNames != nullptr );
-
+	itsNames     = jnew JPtrArray<JString>(JPtrArrayT::kDeleteAll);
 	itsFunctions = jnew JPtrArray<JFunction>(JPtrArrayT::kDeleteAll);
-	assert( itsFunctions != nullptr );
 
 	InstallCollection(itsNames);
 

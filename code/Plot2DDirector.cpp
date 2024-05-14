@@ -92,7 +92,6 @@ void
 Plot2DDirector::Plot2DDirectorX()
 {
 	itsFnList = jnew JPtrArray<J2DPlotFunction>(JPtrArrayT::kForgetAll);
-	assert( itsFnList != nullptr );
 }
 
 /******************************************************************************
@@ -405,8 +404,6 @@ Plot2DDirector::EditFunction
 		jnew Plot2DFunctionDialog(GetApplication()->GetVariableList(),
 								  curve->GetFunction(),
 								  itsPlotWidget->GetCurveName(index), min, max);
-	assert( dlog != nullptr );
-
 	if (dlog->DoDialog())
 	{
 		JIndex plotIndex;

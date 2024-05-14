@@ -61,12 +61,10 @@ App::App
 	itsStartupFlag = true;
 
 	itsExprList = jnew JPtrArray<ExprDirector>(JPtrArrayT::kForgetAll);
-	assert( itsExprList != nullptr );
 
 	itsKeyPadVisibleFlag = true;
 
 	its2DPlotList = jnew JPtrArray<Plot2DDirector>(JPtrArrayT::kForgetAll);
-	assert( its2DPlotList != nullptr );
 	its2DPlotList->SetCompareFunction(Compare2DPlotTitles);
 	its2DPlotList->SetSortOrder(JListT::kSortAscending);
 
@@ -75,7 +73,8 @@ App::App
 	StartFiber([this]()
 	{
 		RestoreProgramState();
-	});
+	},
+	"RestoreProgramState");
 }
 
 /******************************************************************************
@@ -139,7 +138,8 @@ App::DisplayAbout
 			ForgetPrefsManager();
 			JXGetApplication()->Quit();
 		}
-	});
+	},
+	"App::DisplayAbout");
 }
 
 /******************************************************************************
