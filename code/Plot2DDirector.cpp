@@ -124,14 +124,13 @@ Plot2DDirector::WriteState
 	for (JIndex i=1; i<=fnCount; i++)
 	{
 		const J2DPlotDataBase* data = itsPlotWidget->GetCurve(i);
-		const auto* fnData = dynamic_cast<const J2DPlotFunction*>(data);
-		assert( fnData != nullptr );
+		auto& fnData = dynamic_cast<const J2DPlotFunction&>(*data);
 
 		JFloat xMin, xMax;
-		fnData->GetXRange(&xMin, &xMax);
+		fnData.GetXRange(&xMin, &xMax);
 		output << ' ' << xMin << ' ' << xMax;
 
-		output << ' ' << fnData->GetFunction().Print();
+		output << ' ' << fnData.GetFunction().Print();
 	}
 
 	output << ' ';
