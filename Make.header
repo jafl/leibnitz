@@ -16,7 +16,7 @@ include ${MAKE_INCLUDE}/jx_config
 include ${MAKE_INCLUDE}/jexpr_constants
 include ${MAKE_INCLUDE}/j2dplot_constants
 
-SEARCHDIRS := -I./code -I./image-build ${SEARCHDIRS}
+SEARCHDIRS := -I./image-build ${SEARCHDIRS}
 
 # makemake variables
 
